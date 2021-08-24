@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataMaster", "DataMaster.csproj", "{3A91A462-05DE-4A36-8851-8A3DE879E24B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseEngineInterpreterTest", "..\DatabaseEngineInterpreterTest\DatabaseEngineInterpreterTest.csproj", "{FA116CBE-CA50-4BDE-98CD-8E97DF07B709}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseEngineInterpreter", "..\DatabaseEngineInterpreter\DatabaseEngineInterpreter.csproj", "{EAA6ADB5-349C-4E95-AE59-966747FA985E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A91A462-05DE-4A36-8851-8A3DE879E24B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A91A462-05DE-4A36-8851-8A3DE879E24B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A91A462-05DE-4A36-8851-8A3DE879E24B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A91A462-05DE-4A36-8851-8A3DE879E24B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA116CBE-CA50-4BDE-98CD-8E97DF07B709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA116CBE-CA50-4BDE-98CD-8E97DF07B709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA116CBE-CA50-4BDE-98CD-8E97DF07B709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA116CBE-CA50-4BDE-98CD-8E97DF07B709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAA6ADB5-349C-4E95-AE59-966747FA985E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAA6ADB5-349C-4E95-AE59-966747FA985E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAA6ADB5-349C-4E95-AE59-966747FA985E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAA6ADB5-349C-4E95-AE59-966747FA985E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6DECCAF7-3ED6-4D20-B5A1-67DC8E3B0679}
+	EndGlobalSection
+EndGlobal
