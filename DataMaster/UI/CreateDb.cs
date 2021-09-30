@@ -6,7 +6,6 @@ using DatabaseEngineInterpreter.Serialization.DsmFile;
 using DataMaster.Types;
 using System.Threading.Tasks;
 using DataMaster.DB.SQLServer.SqlPure;
-using DataMaster.Managers;
 using DataMaster.Util.Extensions;
 
 namespace DataMaster.UI
@@ -54,7 +53,7 @@ namespace DataMaster.UI
 
         private void btnAdicionarTabela_Click(object sender, EventArgs e)
         {
-            if (tevDataVisualization.SelectedNode == null)
+            if (tevDataVisualization.SelectedNode is not { Level: 0 })
             {
                 MessageBox.Show("Selecione um banco de dados para inserir a tabela", "Informação",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -71,15 +70,21 @@ namespace DataMaster.UI
 
         private async void btnCriarDb_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(DbConnectionManager.sqlServerConnection.ConnectionString))//TODO - Move to verifiers
+            if (Verifiers.VerifyConnectionString())
             {
                 MessageBox.Show("Não há uma String de conexão criada.", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+            if(Verifiers.VerifyTreeViewCount(tevDataVisualization))
+            {
+                MessageBox.Show("Não há banco de dados para salvar", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             ShowProgressBarForAsyncTask();
-            var sqlInfos = tevDataVisualization.RecognazeTreeView();
+            List<SqlInfo> sqlInfos = tevDataVisualization.RecognazeTreeView();
             foreach (SqlInfo sqlInfo in sqlInfos)
             {
                 try { await SqlServerConnectionPure.CreateDb(sqlInfo); }
@@ -88,14 +93,14 @@ namespace DataMaster.UI
                     MessageBox.Show($"Ocorreu um error: {exception.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                finally { HideProgressBarForAsyncTask(); }
             }
-            
-            HideProgressBarForAsyncTask();
+
             MessageBox.Show("Criado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void btnSalvarModelo_Click(object sender, EventArgs e)
         {
-            if(tevDataVisualization.Nodes.Count == 0) //TODO - Move to verifiers
+            if(Verifiers.VerifyTreeViewCount(tevDataVisualization))
             {
                 MessageBox.Show("Não há o que salvar", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -128,7 +133,8 @@ namespace DataMaster.UI
             
             lblQuantTabela.Text = tableCount.ToString();
         }
-        private async Task LoadModel() //TODO - Made this a method than return a TreeNodeCollection
+        
+        private async Task LoadModel()
         {
             await Task.Run(() =>
             {
@@ -145,7 +151,7 @@ namespace DataMaster.UI
                             tableColumns.hasKey, tableColumns.allowNull));
 
                     TreeNodeTable treeNodeTable = new(sqlTable.name, treeNodeColumns);
-
+                    
                     tevDataVisualization.Invoke((MethodInvoker)(() => 
                         tevDataVisualization.Nodes[0].Nodes.Add(treeNodeTable)));
                 }

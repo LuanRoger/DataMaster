@@ -55,8 +55,11 @@ namespace DataMaster.UI
             else ConnStringBuilder.trustedConnection = true;
 
             DbConnectionManager.authenticationType = authType;
-            AppConfigurationManager.configuration.connectionsHistory.historyConnections.Add(cmbServerName.Text);
-            DbConnectionManager.SaveConnString();
+            if(!AppConfigurationManager.configuration.connectionsHistory.historyConnections
+                .Exists(server => server == cmbServerName.Text))
+                AppConfigurationManager.configuration.connectionsHistory.historyConnections.Add(cmbServerName.Text);
+            
+            DbConnectionManager.SaveConnStringByConnStringBuilder();
             
             Close();
         }

@@ -11,7 +11,7 @@ namespace DataMaster.UI
         {
             InitializeComponent();
 
-            this.allowEmpty = notEmpty;
+            allowEmpty = notEmpty;
 
             lblMessage.Text = message;
             Text = windowTitle;

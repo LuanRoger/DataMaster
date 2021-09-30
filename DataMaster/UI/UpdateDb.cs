@@ -1,17 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Windows.Forms;
 using DatabaseEngineInterpreter.Serialization.DduFile;
 using DatabaseEngineInterpreter.SqlSyntaxInfo;
+using DataMaster.DB.SQLServer.SqlPure;
+using DataMaster.Managers;
 using DataMaster.Types;
+using DataMaster.Util.Exceptions;
 using DataMaster.Util.Extensions;
 
 namespace DataMaster.UI
 {
     public partial class UpdateDb : Form
     {
-        private string? filePath { get; set; }
+        private string? filePath { get; }
         private string oldNodeText { get; set; }
         private SqlUpdateInfo updateInfo { get; set; } = new()
         {
@@ -25,7 +28,21 @@ namespace DataMaster.UI
             InitializeComponent();
 
             this.filePath = filePath;
-            if(this.filePath != null) LaodUpdate();
+            if(this.filePath != null) LoadUpdate();
+            else if(string.IsNullOrEmpty(DbConnectionManager.GetConnectedDatabase()))
+                throw new DatabaseNonConnectedException();
+            else LoadConnectedDatabase();
+        }
+
+        private async void LoadConnectedDatabase()
+        {
+            pgbAsyncTasks.Visible = true;
+            
+            tevDataVisualization.Nodes.Add(DbConnectionManager.GetConnectedDatabase());
+            foreach (TreeNodeTable table in await SqlServerConnectionPure.GetAllTables())
+                tevDataVisualization.Nodes[0].Nodes.Add(table);
+            
+            pgbAsyncTasks.Visible = false;
         }
 
         private void UpdateDb_Load(object sender, EventArgs e)
@@ -51,7 +68,8 @@ namespace DataMaster.UI
                 tevDataVisualization.SelectedNode.ForeColor = table.ForeColor;
             };
         }
-        
+
+        #region TableEdition
         private void btnCriarTabela_Click(object sender, EventArgs e)
         {
             CreateTableInfo createTableInfo = new();
@@ -62,14 +80,14 @@ namespace DataMaster.UI
             TreeNode table = createTableInfo.table;
             Colorfy(ref table, UpdateMode.Add);
             
-            tevDataVisualization.Nodes.Add(table);
+            tevDataVisualization.Nodes[0].Nodes.Add(table);
             updateInfo.forAddTable.Add(table.ToTreeNodeTable().ToDataTable());
         }
         private void btnEditarTabela_Click(object sender, EventArgs e)
         {
-            if(tevDataVisualization.SelectedNode.Level >= 1) return;
+            if(tevDataVisualization.SelectedNode.Level != 1) return;
             
-            CreateTableInfo createTableInfo = new(tevDataVisualization.SelectedNode.ToTreeNodeTable());
+            CreateTableInfo createTableInfo = new(tevDataVisualization.SelectedNode.ToTreeNodeTable(), true);
             createTableInfo.ShowDialog();
             
             if (createTableInfo.DialogResult != DialogResult.OK) return;
@@ -77,11 +95,14 @@ namespace DataMaster.UI
             TreeNode table = createTableInfo.table;
             Colorfy(ref table, UpdateMode.Update);
             
-            tevDataVisualization.SelectedNode.Nodes.Add(createTableInfo.table);
-            tevDataVisualization.SelectedNode.ForeColor = table.ForeColor;
+            tevDataVisualization.SelectedNode = createTableInfo.table;
         }
         private void btnExcluirTabela_Click(object sender, EventArgs e)
         {
+            if(tevDataVisualization.SelectedNode.Level != 1)
+            {
+                MessageBox.Show("Não é possivel apagar isto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             DialogResult dialogResult = 
                 MessageBox.Show($"Desseja realmente apagar a tabela {tevDataVisualization.SelectedNode.Text}?",
                     "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -95,6 +116,8 @@ namespace DataMaster.UI
             updateInfo.forDeleteTable.Add(table.Text);
             tevDataVisualization.SelectedNode.ForeColor = table.ForeColor;
         }
+        #endregion
+        
         private void btnSalvarArquivo_Click(object sender, EventArgs e)
         {
             if(tevDataVisualization.Nodes.Count == 0) //TODO - Move to verifiers
@@ -114,11 +137,12 @@ namespace DataMaster.UI
             saveFileDialog.Dispose();
         }
         
-        private void LaodUpdate()
+        private void LoadUpdate()
         {
             updateInfo = DduFileSerializer.Deserializate(filePath);
         }
-        private void Colorfy(ref TreeNode table, UpdateMode updateMode)
+        
+        private static void Colorfy(ref TreeNode table, UpdateMode updateMode)
         {
             table.ForeColor = updateMode switch
             {
@@ -127,7 +151,16 @@ namespace DataMaster.UI
                 UpdateMode.Update => Color.Blue,
                 _ => table.ForeColor
             };
+            foreach (TreeNode node in table.Nodes)
+            {
+                node.ForeColor = updateMode switch
+                {
+                    UpdateMode.Add => Color.Green,
+                    UpdateMode.Delete => Color.Red,
+                    UpdateMode.Update => Color.Blue,
+                    _ => table.ForeColor
+                };
+            }
         }
-        //TODO - Made in realtime
     }
 }

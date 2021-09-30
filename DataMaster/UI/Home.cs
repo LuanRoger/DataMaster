@@ -1,7 +1,4 @@
 ﻿using Baser.GUI;
-using DataMaster.DB;
-using DataMaster.DB.SQLServer;
-using DataMaster.Types;
 using DataMaster.UI;
 using System;
 using System.Windows.Forms;
@@ -31,7 +28,7 @@ namespace DataMaster
                 CreateDb createDb = new();
                 createDb.Show();
             };
-            mnuCreateBasedDb.Click += (_, _) =>
+            mnuCreateMigration.Click += (_, _) =>
             {
                 if(string.IsNullOrEmpty(DbConnectionManager.GetConnectedDatabase()))
                 {
@@ -39,9 +36,16 @@ namespace DataMaster
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                
-                UpdateDb updateDb = new();
-                updateDb.Show();
+                try
+                {
+                    UpdateDb updateDb = new();
+                    updateDb.Show();   
+                }
+                catch(Exception exception)
+                {
+                    MessageBox.Show("Ocorreu um error: " + exception.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             };
             mnuCarregarModelo.Click += (_, _) => 
             {

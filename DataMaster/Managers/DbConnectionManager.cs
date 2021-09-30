@@ -7,54 +7,37 @@ namespace DataMaster.Managers
 {
     public static class DbConnectionManager
     {
-        public static readonly SqlConnection sqlServerConnection =
+        public static SqlConnection sqlServerConnection =>
             new(AppConfigurationManager.configuration.database.ConnectionString);
         
-        public static ConnectionType connectionType  =
-            AppConfigurationManager.configuration.database.connectionType;
         public static AuthTypes authenticationType {get; set;}
         
         public static string GetConnectedDatabase()
         {
-            switch (connectionType)
-            {
-                case ConnectionType.SqlPure:
-                    int start, end;
-                    start = sqlServerConnection.ConnectionString.IndexOf("Database=") + "Database=".Length;
-                    end = sqlServerConnection.ConnectionString.IndexOf(';', start);
-                    return sqlServerConnection.ConnectionString
-                        .Substring(start, end - start);
-                case ConnectionType.EF:
-                    break;
-                default:
-                    throw new ("Not supported connection");
-            }
-            return null;
+            if(!sqlServerConnection.ConnectionString.Contains("Database=")) return null;
+            
+            int start, end;
+            start = sqlServerConnection.ConnectionString.IndexOf("Database=") + "Database=".Length;
+            end = sqlServerConnection.ConnectionString.IndexOf(';', start);
+            return sqlServerConnection.ConnectionString
+                .Substring(start, end - start);
         }
         public static string GetConnectedServer()
         {
-            switch (connectionType)
-            {
-                case ConnectionType.SqlPure:
-                    int start, end;
-                    start = sqlServerConnection.ConnectionString.IndexOf("Server=") + "Server=".Length;
-                    end = sqlServerConnection.ConnectionString.IndexOf(';', start);
-                    return sqlServerConnection.ConnectionString
-                        .Substring(start, end - start);
-                case ConnectionType.EF:
-                    break;
-                default:
-                    throw new ("Not supported connection");
-            }
-            return null;
+            if(!sqlServerConnection.ConnectionString.Contains("Server=")) return null;
+            
+            int start, end;
+            start = sqlServerConnection.ConnectionString.IndexOf("Server=") + "Server=".Length;
+            end = sqlServerConnection.ConnectionString.IndexOf(';', start);
+            return sqlServerConnection.ConnectionString
+                .Substring(start, end - start);
         }
         
-        public static void SaveConnString()
+        public static void SaveConnStringByConnStringBuilder()
         {
             AppConfigurationManager.configuration.database = AppConfigurationManager.configuration.database with
             {
                 ConnectionString = ConnStringBuilder.connectionString,
-                connectionType = connectionType
             };
             AppConfigurationManager.SaveConfig();
             ConnStringBuilder.ClearConnectionStringBuilder();

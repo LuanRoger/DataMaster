@@ -29,7 +29,6 @@ namespace DataMaster.UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Tabela");
             this.tevTableDesing = new System.Windows.Forms.TreeView();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -50,12 +49,9 @@ namespace DataMaster.UI
             this.tevTableDesing.LabelEdit = true;
             this.tevTableDesing.Location = new System.Drawing.Point(12, 12);
             this.tevTableDesing.Name = "tevTableDesing";
-            treeNode1.Name = "Node0";
-            treeNode1.Text = "Tabela";
-            this.tevTableDesing.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
             this.tevTableDesing.Size = new System.Drawing.Size(468, 164);
             this.tevTableDesing.TabIndex = 0;
+            this.tevTableDesing.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tevTableDesing_BeforeLabelEdit);
             // 
             // btnOK
             // 

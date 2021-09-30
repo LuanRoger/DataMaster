@@ -1,6 +1,4 @@
-﻿using DatabaseEngineInterpreter.SqlSyntaxInfo;
-using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace DataMaster.Types
 {

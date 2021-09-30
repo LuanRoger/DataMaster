@@ -43,7 +43,6 @@ namespace DataMaster.UI
             // 
             // tevDataVisualization
             // 
-            this.tevDataVisualization.LabelEdit = true;
             this.tevDataVisualization.Location = new System.Drawing.Point(12, 12);
             this.tevDataVisualization.Name = "tevDataVisualization";
             this.tevDataVisualization.Size = new System.Drawing.Size(466, 222);
@@ -73,6 +72,7 @@ namespace DataMaster.UI
             // 
             this.pgbAsyncTasks.Name = "pgbAsyncTasks";
             this.pgbAsyncTasks.Size = new System.Drawing.Size(100, 16);
+            this.pgbAsyncTasks.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.pgbAsyncTasks.Visible = false;
             // 
             // btnCriarTabela

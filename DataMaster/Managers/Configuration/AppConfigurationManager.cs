@@ -1,9 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text.Json;
-using System.Threading.Tasks;
-using DataMaster.Managers.Configuration.Sections;
-using DataMaster.Types;
+﻿using DataMaster.Types;
 using SerializedConfig;
 using SerializedConfig.Types;
 
@@ -16,7 +11,6 @@ namespace DataMaster.Managers.Configuration
           database = new()
           {
               ConnectionString = string.Empty,
-              connectionType = ConnectionType.SqlPure
           },
           connectionsHistory = new()
           {

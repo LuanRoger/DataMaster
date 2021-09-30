@@ -35,18 +35,16 @@ namespace DataMaster
             this.mnuConexao = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCreateDb = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCreateBasedDb = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCarregarModelo = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuProducts = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuProjectBook = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCriarBancoPBModelo = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuAtualizarModeloPB = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblTempo = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblConnString = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.mnuMigrations = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCreateMigration = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLoadMigration = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -57,7 +55,7 @@ namespace DataMaster
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuConexao,
             this.mnuDatabase,
-            this.mnuProducts,
+            this.mnuMigrations,
             this.mnuAbout});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -75,7 +73,6 @@ namespace DataMaster
             // 
             this.mnuDatabase.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuCreateDb,
-            this.mnuCreateBasedDb,
             this.mnuCarregarModelo});
             this.mnuDatabase.Name = "mnuDatabase";
             this.mnuDatabase.Size = new System.Drawing.Size(103, 20);
@@ -87,48 +84,11 @@ namespace DataMaster
             this.mnuCreateDb.Size = new System.Drawing.Size(246, 22);
             this.mnuCreateDb.Text = "Criar novo banco";
             // 
-            // mnuCreateBasedDb
-            // 
-            this.mnuCreateBasedDb.Name = "mnuCreateBasedDb";
-            this.mnuCreateBasedDb.Size = new System.Drawing.Size(246, 22);
-            this.mnuCreateBasedDb.Text = "Criar modelo baseado em banco";
-            this.mnuCreateBasedDb.Visible = false;
-            // 
             // mnuCarregarModelo
             // 
             this.mnuCarregarModelo.Name = "mnuCarregarModelo";
             this.mnuCarregarModelo.Size = new System.Drawing.Size(246, 22);
             this.mnuCarregarModelo.Text = "Carregar modelo...";
-            // 
-            // mnuProducts
-            // 
-            this.mnuProducts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuProjectBook});
-            this.mnuProducts.Name = "mnuProducts";
-            this.mnuProducts.Size = new System.Drawing.Size(67, 20);
-            this.mnuProducts.Text = "Produtos";
-            this.mnuProducts.Visible = false;
-            // 
-            // mnuProjectBook
-            // 
-            this.mnuProjectBook.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuCriarBancoPBModelo,
-            this.mnuAtualizarModeloPB});
-            this.mnuProjectBook.Name = "mnuProjectBook";
-            this.mnuProjectBook.Size = new System.Drawing.Size(180, 22);
-            this.mnuProjectBook.Text = "ProjectBook";
-            // 
-            // mnuCriarBancoPBModelo
-            // 
-            this.mnuCriarBancoPBModelo.Name = "mnuCriarBancoPBModelo";
-            this.mnuCriarBancoPBModelo.Size = new System.Drawing.Size(235, 22);
-            this.mnuCriarBancoPBModelo.Text = "Criar banco a partir de modelo";
-            // 
-            // mnuAtualizarModeloPB
-            // 
-            this.mnuAtualizarModeloPB.Name = "mnuAtualizarModeloPB";
-            this.mnuAtualizarModeloPB.Size = new System.Drawing.Size(235, 22);
-            this.mnuAtualizarModeloPB.Text = "Atualizar modelo...";
             // 
             // mnuAbout
             // 
@@ -187,6 +147,28 @@ namespace DataMaster
             this.tableLayoutPanel1.Size = new System.Drawing.Size(404, 404);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
+            // mnuMigrations
+            // 
+            this.mnuMigrations.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuCreateMigration,
+            this.mnuLoadMigration});
+            this.mnuMigrations.Name = "mnuMigrations";
+            this.mnuMigrations.Size = new System.Drawing.Size(74, 20);
+            this.mnuMigrations.Text = "Migrações";
+            this.mnuMigrations.Visible = false;
+            // 
+            // mnuCreateMigration
+            // 
+            this.mnuCreateMigration.Name = "mnuCreateMigration";
+            this.mnuCreateMigration.Size = new System.Drawing.Size(181, 22);
+            this.mnuCreateMigration.Text = "Criar migração";
+            // 
+            // mnuLoadMigration
+            // 
+            this.mnuLoadMigration.Name = "mnuLoadMigration";
+            this.mnuLoadMigration.Size = new System.Drawing.Size(181, 22);
+            this.mnuLoadMigration.Text = "Carregar migração...";
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -218,9 +200,7 @@ namespace DataMaster
         #endregion
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mnuAbout;
-        private System.Windows.Forms.ToolStripMenuItem mnuProducts;
         private System.Windows.Forms.ToolStripMenuItem mnuDatabase;
-        private System.Windows.Forms.ToolStripMenuItem mnuProjectBook;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblTempo;
         private System.Windows.Forms.Timer timer1;
@@ -229,9 +209,9 @@ namespace DataMaster
         private System.Windows.Forms.ToolStripMenuItem mnuConexao;
         private System.Windows.Forms.Label lblConnString;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ToolStripMenuItem mnuCriarBancoPBModelo;
-        private System.Windows.Forms.ToolStripMenuItem mnuAtualizarModeloPB;
-        private System.Windows.Forms.ToolStripMenuItem mnuCreateBasedDb;
+        private System.Windows.Forms.ToolStripMenuItem mnuMigrations;
+        private System.Windows.Forms.ToolStripMenuItem mnuCreateMigration;
+        private System.Windows.Forms.ToolStripMenuItem mnuLoadMigration;
     }
 }
 

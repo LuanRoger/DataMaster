@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using SerializedConfig.Types;
 
 namespace DataMaster.Managers.Configuration.Sections
 {
