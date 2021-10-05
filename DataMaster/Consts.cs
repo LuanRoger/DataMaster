@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DataMaster
 {
     public static class Consts
     {
-        public static string APPLOCAL_FOLDER = 
+        public static readonly string APPLOCAL_FOLDER = 
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\LuanRoger\DataMaster\";
 
-        public static string FILTER_DSM = 
+        public static readonly string FILTER_DSM = 
             $"DataMaster SQL Model|*{DatabaseEngineInterpreter.Consts.DSM_FILE_EXTENSION}";
-        public static string FILTER_DDU = 
+        public static readonly string FILTER_DDU = 
             $"DataMaster Database Updater File|*{DatabaseEngineInterpreter.Consts.DDU_FILE_EXTENSION}";
 
         public static string FONTS_FOLDER = APPLOCAL_FOLDER + @"font\";
@@ -22,5 +23,7 @@ namespace DataMaster
         public static string CONFIGURATION_FILE = APPLOCAL_FOLDER + "appsettings.json";
         
         public const int SPLASH_SCREEN_TIME = 2000;
+        
+        public static readonly List<string> SQL_SINTAX_HIGHLIGHT = new() {"GO", "ADD", "DROP"};
     }
 }

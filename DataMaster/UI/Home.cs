@@ -28,6 +28,13 @@ namespace DataMaster
                 CreateDb createDb = new();
                 createDb.Show();
             };
+            
+            mnuCriarScript.Click += (_, _) =>
+            {
+                ScriptEditor scriptEditor = new();
+                scriptEditor.Show();
+            };
+            
             mnuCreateMigration.Click += (_, _) =>
             {
                 if(string.IsNullOrEmpty(DbConnectionManager.GetConnectedDatabase()))
