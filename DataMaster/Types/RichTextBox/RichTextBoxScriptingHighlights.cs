@@ -7,6 +7,7 @@ namespace DataMaster.Types.RichTextBox
     public class RichTextBoxScriptingHighlights : System.Windows.Forms.RichTextBox
     {
         private LanguageHighlight languageHighlight { get; }
+        //TODO - Return language string
         private List<string> GetSintax() =>
         languageHighlight switch
         {

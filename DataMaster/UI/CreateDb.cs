@@ -38,17 +38,24 @@ namespace DataMaster.UI
         }
         private void CreateDb_Activated(object sender, EventArgs e) => UpdateInfo();
 
-        private void btnAdicionarDb_Click(object sender, EventArgs e) =>
+        private void btnAdicionarDb_Click(object sender, EventArgs e)
+        {
             tevDataVisualization.Nodes.Add(new TreeNode($"Database{tevDataVisualization.Nodes.Count}") { ImageIndex = 0 });
+            UpdateInfo();
+        }
+            
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             if (tevDataVisualization.SelectedNode == null) return;
 
-            DialogResult dialogResult = MessageBox.Show($"Deseja realmente excluir {tevDataVisualization.SelectedNode.Name}?", "Pergunta", 
+            DialogResult dialogResult = MessageBox.Show($"Deseja realmente excluir {tevDataVisualization.SelectedNode.Text}?", "Pergunta", 
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialogResult != DialogResult.Yes) return;
             
-            if(dialogResult == DialogResult.Yes) tevDataVisualization.SelectedNode.Remove();
+            tevDataVisualization.SelectedNode.Remove(); 
+            UpdateInfo();
         }
 
         private void btnAdicionarTabela_Click(object sender, EventArgs e)
@@ -66,13 +73,15 @@ namespace DataMaster.UI
             if (createTableInfo.DialogResult != DialogResult.OK) return;
 
             tevDataVisualization.SelectedNode.Nodes.Add(createTableInfo.table);
+            
+            UpdateInfo();
         }
 
         private async void btnCriarDb_Click(object sender, EventArgs e)
         {
             if (Verifiers.VerifyConnectionString())
             {
-                MessageBox.Show("Não há uma String de conexão criada.", "Error",
+                MessageBox.Show("Não há uma string de conexão criada.", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -93,9 +102,8 @@ namespace DataMaster.UI
                     MessageBox.Show($"Ocorreu um error: {exception.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                finally { HideProgressBarForAsyncTask(); }
+                finally { HideProgressBarForAsyncTask(); UpdateInfo(); }
             }
-
             MessageBox.Show("Criado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void btnSalvarModelo_Click(object sender, EventArgs e)
