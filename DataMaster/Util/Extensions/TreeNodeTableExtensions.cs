@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using DatabaseEngineInterpreter.SqlSyntaxInfo;
 using DataMaster.Types;
+using DataMaster.Types.Components.TreeNode;
 
 namespace DataMaster.Util.Extensions
 {

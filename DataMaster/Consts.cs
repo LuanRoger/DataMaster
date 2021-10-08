@@ -108,5 +108,9 @@ namespace DataMaster
                 "VIEW",
                 "WHERE"
             };
+        public static readonly List<string> SQL_FILE_EXTENSIONS = new()
+        {
+          ".sql"
+        };
     }
 }

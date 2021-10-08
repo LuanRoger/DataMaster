@@ -1,8 +1,6 @@
-﻿using System.Windows.Forms;
-
-namespace DataMaster.Types
+﻿namespace DataMaster.Types.Components.TreeNode
 {
-    public class TreeNodeColumn : TreeNode
+    public class TreeNodeColumn : System.Windows.Forms.TreeNode
     {
         internal string text {get; private set;}
         internal bool hasKey { get; private set; }

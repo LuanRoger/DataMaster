@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Forms;
 
-namespace DataMaster.Types
+namespace DataMaster.Types.Components.TreeNode
 {
-    public class TreeNodeTable : TreeNode
+    public class TreeNodeTable : System.Windows.Forms.TreeNode
     {
         public string text { get; set; }
         public List<TreeNodeColumn> columns { get; set; }
@@ -14,11 +13,11 @@ namespace DataMaster.Types
             this.columns = columns;
             foreach(TreeNodeColumn column in columns)
             {
-                TreeNode propertie = new(column.text);
+                System.Windows.Forms.TreeNode propertie = new(column.text);
                 propertie.ImageIndex = column.hasKey ? 2 : 3;
-                propertie.Nodes.Add(new TreeNode(column.dataType, 4, 4));
-                propertie.Nodes.Add(new TreeNode($"Chave: {column.hasKey}", 4, 4));
-                propertie.Nodes.Add(new TreeNode($"Permitir NULL: {column.allowNull}", 4, 4));
+                propertie.Nodes.Add(new System.Windows.Forms.TreeNode(column.dataType, 4, 4));
+                propertie.Nodes.Add(new System.Windows.Forms.TreeNode($"Chave: {column.hasKey}", 4, 4));
+                propertie.Nodes.Add(new System.Windows.Forms.TreeNode($"Permitir NULL: {column.allowNull}", 4, 4));
 
                 Nodes.Add(propertie);
             }

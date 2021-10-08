@@ -1,5 +1,5 @@
 ﻿
-using DataMaster.Types.RichTextBox;
+using DataMaster.Types.Components.RichTextBox;
 
 namespace DataMaster.UI
 {
@@ -33,13 +33,14 @@ namespace DataMaster.UI
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnSaveScript = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblScriptLang = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnExecuteCommand = new System.Windows.Forms.ToolStripButton();
             this.txtScriptCommand = new RichTextBoxScriptingHighlights(LanguageHighlight.SQL);
-            this.btnSaveScript = new System.Windows.Forms.ToolStripButton();
-            this.lblScriptLang = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -67,6 +68,7 @@ namespace DataMaster.UI
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnExecuteCommand,
             this.btnSaveScript});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -74,15 +76,33 @@ namespace DataMaster.UI
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // btnSaveScript
+            // 
+            this.btnSaveScript.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSaveScript.Image = global::DataMaster.Properties.Resources.disk;
+            this.btnSaveScript.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSaveScript.Name = "btnSaveScript";
+            this.btnSaveScript.Size = new System.Drawing.Size(23, 22);
+            this.btnSaveScript.Text = "Salvar";
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblScriptLang});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 294);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 292);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(641, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(641, 24);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lblScriptLang
+            // 
+            this.lblScriptLang.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.lblScriptLang.Name = "lblScriptLang";
+            this.lblScriptLang.Size = new System.Drawing.Size(36, 19);
+            this.lblScriptLang.Text = "NoN";
             // 
             // tabControl1
             // 
@@ -92,7 +112,7 @@ namespace DataMaster.UI
             this.tabControl1.Location = new System.Drawing.Point(3, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(635, 263);
+            this.tabControl1.Size = new System.Drawing.Size(635, 261);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -101,10 +121,19 @@ namespace DataMaster.UI
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(627, 235);
+            this.tabPage1.Size = new System.Drawing.Size(627, 233);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Script";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // txtScriptCommand
+            // 
+            this.txtScriptCommand.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtScriptCommand.Location = new System.Drawing.Point(3, 3);
+            this.txtScriptCommand.Name = "txtScriptCommand";
+            this.txtScriptCommand.Size = new System.Drawing.Size(621, 227);
+            this.txtScriptCommand.TabIndex = 0;
+            this.txtScriptCommand.Text = "";
             // 
             // tabPage2
             // 
@@ -116,28 +145,14 @@ namespace DataMaster.UI
             this.tabPage2.Text = "Query";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // txtScriptCommand
+            // btnExecuteCommand
             // 
-            this.txtScriptCommand.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtScriptCommand.Location = new System.Drawing.Point(3, 3);
-            this.txtScriptCommand.Name = "txtScriptCommand";
-            this.txtScriptCommand.Size = new System.Drawing.Size(621, 229);
-            this.txtScriptCommand.TabIndex = 0;
-            this.txtScriptCommand.Text = "";
-            // 
-            // btnSaveScript
-            // 
-            this.btnSaveScript.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSaveScript.Image = global::DataMaster.Properties.Resources.disk;
-            this.btnSaveScript.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSaveScript.Name = "btnSaveScript";
-            this.btnSaveScript.Size = new System.Drawing.Size(23, 22);
-            // 
-            // lblScriptLang
-            // 
-            this.lblScriptLang.Name = "lblScriptLang";
-            this.lblScriptLang.Size = new System.Drawing.Size(32, 17);
-            this.lblScriptLang.Text = "NoN";
+            this.btnExecuteCommand.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExecuteCommand.Image = global::DataMaster.Properties.Resources.script_go;
+            this.btnExecuteCommand.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExecuteCommand.Name = "btnExecuteCommand";
+            this.btnExecuteCommand.Size = new System.Drawing.Size(23, 22);
+            this.btnExecuteCommand.Text = "Executar";
             // 
             // ScriptEditor
             // 
@@ -149,6 +164,7 @@ namespace DataMaster.UI
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Script editor";
+            this.Load += new System.EventHandler(this.ScriptEditor_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -169,8 +185,9 @@ namespace DataMaster.UI
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.RichTextBox txtScriptCommand;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ToolStripStatusLabel lblScriptLang;
+        private System.Windows.Forms.ToolStripButton btnExecuteCommand;
+        private RichTextBoxScriptingHighlights txtScriptCommand;
     }
 }
