@@ -12,6 +12,7 @@ namespace DataMaster
             $"DataMaster SQL Model|*{DatabaseEngineInterpreter.Consts.DSM_FILE_EXTENSION}";
         public static readonly string FILTER_DDU = 
             $"DataMaster Database Updater File|*{DatabaseEngineInterpreter.Consts.DDU_FILE_EXTENSION}";
+        public const string FILTER_SQL_FILE = "SQL File|*.sql";
 
         public static string FONTS_FOLDER = APPLOCAL_FOLDER + @"font\";
         public static readonly string[] FONTS_DOWNLAOD = 
@@ -23,7 +24,7 @@ namespace DataMaster
         public static string CONFIGURATION_FILE = APPLOCAL_FOLDER + "appsettings.json";
         
         public const int SPLASH_SCREEN_TIME = 2000;
-        
+
         public static readonly List<string> SQL_SINTAX_HIGHLIGHT = new() 
             {
                 "ADD",

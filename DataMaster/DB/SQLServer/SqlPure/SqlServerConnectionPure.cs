@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DatabaseEngineInterpreter.SqlSyntaxInfo;
 using DataMaster.Managers;
-using DataMaster.Types;
 using DataMaster.Types.Components.TreeNode;
 using DataMaster.Util;
 using DataMaster.Util.Exceptions;
@@ -102,7 +101,7 @@ namespace DataMaster.DB.SQLServer.SqlPure
             
             return connectionState;
         }
-
+        
         #region DatabaseCriation
         public static async Task CreateDb(SqlInfo sqlInfo)
         {
@@ -174,7 +173,7 @@ namespace DataMaster.DB.SQLServer.SqlPure
             tempSqlConnection.Dispose();
         }
         #endregion
-
+        
         #region DatabaseLoader
         public static async Task<List<TreeNodeTable>> GetAllTables()
         {
@@ -184,6 +183,7 @@ namespace DataMaster.DB.SQLServer.SqlPure
             OpenTempConnection();
             try
             {
+                //TODO - Call async method
                 await Task.Run(() =>
                 {
                     SqlDataAdapter sqlCommand = 
@@ -248,5 +248,30 @@ namespace DataMaster.DB.SQLServer.SqlPure
             return columns;
         }
         #endregion
+        
+        //TODO - Create type to hold rows affected and DataTable
+        public static async Task<System.Data.DataTable> ExecuteSqlCommand(string command)
+        {
+            tempSqlConnection = new() {ConnectionString = DbConnectionManager.sqlServerConnection.ConnectionString};
+            System.Data.DataTable dataTable = new();
+            int rows = 0;
+
+            OpenTempConnection();
+            try
+            {
+                await Task.Run(() =>
+                {
+                    SqlDataAdapter dataAdapter = new(command, tempSqlConnection);
+                    dataAdapter.Fill(dataTable);
+                }) ;
+            }
+            catch(SqlException e)
+            {
+                throw new($"Ocurrs a error: {e.Message}");
+            }
+            finally { CloseTempConnection(); }
+
+            return dataTable;
+        }
     }
 }

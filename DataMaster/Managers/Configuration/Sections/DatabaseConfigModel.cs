@@ -1,6 +1,4 @@
-﻿using DataMaster.Types;
-
-namespace DataMaster.Managers.Configuration.Sections
+﻿namespace DataMaster.Managers.Configuration.Sections
 {
     public record DatabaseConfigModel
     {

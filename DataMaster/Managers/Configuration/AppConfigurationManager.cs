@@ -1,5 +1,4 @@
-﻿using DataMaster.Types;
-using SerializedConfig;
+﻿using SerializedConfig;
 using SerializedConfig.Types;
 
 namespace DataMaster.Managers.Configuration

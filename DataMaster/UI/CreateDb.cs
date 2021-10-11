@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using DatabaseEngineInterpreter.SqlSyntaxInfo;
 using DatabaseEngineInterpreter.Serialization.DsmFile;
-using DataMaster.Types;
 using System.Threading.Tasks;
 using DataMaster.DB.SQLServer.SqlPure;
 using DataMaster.Types.Components.TreeNode;

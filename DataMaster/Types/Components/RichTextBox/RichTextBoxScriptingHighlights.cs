@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 
 namespace DataMaster.Types.Components.RichTextBox
 {
@@ -40,19 +39,23 @@ namespace DataMaster.Types.Components.RichTextBox
             int cursorPosition = SelectionStart;
             GetSintaxFromConsts().ForEach(keyword =>
             {
-                if(Text.Length < keyword.Length  || !Text.Contains(keyword)) return;
-                
-                for(int indexInspector = 0; indexInspector <= Text.Length;)
+                List<string> keywordsFormated = new() { keyword.ToLower(), keyword };
+                foreach (string sqlKeyword in keywordsFormated)
                 {
-                    if(indexInspector + keyword.Length <= Text.Length &&
-                       Text.Substring(indexInspector, keyword.Length) == keyword &&
-                       !HasHighlighted(indexInspector, keyword.Length, cursorPosition))
+                    if(Text.Length < sqlKeyword.Length  || !Text.Contains(sqlKeyword)) return;
+                
+                    for(int indexInspector = 0; indexInspector <= Text.Length;)
                     {
-                        HighlightSelection(indexInspector, keyword.Length, cursorPosition);
-                        indexInspector += keyword.Length;
-                        if(indexInspector >= TextLength) break;
+                        if(indexInspector + sqlKeyword.Length <= Text.Length &&
+                           Text.Substring(indexInspector, sqlKeyword.Length) == sqlKeyword &&
+                           !HasHighlighted(indexInspector, sqlKeyword.Length, cursorPosition))
+                        {
+                            HighlightSelection(indexInspector, sqlKeyword.Length, cursorPosition);
+                            indexInspector += sqlKeyword.Length;
+                            if(indexInspector >= TextLength) break;
+                        }
+                        else indexInspector++;
                     }
-                    else indexInspector++;
                 }
             });
         }
