@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using DataMaster.Managers.Configuration;
 
 namespace DataMaster.Types.Components.RichTextBox
 {
     public class RichTextBoxScriptingHighlights : System.Windows.Forms.RichTextBox
     {
-        private readonly Color HIGHLIGHT_COLOR = Color.CornflowerBlue;
+        private readonly Color HIGHLIGHT_COLOR = 
+            Color.FromArgb(AppConfigurationManager.configuration.customizationConfigModel.highlightColor);
 
         private LanguageHighlight languageHighlight { get; set; }
         public string languageSyntax =>
@@ -18,7 +20,7 @@ namespace DataMaster.Types.Components.RichTextBox
         public void SetSyntax(string fileExtension)
         {
             if(Consts.SQL_FILE_EXTENSIONS.Contains(fileExtension)) languageHighlight = LanguageHighlight.SQL;
-            else languageHighlight = LanguageHighlight.SQL;
+            else languageHighlight = LanguageHighlight.SQL; // Default
         }
 
         public RichTextBoxScriptingHighlights(LanguageHighlight languageHighlight)
@@ -63,7 +65,7 @@ namespace DataMaster.Types.Components.RichTextBox
         {
             SelectionStart = start;
             SelectionLength = end;
-            SelectionColor = Color.CornflowerBlue;
+            SelectionColor = HIGHLIGHT_COLOR;
             
             ReturnSelectionPossition(cursorPosition);
         }

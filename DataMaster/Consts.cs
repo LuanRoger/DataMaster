@@ -10,8 +10,6 @@ namespace DataMaster
 
         public static readonly string FILTER_DSM = 
             $"DataMaster SQL Model|*{DatabaseEngineInterpreter.Consts.DSM_FILE_EXTENSION}";
-        public static readonly string FILTER_DDU = 
-            $"DataMaster Database Updater File|*{DatabaseEngineInterpreter.Consts.DDU_FILE_EXTENSION}";
         public const string FILTER_SQL_FILE = "SQL File|*.sql";
 
         public static string FONTS_FOLDER = APPLOCAL_FOLDER + @"font\";

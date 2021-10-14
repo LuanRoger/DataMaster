@@ -45,6 +45,7 @@ namespace DataMaster.UI
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblConnString = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.mnuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -56,6 +57,7 @@ namespace DataMaster.UI
             this.mnuConexao,
             this.mnuDatabase,
             this.mnuScript,
+            this.mnuConfiguration,
             this.mnuAbout});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -168,6 +170,12 @@ namespace DataMaster.UI
             this.tableLayoutPanel1.Size = new System.Drawing.Size(404, 404);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
+            // mnuConfiguration
+            // 
+            this.mnuConfiguration.Name = "mnuConfiguration";
+            this.mnuConfiguration.Size = new System.Drawing.Size(96, 20);
+            this.mnuConfiguration.Text = "Configurações";
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -211,6 +219,7 @@ namespace DataMaster.UI
         private System.Windows.Forms.ToolStripMenuItem mnuScript;
         private System.Windows.Forms.ToolStripMenuItem mnuCriarScript;
         private System.Windows.Forms.ToolStripMenuItem mnuCarregarScript;
+        private System.Windows.Forms.ToolStripMenuItem mnuConfiguration;
     }
 }
 

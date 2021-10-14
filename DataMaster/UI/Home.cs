@@ -25,12 +25,6 @@ namespace DataMaster.UI
                 CreateDb createDb = new();
                 createDb.Show();
             };
-            
-            mnuCriarScript.Click += (_, _) =>
-            {
-                ScriptEditor scriptEditor = new();
-                scriptEditor.Show();
-            };
             mnuCarregarModelo.Click += (_, _) => 
             {
                 OpenFileDialog openFileDialog = new()
@@ -44,6 +38,17 @@ namespace DataMaster.UI
 
                 CreateDb createDb = new(openFileDialog.FileName);
                 createDb.Show();
+            };
+            
+            mnuCriarScript.Click += (_, _) =>
+            {
+                ScriptEditor scriptEditor = new();
+                scriptEditor.Show();
+            };
+            mnuConfiguration.Click += (_, _) =>
+            {
+                Configurations configurations = new();
+                configurations.Show();
             };
 
             mnuAbout.Click += (_, _) =>

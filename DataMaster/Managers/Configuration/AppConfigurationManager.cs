@@ -1,5 +1,6 @@
-﻿using SerializedConfig;
-using SerializedConfig.Types;
+﻿using System.Drawing;
+using SerializedConfig;
+using SerializedConfig.Types.Serialization;
 
 namespace DataMaster.Managers.Configuration
 {
@@ -14,6 +15,10 @@ namespace DataMaster.Managers.Configuration
           connectionsHistory = new()
           {
               historyConnections = new()
+          },
+          customizationConfigModel = new()
+          {
+              highlightColor = Color.CornflowerBlue.ToArgb()
           }
         };
         
