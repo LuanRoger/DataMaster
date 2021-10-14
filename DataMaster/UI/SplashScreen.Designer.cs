@@ -1,5 +1,5 @@
 ﻿
-namespace Baser.GUI
+namespace DataMaster.UI
 {
     partial class SplashScreen
     {

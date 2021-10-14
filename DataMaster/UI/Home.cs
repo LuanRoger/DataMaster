@@ -1,11 +1,8 @@
-﻿using Baser.GUI;
-using DataMaster.UI;
-using System;
+﻿using System;
 using System.Windows.Forms;
-using DataMaster.Managers;
 using DataMaster.Managers.Configuration;
 
-namespace DataMaster
+namespace DataMaster.UI
 {
     public partial class Home : Form
     {
@@ -33,26 +30,6 @@ namespace DataMaster
             {
                 ScriptEditor scriptEditor = new();
                 scriptEditor.Show();
-            };
-            
-            mnuCreateMigration.Click += (_, _) =>
-            {
-                if(string.IsNullOrEmpty(DbConnectionManager.GetConnectedDatabase()))
-                {
-                    MessageBox.Show("Conecte-se a um banco de dados antes de continuar", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                try
-                {
-                    UpdateDb updateDb = new();
-                    updateDb.Show();   
-                }
-                catch(Exception exception)
-                {
-                    MessageBox.Show("Ocorreu um error: " + exception.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             };
             mnuCarregarModelo.Click += (_, _) => 
             {

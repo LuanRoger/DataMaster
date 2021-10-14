@@ -1,13 +1,12 @@
-﻿using DataMaster;
-using DataMaster.Managers;
-using DataMaster.Managers.Configuration;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataMaster.Managers;
+using DataMaster.Managers.Configuration;
 
-namespace Baser.GUI
+namespace DataMaster.UI
 {
     public partial class SplashScreen : Form
     {

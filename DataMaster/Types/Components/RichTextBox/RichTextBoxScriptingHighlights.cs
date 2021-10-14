@@ -42,7 +42,7 @@ namespace DataMaster.Types.Components.RichTextBox
                 List<string> keywordsFormated = new() { keyword.ToLower(), keyword };
                 foreach (string sqlKeyword in keywordsFormated)
                 {
-                    if(Text.Length < sqlKeyword.Length  || !Text.Contains(sqlKeyword)) return;
+                    if(Text.Length < sqlKeyword.Length && !Text.Contains(sqlKeyword)) continue;
                 
                     for(int indexInspector = 0; indexInspector <= Text.Length;)
                     {

@@ -40,7 +40,7 @@ namespace DataMaster.UI
         
         private void LoadFileText()
         {
-            Text = File.ReadAllText(filePath);
+            Text = File.ReadAllText(filePath!);
             fileExtension = Path.GetExtension(filePath);
             txtScriptCommand.SetSyntax(fileExtension);
         }

@@ -1,5 +1,5 @@
 ﻿
-namespace DataMaster
+namespace DataMaster.UI
 {
     partial class Home
     {
@@ -36,18 +36,15 @@ namespace DataMaster
             this.mnuDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCreateDb = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCarregarModelo = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuMigrations = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCreateMigration = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuLoadMigration = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuScript = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCriarScript = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCarregarScript = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblTempo = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblConnString = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.mnuScript = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCriarScript = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCarregarScript = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -59,7 +56,6 @@ namespace DataMaster
             this.mnuConexao,
             this.mnuDatabase,
             this.mnuScript,
-            this.mnuMigrations,
             this.mnuAbout});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -94,27 +90,26 @@ namespace DataMaster
             this.mnuCarregarModelo.Size = new System.Drawing.Size(172, 22);
             this.mnuCarregarModelo.Text = "Carregar modelo...";
             // 
-            // mnuMigrations
+            // mnuScript
             // 
-            this.mnuMigrations.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuCreateMigration,
-            this.mnuLoadMigration});
-            this.mnuMigrations.Name = "mnuMigrations";
-            this.mnuMigrations.Size = new System.Drawing.Size(74, 20);
-            this.mnuMigrations.Text = "Migrações";
-            this.mnuMigrations.Visible = false;
+            this.mnuScript.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuCriarScript,
+            this.mnuCarregarScript});
+            this.mnuScript.Name = "mnuScript";
+            this.mnuScript.Size = new System.Drawing.Size(49, 20);
+            this.mnuScript.Text = "Script";
             // 
-            // mnuCreateMigration
+            // mnuCriarScript
             // 
-            this.mnuCreateMigration.Name = "mnuCreateMigration";
-            this.mnuCreateMigration.Size = new System.Drawing.Size(181, 22);
-            this.mnuCreateMigration.Text = "Criar migração";
+            this.mnuCriarScript.Name = "mnuCriarScript";
+            this.mnuCriarScript.Size = new System.Drawing.Size(161, 22);
+            this.mnuCriarScript.Text = "Criar novo script";
             // 
-            // mnuLoadMigration
+            // mnuCarregarScript
             // 
-            this.mnuLoadMigration.Name = "mnuLoadMigration";
-            this.mnuLoadMigration.Size = new System.Drawing.Size(181, 22);
-            this.mnuLoadMigration.Text = "Carregar migração...";
+            this.mnuCarregarScript.Name = "mnuCarregarScript";
+            this.mnuCarregarScript.Size = new System.Drawing.Size(161, 22);
+            this.mnuCarregarScript.Text = "Carregar script...";
             // 
             // mnuAbout
             // 
@@ -173,27 +168,6 @@ namespace DataMaster
             this.tableLayoutPanel1.Size = new System.Drawing.Size(404, 404);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
-            // mnuScript
-            // 
-            this.mnuScript.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuCriarScript,
-            this.mnuCarregarScript});
-            this.mnuScript.Name = "mnuScript";
-            this.mnuScript.Size = new System.Drawing.Size(49, 20);
-            this.mnuScript.Text = "Script";
-            // 
-            // mnuCriarScript
-            // 
-            this.mnuCriarScript.Name = "mnuCriarScript";
-            this.mnuCriarScript.Size = new System.Drawing.Size(161, 22);
-            this.mnuCriarScript.Text = "Criar novo script";
-            // 
-            // mnuCarregarScript
-            // 
-            this.mnuCarregarScript.Name = "mnuCarregarScript";
-            this.mnuCarregarScript.Size = new System.Drawing.Size(161, 22);
-            this.mnuCarregarScript.Text = "Carregar script...";
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -234,9 +208,6 @@ namespace DataMaster
         private System.Windows.Forms.ToolStripMenuItem mnuConexao;
         private System.Windows.Forms.Label lblConnString;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ToolStripMenuItem mnuMigrations;
-        private System.Windows.Forms.ToolStripMenuItem mnuCreateMigration;
-        private System.Windows.Forms.ToolStripMenuItem mnuLoadMigration;
         private System.Windows.Forms.ToolStripMenuItem mnuScript;
         private System.Windows.Forms.ToolStripMenuItem mnuCriarScript;
         private System.Windows.Forms.ToolStripMenuItem mnuCarregarScript;
