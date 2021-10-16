@@ -11,9 +11,9 @@ namespace DataMaster.UI
         {
             InitializeComponent();
 
-            PrivateFontCollection privateFont = new PrivateFontCollection();
-            privateFont.AddFontFile(Application.StartupPath + @"font\\Montserrat-ExtraBold.ttf");
-            label1.Font = new Font(privateFont.Families[0], 20, FontStyle.Bold);
+            PrivateFontCollection privateFont = new();
+            privateFont.AddFontFile(Consts.FONT_MONTSERRAT_EXTRABOLD);
+            label1.Font = new(privateFont.Families[0], 20, FontStyle.Bold);
 
             lblProgramVersion.Text = $"v{Assembly.GetExecutingAssembly().GetName().Version}";
         }

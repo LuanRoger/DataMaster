@@ -18,7 +18,8 @@ namespace DataMaster.Managers
         public static void DownloadFonts()
         {
             if (File.Exists(Consts.FONT_MONTSERRAT_EXTRABOLD) && 
-                File.Exists(Consts.FONT_MONTSERRAT_EXTRALIGHT)) return;
+                File.Exists(Consts.FONT_MONTSERRAT_EXTRALIGHT) &&
+                File.Exists(Consts.FONT_LATO_BOLD)) return;
 
             Directory.CreateDirectory(Consts.FONTS_FOLDER);
 

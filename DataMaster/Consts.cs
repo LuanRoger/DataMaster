@@ -12,12 +12,13 @@ namespace DataMaster
             $"DataMaster SQL Model|*{DatabaseEngineInterpreter.Consts.DSM_FILE_EXTENSION}";
         public const string FILTER_SQL_FILE = "SQL File|*.sql";
 
-        public static string FONTS_FOLDER = APPLOCAL_FOLDER + @"font\";
+        public static string FONTS_FOLDER = APPLOCAL_FOLDER + @"fonts\";
         public static readonly string[] FONTS_DOWNLAOD = 
-            { "Montserrat-ExtraBold.ttf", "Montserrat-ExtraLight.ttf" };
+            { "Montserrat-ExtraBold.ttf", "Montserrat-ExtraLight.ttf", "Lato-Bold.ttf" };
         public static readonly string FONT_MONTSERRAT_EXTRABOLD = FONTS_FOLDER + FONTS_DOWNLAOD[0];
         public static readonly string FONT_MONTSERRAT_EXTRALIGHT = FONTS_FOLDER + FONTS_DOWNLAOD[1];
-        public const string FONT_DOWNLOAD_SERVER = "https://github.com/LuanRoger/ProjectBook/raw/master/ProjectBook/assets/fontes/";
+        public static readonly string FONT_LATO_BOLD = FONTS_FOLDER + FONTS_DOWNLAOD[2];
+        public const string FONT_DOWNLOAD_SERVER = "https://github.com/LuanRoger/DataMaster/raw/main/DataMaster/assets/fonts/";
 
         public static string CONFIGURATION_FILE = APPLOCAL_FOLDER + "appsettings.json";
         

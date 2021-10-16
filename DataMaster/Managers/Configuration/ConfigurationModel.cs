@@ -7,11 +7,8 @@ namespace DataMaster.Managers.Configuration
     [SectionClass]
     public record ConfigurationModel : IConfigurationModel
     {
-        [Section]
         public DatabaseConfigModel database { get; set; }
-        [Section]
         public DatabaseConnectionsHistory connectionsHistory { get; set; }
-        [Section]
         public CustomizationConfigModel customizationConfigModel { get; set; }
     }
 }

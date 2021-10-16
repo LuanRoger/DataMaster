@@ -22,8 +22,8 @@ namespace DataMaster.UI
                 PrivateFontCollection privateFont = new();
                 privateFont.AddFontFile(Consts.FONT_MONTSERRAT_EXTRABOLD);
                 privateFont.AddFontFile(Consts.FONT_MONTSERRAT_EXTRALIGHT);
-                label1.Font = new Font(privateFont.Families[0], 20, FontStyle.Bold);
-                label2.Font = new Font(privateFont.Families[1], 7, FontStyle.Regular);
+                label1.Font = new(privateFont.Families[0], 20, FontStyle.Bold);
+                label2.Font = new(privateFont.Families[1], 7, FontStyle.Regular);
             }
             catch
             {
