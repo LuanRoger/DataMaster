@@ -36,6 +36,8 @@ namespace DataMaster.UI
             // 
             // btnOk
             // 
+            this.btnOk.Image = global::DataMaster.Properties.Resources.accept;
+            this.btnOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOk.Location = new System.Drawing.Point(277, 78);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);

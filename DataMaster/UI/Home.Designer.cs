@@ -39,16 +39,20 @@ namespace DataMaster.UI
             this.mnuScript = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCriarScript = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCarregarScript = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblTempo = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblConnString = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.mnuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.ACriarScript = new System.Windows.Forms.ToolStripButton();
+            this.ACreateDb = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -113,6 +117,12 @@ namespace DataMaster.UI
             this.mnuCarregarScript.Size = new System.Drawing.Size(161, 22);
             this.mnuCarregarScript.Text = "Carregar script...";
             // 
+            // mnuConfiguration
+            // 
+            this.mnuConfiguration.Name = "mnuConfiguration";
+            this.mnuConfiguration.Size = new System.Drawing.Size(96, 20);
+            this.mnuConfiguration.Text = "Configurações";
+            // 
             // mnuAbout
             // 
             this.mnuAbout.Name = "mnuAbout";
@@ -157,7 +167,7 @@ namespace DataMaster.UI
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackgroundImage = global::DataMaster.Properties.Resources.InicioBackgroudn;
+            this.tableLayoutPanel1.BackgroundImage = global::DataMaster.Properties.Resources.InicioBackground;
             this.tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -170,17 +180,41 @@ namespace DataMaster.UI
             this.tableLayoutPanel1.Size = new System.Drawing.Size(404, 404);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
-            // mnuConfiguration
+            // toolStrip1
             // 
-            this.mnuConfiguration.Name = "mnuConfiguration";
-            this.mnuConfiguration.Size = new System.Drawing.Size(96, 20);
-            this.mnuConfiguration.Text = "Configurações";
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ACriarScript,
+            this.ACreateDb});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(404, 25);
+            this.toolStrip1.TabIndex = 6;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // ACriarScript
+            // 
+            this.ACriarScript.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ACriarScript.Image = global::DataMaster.Properties.Resources.script_add;
+            this.ACriarScript.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ACriarScript.Name = "ACriarScript";
+            this.ACriarScript.Size = new System.Drawing.Size(23, 22);
+            this.ACriarScript.Text = "Novo script";
+            // 
+            // ACreateDb
+            // 
+            this.ACreateDb.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ACreateDb.Image = global::DataMaster.Properties.Resources.database_add;
+            this.ACreateDb.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ACreateDb.Name = "ACreateDb";
+            this.ACreateDb.Size = new System.Drawing.Size(23, 22);
+            this.ACreateDb.Text = "ACreateDb";
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(404, 450);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -199,6 +233,8 @@ namespace DataMaster.UI
             this.statusStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,6 +256,9 @@ namespace DataMaster.UI
         private System.Windows.Forms.ToolStripMenuItem mnuCriarScript;
         private System.Windows.Forms.ToolStripMenuItem mnuCarregarScript;
         private System.Windows.Forms.ToolStripMenuItem mnuConfiguration;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton ACriarScript;
+        private System.Windows.Forms.ToolStripButton ACreateDb;
     }
 }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using DataMaster.Managers.Configuration;
 
 namespace DataMaster.Types.Components.RichTextBox
@@ -66,7 +68,7 @@ namespace DataMaster.Types.Components.RichTextBox
             SelectionStart = start;
             SelectionLength = end;
             SelectionColor = HIGHLIGHT_COLOR;
-            
+
             ReturnSelectionPossition(cursorPosition);
         }
         private bool HasHighlighted(int start, int end, int cursorPosition)
@@ -74,7 +76,7 @@ namespace DataMaster.Types.Components.RichTextBox
             SelectionStart = start;
             SelectionLength = end;
             bool hasBeenHighlighted = SelectionColor == HIGHLIGHT_COLOR;
-            
+
             ReturnSelectionPossition(cursorPosition);
             
             return hasBeenHighlighted;

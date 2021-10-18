@@ -31,25 +31,28 @@ namespace DataMaster.UI
         {
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnDeleteConnectionHistoric = new System.Windows.Forms.Button();
-            this.btnClearConnectionString = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnClearConnectionString = new System.Windows.Forms.Button();
+            this.btnDeleteConnectionHistoric = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtHighlightColor = new System.Windows.Forms.TextBox();
             this.btnChangeHighlight = new System.Windows.Forms.Button();
+            this.txtHighlightColor = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(301, 215);
+            this.btnSave.Image = global::DataMaster.Properties.Resources.disk;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(313, 215);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(63, 23);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Salvar";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -66,15 +69,21 @@ namespace DataMaster.UI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Conexão";
             // 
-            // btnDeleteConnectionHistoric
+            // txtConnectionString
             // 
-            this.btnDeleteConnectionHistoric.Location = new System.Drawing.Point(187, 70);
-            this.btnDeleteConnectionHistoric.Name = "btnDeleteConnectionHistoric";
-            this.btnDeleteConnectionHistoric.Size = new System.Drawing.Size(173, 23);
-            this.btnDeleteConnectionHistoric.TabIndex = 0;
-            this.btnDeleteConnectionHistoric.Text = "Excluir histórico de conexão";
-            this.btnDeleteConnectionHistoric.UseVisualStyleBackColor = true;
-            this.btnDeleteConnectionHistoric.Click += new System.EventHandler(this.btnDeleteConnectionHistoric_Click);
+            this.txtConnectionString.Location = new System.Drawing.Point(7, 41);
+            this.txtConnectionString.Name = "txtConnectionString";
+            this.txtConnectionString.Size = new System.Drawing.Size(353, 23);
+            this.txtConnectionString.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 15);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "String de conexão:";
             // 
             // btnClearConnectionString
             // 
@@ -86,21 +95,15 @@ namespace DataMaster.UI
             this.btnClearConnectionString.UseVisualStyleBackColor = true;
             this.btnClearConnectionString.Click += new System.EventHandler(this.btnClearConnectionString_Click);
             // 
-            // label1
+            // btnDeleteConnectionHistoric
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "String de conexão:";
-            // 
-            // txtConnectionString
-            // 
-            this.txtConnectionString.Location = new System.Drawing.Point(7, 41);
-            this.txtConnectionString.Name = "txtConnectionString";
-            this.txtConnectionString.Size = new System.Drawing.Size(353, 23);
-            this.txtConnectionString.TabIndex = 3;
+            this.btnDeleteConnectionHistoric.Location = new System.Drawing.Point(187, 70);
+            this.btnDeleteConnectionHistoric.Name = "btnDeleteConnectionHistoric";
+            this.btnDeleteConnectionHistoric.Size = new System.Drawing.Size(173, 23);
+            this.btnDeleteConnectionHistoric.TabIndex = 0;
+            this.btnDeleteConnectionHistoric.Text = "Excluir histórico de conexão";
+            this.btnDeleteConnectionHistoric.UseVisualStyleBackColor = true;
+            this.btnDeleteConnectionHistoric.Click += new System.EventHandler(this.btnDeleteConnectionHistoric_Click);
             // 
             // groupBox2
             // 
@@ -114,23 +117,6 @@ namespace DataMaster.UI
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Personalização";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(147, 15);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Cor de destaque do editor:";
-            // 
-            // txtHighlightColor
-            // 
-            this.txtHighlightColor.Location = new System.Drawing.Point(7, 41);
-            this.txtHighlightColor.Name = "txtHighlightColor";
-            this.txtHighlightColor.ReadOnly = true;
-            this.txtHighlightColor.Size = new System.Drawing.Size(147, 23);
-            this.txtHighlightColor.TabIndex = 1;
-            // 
             // btnChangeHighlight
             // 
             this.btnChangeHighlight.Location = new System.Drawing.Point(160, 41);
@@ -140,6 +126,23 @@ namespace DataMaster.UI
             this.btnChangeHighlight.Text = "...";
             this.btnChangeHighlight.UseVisualStyleBackColor = true;
             this.btnChangeHighlight.Click += new System.EventHandler(this.btnChangeHighlight_Click);
+            // 
+            // txtHighlightColor
+            // 
+            this.txtHighlightColor.Location = new System.Drawing.Point(7, 41);
+            this.txtHighlightColor.Name = "txtHighlightColor";
+            this.txtHighlightColor.ReadOnly = true;
+            this.txtHighlightColor.Size = new System.Drawing.Size(147, 23);
+            this.txtHighlightColor.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(147, 15);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Cor de destaque do editor:";
             // 
             // Configurations
             // 

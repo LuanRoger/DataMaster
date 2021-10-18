@@ -56,11 +56,14 @@ namespace DataMaster.UI
             // 
             // btnConnectDb
             // 
-            this.btnConnectDb.Location = new System.Drawing.Point(278, 256);
+            this.btnConnectDb.Image = global::DataMaster.Properties.Resources.disk;
+            this.btnConnectDb.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConnectDb.Location = new System.Drawing.Point(289, 256);
             this.btnConnectDb.Name = "btnConnectDb";
-            this.btnConnectDb.Size = new System.Drawing.Size(75, 23);
+            this.btnConnectDb.Size = new System.Drawing.Size(64, 23);
             this.btnConnectDb.TabIndex = 1;
             this.btnConnectDb.Text = "Salvar";
+            this.btnConnectDb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConnectDb.UseVisualStyleBackColor = true;
             this.btnConnectDb.Click += new System.EventHandler(this.btnConnectDb_Click);
             // 
@@ -158,11 +161,14 @@ namespace DataMaster.UI
             // 
             // btnTestarConexao
             // 
+            this.btnTestarConexao.Image = global::DataMaster.Properties.Resources.database_lightning;
+            this.btnTestarConexao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTestarConexao.Location = new System.Drawing.Point(12, 256);
             this.btnTestarConexao.Name = "btnTestarConexao";
-            this.btnTestarConexao.Size = new System.Drawing.Size(105, 23);
+            this.btnTestarConexao.Size = new System.Drawing.Size(109, 23);
             this.btnTestarConexao.TabIndex = 8;
             this.btnTestarConexao.Text = "Testar conexão";
+            this.btnTestarConexao.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTestarConexao.UseVisualStyleBackColor = true;
             this.btnTestarConexao.Click += new System.EventHandler(this.btnTestarConexao_Click);
             // 

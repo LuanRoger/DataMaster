@@ -10,6 +10,13 @@ namespace DataMaster.UI
         {
             InitializeComponent();
             SetMenuClick();
+            SetClickShortcuts();
+        }
+
+        private void SetClickShortcuts()
+        {
+            ACriarScript.Click += (_, _) => mnuCriarScript.PerformClick();
+            ACreateDb.Click += (_, _) => mnuCreateDb.PerformClick();
         }
 
         private void SetMenuClick()

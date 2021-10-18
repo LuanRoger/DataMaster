@@ -55,9 +55,11 @@ namespace DataMaster.UI
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(405, 281);
+            this.btnOK.Image = global::DataMaster.Properties.Resources.accept;
+            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOK.Location = new System.Drawing.Point(406, 281);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(74, 23);
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -65,11 +67,14 @@ namespace DataMaster.UI
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(324, 281);
+            this.btnCancelar.Image = global::DataMaster.Properties.Resources.cancel;
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelar.Location = new System.Drawing.Point(321, 281);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(79, 23);
             this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
@@ -156,11 +161,14 @@ namespace DataMaster.UI
             // 
             // btnAcionarColuna
             // 
+            this.btnAcionarColuna.Image = global::DataMaster.Properties.Resources.add;
+            this.btnAcionarColuna.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAcionarColuna.Location = new System.Drawing.Point(161, 241);
             this.btnAcionarColuna.Name = "btnAcionarColuna";
-            this.btnAcionarColuna.Size = new System.Drawing.Size(75, 23);
+            this.btnAcionarColuna.Size = new System.Drawing.Size(83, 23);
             this.btnAcionarColuna.TabIndex = 8;
             this.btnAcionarColuna.Text = "Adicionar";
+            this.btnAcionarColuna.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAcionarColuna.UseVisualStyleBackColor = true;
             this.btnAcionarColuna.Click += new System.EventHandler(this.btnAcionarColuna_Click);
             // 
@@ -196,11 +204,14 @@ namespace DataMaster.UI
             // 
             // btnRemoverColuna
             // 
-            this.btnRemoverColuna.Location = new System.Drawing.Point(242, 241);
+            this.btnRemoverColuna.Image = global::DataMaster.Properties.Resources.delete;
+            this.btnRemoverColuna.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemoverColuna.Location = new System.Drawing.Point(250, 241);
             this.btnRemoverColuna.Name = "btnRemoverColuna";
-            this.btnRemoverColuna.Size = new System.Drawing.Size(75, 23);
+            this.btnRemoverColuna.Size = new System.Drawing.Size(78, 23);
             this.btnRemoverColuna.TabIndex = 13;
             this.btnRemoverColuna.Text = "Remover";
+            this.btnRemoverColuna.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRemoverColuna.UseVisualStyleBackColor = true;
             this.btnRemoverColuna.Click += new System.EventHandler(this.btnRemoverColuna_Click);
             // 
