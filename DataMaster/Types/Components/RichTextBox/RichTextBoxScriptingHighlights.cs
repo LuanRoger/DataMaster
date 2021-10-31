@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using DataMaster.Managers.Configuration;
 
 namespace DataMaster.Types.Components.RichTextBox
