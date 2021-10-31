@@ -36,12 +36,12 @@ namespace DataMaster.UI
             this.txtNomeColuna = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtTiposDados = new System.Windows.Forms.ComboBox();
-            this.chbPermitirNull = new System.Windows.Forms.CheckBox();
-            this.btnAcionarColuna = new System.Windows.Forms.Button();
+            this.chbAllowNull = new System.Windows.Forms.CheckBox();
+            this.btnAddColumn = new System.Windows.Forms.Button();
             this.chbHasKey = new System.Windows.Forms.CheckBox();
             this.btnSubirColuna = new System.Windows.Forms.Button();
             this.btnDescerColuna = new System.Windows.Forms.Button();
-            this.btnRemoverColuna = new System.Windows.Forms.Button();
+            this.btnRemoveColumn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tevTableDesing
@@ -151,26 +151,26 @@ namespace DataMaster.UI
             // 
             // chbPermitirNull
             // 
-            this.chbPermitirNull.AutoSize = true;
-            this.chbPermitirNull.Location = new System.Drawing.Point(161, 197);
-            this.chbPermitirNull.Name = "chbPermitirNull";
-            this.chbPermitirNull.Size = new System.Drawing.Size(100, 19);
-            this.chbPermitirNull.TabIndex = 7;
-            this.chbPermitirNull.Text = "Permitir NULL";
-            this.chbPermitirNull.UseVisualStyleBackColor = true;
+            this.chbAllowNull.AutoSize = true;
+            this.chbAllowNull.Location = new System.Drawing.Point(161, 197);
+            this.chbAllowNull.Name = "chbAllowNull";
+            this.chbAllowNull.Size = new System.Drawing.Size(100, 19);
+            this.chbAllowNull.TabIndex = 7;
+            this.chbAllowNull.Text = "Permitir NULL";
+            this.chbAllowNull.UseVisualStyleBackColor = true;
             // 
             // btnAcionarColuna
             // 
-            this.btnAcionarColuna.Image = global::DataMaster.Properties.Resources.add;
-            this.btnAcionarColuna.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAcionarColuna.Location = new System.Drawing.Point(161, 241);
-            this.btnAcionarColuna.Name = "btnAcionarColuna";
-            this.btnAcionarColuna.Size = new System.Drawing.Size(83, 23);
-            this.btnAcionarColuna.TabIndex = 8;
-            this.btnAcionarColuna.Text = "Adicionar";
-            this.btnAcionarColuna.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAcionarColuna.UseVisualStyleBackColor = true;
-            this.btnAcionarColuna.Click += new System.EventHandler(this.btnAcionarColuna_Click);
+            this.btnAddColumn.Image = global::DataMaster.Properties.Resources.add;
+            this.btnAddColumn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddColumn.Location = new System.Drawing.Point(161, 241);
+            this.btnAddColumn.Name = "btnAddColumn";
+            this.btnAddColumn.Size = new System.Drawing.Size(83, 23);
+            this.btnAddColumn.TabIndex = 8;
+            this.btnAddColumn.Text = "Adicionar";
+            this.btnAddColumn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddColumn.UseVisualStyleBackColor = true;
+            this.btnAddColumn.Click += new System.EventHandler(this.btnAcionarColuna_Click);
             // 
             // chbHasKey
             // 
@@ -204,28 +204,28 @@ namespace DataMaster.UI
             // 
             // btnRemoverColuna
             // 
-            this.btnRemoverColuna.Image = global::DataMaster.Properties.Resources.delete;
-            this.btnRemoverColuna.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemoverColuna.Location = new System.Drawing.Point(250, 241);
-            this.btnRemoverColuna.Name = "btnRemoverColuna";
-            this.btnRemoverColuna.Size = new System.Drawing.Size(78, 23);
-            this.btnRemoverColuna.TabIndex = 13;
-            this.btnRemoverColuna.Text = "Remover";
-            this.btnRemoverColuna.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRemoverColuna.UseVisualStyleBackColor = true;
-            this.btnRemoverColuna.Click += new System.EventHandler(this.btnRemoverColuna_Click);
+            this.btnRemoveColumn.Image = global::DataMaster.Properties.Resources.delete;
+            this.btnRemoveColumn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemoveColumn.Location = new System.Drawing.Point(250, 241);
+            this.btnRemoveColumn.Name = "btnRemoveColumn";
+            this.btnRemoveColumn.Size = new System.Drawing.Size(78, 23);
+            this.btnRemoveColumn.TabIndex = 13;
+            this.btnRemoveColumn.Text = "Remover";
+            this.btnRemoveColumn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRemoveColumn.UseVisualStyleBackColor = true;
+            this.btnRemoveColumn.Click += new System.EventHandler(this.btnRemoverColuna_Click);
             // 
             // CreateTableInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 316);
-            this.Controls.Add(this.btnRemoverColuna);
+            this.Controls.Add(this.btnRemoveColumn);
             this.Controls.Add(this.btnDescerColuna);
             this.Controls.Add(this.btnSubirColuna);
             this.Controls.Add(this.chbHasKey);
-            this.Controls.Add(this.btnAcionarColuna);
-            this.Controls.Add(this.chbPermitirNull);
+            this.Controls.Add(this.btnAddColumn);
+            this.Controls.Add(this.chbAllowNull);
             this.Controls.Add(this.txtTiposDados);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNomeColuna);
@@ -240,6 +240,7 @@ namespace DataMaster.UI
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Criar Tabela";
+            this.Load += new System.EventHandler(this.CreateTableInfo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,11 +255,11 @@ namespace DataMaster.UI
         private System.Windows.Forms.TextBox txtNomeColuna;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox txtTiposDados;
-        private System.Windows.Forms.CheckBox chbPermitirNull;
-        private System.Windows.Forms.Button btnAcionarColuna;
+        private System.Windows.Forms.CheckBox chbAllowNull;
+        private System.Windows.Forms.Button btnAddColumn;
         private System.Windows.Forms.CheckBox chbHasKey;
         private System.Windows.Forms.Button btnSubirColuna;
         private System.Windows.Forms.Button btnDescerColuna;
-        private System.Windows.Forms.Button btnRemoverColuna;
+        private System.Windows.Forms.Button btnRemoveColumn;
     }
 }

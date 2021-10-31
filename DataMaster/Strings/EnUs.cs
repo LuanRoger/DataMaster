@@ -3,19 +3,23 @@ using GlobalStrings;
 
 namespace DataMaster.Strings
 {
-    public class En_Us : ILanguage
+    public class EnUs : ILanguage
     {
         public LanguageInfo<LanguageCode, string, string> language { get; private set; }
 
         public void InitLanguage()
         {
-            language = new(LanguageCode.PT_BR, new()
+            language = new(LanguageCode.EN_US, new()
             {
                 {"Home", new()
                 {
                     {"MenubarConnect", "Connect"},
                     {"MenubarDatabase", "Database"},
+                    {"SmuCreateDb", "Create database"},
+                    {"SmuLoadModel", "Load model..."},
                     {"MenubarScript", "Script"},
+                    {"SmuCreateScript", "Create new script"},
+                    {"SmuLoadScript", "Load script..."},
                     {"MenubarConfig", "Configurations"},
                     {"MenubarAbout", "About"},
                     {"LabelConnectionStatus", "No connection string"}
@@ -23,8 +27,8 @@ namespace DataMaster.Strings
                 {"ConnectDb", new()
                 {
                     {"WindowTile", "Connect"},
-                    {"LabelServerName", "Server name"},
-                    {"LabelDatabaseName", "Database name"},
+                    {"LabelServerName", "Server name:"},
+                    {"LabelDatabaseName", "Database name:"},
                     {"LabelAuth", "Auth"},
                     {"GroupboxAuthInfo", "Auth info"},
                     {"LabelAuthUsername", "Username"},
@@ -35,7 +39,7 @@ namespace DataMaster.Strings
                 {"CreateDb", new()
                 {
                     {"WindowTile", "Create database"},
-                    {"ButtonAddDb", "Add DB"},
+                    {"ButtonAddDb", "Add database"},
                     {"ButtonAddTable", "Add table"},
                     {"ButtonDeleteElement", "Delete element"},
                     {"GroupboxInfo", "Informations"},
@@ -51,16 +55,16 @@ namespace DataMaster.Strings
                     {"LabelDataType", "Data type:"},
                     {"CheckboxAllowNull", "Allow NULL"},
                     {"CheckboxHasKey", "Key"},
-                    {"ButtonAddTable", "Add"},
-                    {"ButtonRemoveTable", "Remove"},
-                    {"ButtonCancel", "Cancel"},
-                    {"ButtonOk", "OK"}
+                    {"ButtonAddColumn", "Add"},
+                    {"ButtonRemoveColumn", "Remove"},
+                    {"ButtonOk", "OK"},
+                    {"ButtonCancel", "Cancel"}
                 }},
                 {"ScriptEditor", new()
                 {
                     {"WindowTile", "Script editor"},
-                    {"TabLabel1", "Script"},
-                    {"TabLabel2", "Query"},
+                    {"TabLabel0", "Script"},
+                    {"TabLabel1", "Query"},
                 }},
                 {"Configuration", new()
                 {
@@ -71,7 +75,8 @@ namespace DataMaster.Strings
                     {"ButtonDeleteConnectionHistoric", "Delete connection historic"},
                     {"GroupboxPersonalization", "Personalization"},
                     {"LabelHighlightColor", "Highlight color"},
-                    {"LabelLanguage", "Language"}
+                    {"LabelLanguage", "Language"},
+                    {"ButtonSave", "Save"}
                 }},
                 {"About", new()
                 {

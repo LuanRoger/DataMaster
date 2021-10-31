@@ -16,6 +16,7 @@ namespace DataMaster.UI
 
             AppManager.DownloadFonts();
             AppConfigurationManager.LoadConfig();
+            LanguageManager.InitLanguages(AppConfigurationManager.configuration.languageConfigModel.langCodeNow);
 
             try
             {

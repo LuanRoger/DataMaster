@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataMaster.DB.SQLServer.SqlPure;
+using DataMaster.Managers;
+using GlobalStrings.EventArguments;
 
 namespace DataMaster.UI
 {
@@ -36,6 +38,8 @@ namespace DataMaster.UI
             if(!string.IsNullOrEmpty(filePath)) LoadFileText();
             
             lblScriptLang.Text = txtScriptCommand.languageSyntax;
+            
+            LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
         }
         
         private void LoadFileText()
@@ -61,7 +65,15 @@ namespace DataMaster.UI
             
             await File.WriteAllTextAsync(saveFileDialog.FileName, sqlCommand);
         }
-
+        
+        private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
+        {
+            Text = LanguageManager.ReturnGlobalizationText("ScriptEditor", "WindowTile");
+            
+            tabControl1.TabPages[0].Text = LanguageManager.ReturnGlobalizationText("ScriptEditor", "TabLabel0");
+            tabControl1.TabPages[1].Text = LanguageManager.ReturnGlobalizationText("ScriptEditor", "TabLabel1");
+        }
+        
         #region ProgressBar
             private void ShowPgb() => pgbAsyncTask.Visible = true;
             private void HidePgb() => pgbAsyncTask.Visible = false;

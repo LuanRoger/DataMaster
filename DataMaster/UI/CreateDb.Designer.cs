@@ -31,10 +31,10 @@ namespace DataMaster.UI
         {
             this.tevDataVisualization = new System.Windows.Forms.TreeView();
             this.btnAdicionarDb = new System.Windows.Forms.Button();
-            this.btnAdicionarTabela = new System.Windows.Forms.Button();
-            this.btnExcluir = new System.Windows.Forms.Button();
-            this.btnSalvarModelo = new System.Windows.Forms.Button();
-            this.btnCriarDb = new System.Windows.Forms.Button();
+            this.btnAddTable = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSaveModel = new System.Windows.Forms.Button();
+            this.btnCreateDb = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.pgbAsyncTasks = new System.Windows.Forms.ToolStripProgressBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -69,55 +69,55 @@ namespace DataMaster.UI
             // 
             // btnAdicionarTabela
             // 
-            this.btnAdicionarTabela.Image = global::DataMaster.Properties.Resources.table_add;
-            this.btnAdicionarTabela.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdicionarTabela.Location = new System.Drawing.Point(12, 269);
-            this.btnAdicionarTabela.Name = "btnAdicionarTabela";
-            this.btnAdicionarTabela.Size = new System.Drawing.Size(119, 23);
-            this.btnAdicionarTabela.TabIndex = 2;
-            this.btnAdicionarTabela.Text = "Adicionar tabela";
-            this.btnAdicionarTabela.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdicionarTabela.UseVisualStyleBackColor = true;
-            this.btnAdicionarTabela.Click += new System.EventHandler(this.btnAdicionarTabela_Click);
+            this.btnAddTable.Image = global::DataMaster.Properties.Resources.table_add;
+            this.btnAddTable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddTable.Location = new System.Drawing.Point(12, 269);
+            this.btnAddTable.Name = "btnAddTable";
+            this.btnAddTable.Size = new System.Drawing.Size(119, 23);
+            this.btnAddTable.TabIndex = 2;
+            this.btnAddTable.Text = "Adicionar tabela";
+            this.btnAddTable.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddTable.UseVisualStyleBackColor = true;
+            this.btnAddTable.Click += new System.EventHandler(this.btnAdicionarTabela_Click);
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Image = global::DataMaster.Properties.Resources.delete;
-            this.btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcluir.Location = new System.Drawing.Point(12, 298);
-            this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(119, 23);
-            this.btnExcluir.TabIndex = 3;
-            this.btnExcluir.Text = "Excluir elemento";
-            this.btnExcluir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExcluir.UseVisualStyleBackColor = true;
-            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            this.btnDelete.Image = global::DataMaster.Properties.Resources.delete;
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.Location = new System.Drawing.Point(12, 298);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(119, 23);
+            this.btnDelete.TabIndex = 3;
+            this.btnDelete.Text = "Excluir elemento";
+            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnSalvarModelo
             // 
-            this.btnSalvarModelo.Image = global::DataMaster.Properties.Resources.database_save;
-            this.btnSalvarModelo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalvarModelo.Location = new System.Drawing.Point(277, 315);
-            this.btnSalvarModelo.Name = "btnSalvarModelo";
-            this.btnSalvarModelo.Size = new System.Drawing.Size(106, 23);
-            this.btnSalvarModelo.TabIndex = 5;
-            this.btnSalvarModelo.Text = "Salvar modelo";
-            this.btnSalvarModelo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSalvarModelo.UseVisualStyleBackColor = true;
-            this.btnSalvarModelo.Click += new System.EventHandler(this.btnSalvarModelo_Click);
+            this.btnSaveModel.Image = global::DataMaster.Properties.Resources.database_save;
+            this.btnSaveModel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveModel.Location = new System.Drawing.Point(277, 315);
+            this.btnSaveModel.Name = "btnSaveModel";
+            this.btnSaveModel.Size = new System.Drawing.Size(106, 23);
+            this.btnSaveModel.TabIndex = 5;
+            this.btnSaveModel.Text = "Salvar modelo";
+            this.btnSaveModel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSaveModel.UseVisualStyleBackColor = true;
+            this.btnSaveModel.Click += new System.EventHandler(this.btnSalvarModelo_Click);
             // 
             // btnCriarDb
             // 
-            this.btnCriarDb.Image = global::DataMaster.Properties.Resources.go;
-            this.btnCriarDb.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCriarDb.Location = new System.Drawing.Point(389, 315);
-            this.btnCriarDb.Name = "btnCriarDb";
-            this.btnCriarDb.Size = new System.Drawing.Size(89, 23);
-            this.btnCriarDb.TabIndex = 6;
-            this.btnCriarDb.Text = "Criar banco";
-            this.btnCriarDb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCriarDb.UseVisualStyleBackColor = true;
-            this.btnCriarDb.Click += new System.EventHandler(this.btnCriarDb_Click);
+            this.btnCreateDb.Image = global::DataMaster.Properties.Resources.go;
+            this.btnCreateDb.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCreateDb.Location = new System.Drawing.Point(389, 315);
+            this.btnCreateDb.Name = "btnCreateDb";
+            this.btnCreateDb.Size = new System.Drawing.Size(89, 23);
+            this.btnCreateDb.TabIndex = 6;
+            this.btnCreateDb.Text = "Criar banco";
+            this.btnCreateDb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCreateDb.UseVisualStyleBackColor = true;
+            this.btnCreateDb.Click += new System.EventHandler(this.btnCriarDb_Click);
             // 
             // statusStrip1
             // 
@@ -192,10 +192,10 @@ namespace DataMaster.UI
             this.ClientSize = new System.Drawing.Size(490, 375);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.btnCriarDb);
-            this.Controls.Add(this.btnSalvarModelo);
-            this.Controls.Add(this.btnExcluir);
-            this.Controls.Add(this.btnAdicionarTabela);
+            this.Controls.Add(this.btnCreateDb);
+            this.Controls.Add(this.btnSaveModel);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnAddTable);
             this.Controls.Add(this.btnAdicionarDb);
             this.Controls.Add(this.tevDataVisualization);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -219,10 +219,10 @@ namespace DataMaster.UI
 
         private System.Windows.Forms.TreeView tevDataVisualization;
         private System.Windows.Forms.Button btnAdicionarDb;
-        private System.Windows.Forms.Button btnAdicionarTabela;
-        private System.Windows.Forms.Button btnExcluir;
-        private System.Windows.Forms.Button btnSalvarModelo;
-        private System.Windows.Forms.Button btnCriarDb;
+        private System.Windows.Forms.Button btnAddTable;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnSaveModel;
+        private System.Windows.Forms.Button btnCreateDb;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar pgbAsyncTasks;
         private System.Windows.Forms.GroupBox groupBox1;

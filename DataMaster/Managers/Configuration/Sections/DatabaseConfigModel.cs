@@ -2,6 +2,6 @@
 {
     public record DatabaseConfigModel
     {
-        public string ConnectionString {get; set;}
+        public string connectionString {get; set;}
     }
 }

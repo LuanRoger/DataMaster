@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Data;
+using System.Security.Principal;
 using DataMaster.Types;
 using System.Windows.Forms;
 using DataMaster.DB.SQLServer.SqlPure;
 using DataMaster.Managers;
 using DataMaster.Managers.Configuration;
 using DataMaster.Util;
+using GlobalStrings.EventArguments;
 
 namespace DataMaster.UI
 {
@@ -21,6 +23,8 @@ namespace DataMaster.UI
             cmbServerType.SelectedIndex = 0;
             foreach (string connection in AppConfigurationManager.configuration.connectionsHistory.historyConnections)
                 cmbServerName.Items.Add(connection);
+            
+            LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
         }
         
         private void cmbServerType_SelectedIndexChanged(object sender, EventArgs e)
@@ -75,6 +79,23 @@ namespace DataMaster.UI
                 MessageBox.Show("Conexão bem sucedida", "Sucesso",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+        
+        private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
+        {
+            Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "WindowTile");
+            label1.Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "LabelServerName");
+            
+            label5.Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "LabelDatabaseName");
+            
+            label2.Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "LabelAuth");
+            
+            gpbInfoUser.Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "GroupboxAuthInfo");
+            label3.Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "LabelAuthUsername");
+            label4.Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "LabelAuthPassword");
+            
+            btnConnectDb.Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "ButtonSave");
+            btnTestConnection.Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "ButtonConnectionTest");
         }
     }
 }

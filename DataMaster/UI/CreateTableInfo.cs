@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using DataMaster.Managers;
 using DataMaster.Types.Components.TreeNode;
+using GlobalStrings.EventArguments;
 
 namespace DataMaster.UI
 {
@@ -10,16 +12,7 @@ namespace DataMaster.UI
     {
         internal TreeNodeTable table { get; private set; }
         private bool inspect { get; }
-        public StringBuilder sqlChanges { get; private set;}
-        private  StringBuilder _sqlChanges
-        {
-            get
-            {
-                sqlChanges ??= new();
-
-                return sqlChanges;
-            }
-        }
+        private StringBuilder sqlChanges { get; set;}
 
         public CreateTableInfo(TreeNodeTable table = null, bool inspect = false)
         {
@@ -37,6 +30,10 @@ namespace DataMaster.UI
             
             if(table != null) LoadTable();
             else tevTableDesing.Nodes.Add("Table");
+        }
+        private void CreateTableInfo_Load(object sender, EventArgs e)
+        {
+            LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
         }
 
         private void LoadTable()
@@ -61,7 +58,7 @@ namespace DataMaster.UI
                 return;
             }
 
-            TreeNodeColumn treeNodeColumn = new(txtNomeColuna.Text, txtTiposDados.Text, chbHasKey.Checked, chbPermitirNull.Checked)
+            TreeNodeColumn treeNodeColumn = new(txtNomeColuna.Text, txtTiposDados.Text, chbHasKey.Checked, chbAllowNull.Checked)
             {
                 ImageIndex = chbHasKey.Checked ? 1 : 2
             };
@@ -88,7 +85,7 @@ namespace DataMaster.UI
         }
         private void txtTiposDados_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter) btnAcionarColuna.PerformClick();
+            if(e.KeyCode == Keys.Enter) btnAddColumn.PerformClick();
         }
         #endregion
 
@@ -147,15 +144,15 @@ namespace DataMaster.UI
         #region SqlChangeloger
         private void AppendAddChange(TreeNodeColumn column)
         {
-            _sqlChanges.AppendLine($"ALTER TABLE {0} ADD {column.text} {column.dataType}");
+            sqlChanges.AppendLine($"ALTER TABLE {0} ADD {column.text} {column.dataType}");
         }
         private void AppendDropChange(string columnName)
         {
-            _sqlChanges.AppendLine($"ALTER TABLE {0} DROP COLUMN {columnName}");
+            sqlChanges.AppendLine($"ALTER TABLE {0} DROP COLUMN {columnName}");
         }
         private void AppendModifyTable(string colunmName, string dataType)
         {
-            _sqlChanges.AppendLine($"ALTER TABLE {0} ALTER COLUMN {colunmName} {dataType};");
+            sqlChanges.AppendLine($"ALTER TABLE {0} ALTER COLUMN {colunmName} {dataType};");
         }
         private void tevTableDesing_BeforeLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
@@ -165,16 +162,31 @@ namespace DataMaster.UI
                 AppendModifyTable(tevTableDesing.SelectedNode.Parent.Text,
                     tevTableDesing.SelectedNode.Text);
         }
-        
-        private string BuildSqlChangelog(string tableName) => string.Format(sqlChanges.ToString(), tableName);
         #endregion
+        
+        private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
+        {
+            Text = LanguageManager.ReturnGlobalizationText("CreateTable", "WindowTile");
+            
+            label1.Text = LanguageManager.ReturnGlobalizationText("CreateTable", "LabelColumnName");
+            label2.Text = LanguageManager.ReturnGlobalizationText("CreateTable", "LabelDataType");
+            
+            chbAllowNull.Text = LanguageManager.ReturnGlobalizationText("CreateTable", "CheckboxAllowNull");
+            chbHasKey.Text = LanguageManager.ReturnGlobalizationText("CreateTable", "CheckboxHasKey");
 
+            btnAddColumn.Text = LanguageManager.ReturnGlobalizationText("CreateTable", "ButtonAddColumn");
+            btnRemoveColumn.Text = LanguageManager.ReturnGlobalizationText("CreateTable", "ButtonRemoveColumn");
+            
+            btnOK.Text = LanguageManager.ReturnGlobalizationText("CreateTable", "ButtonOk");
+            btnCancelar.Text = LanguageManager.ReturnGlobalizationText("CreateTable", "ButtonCancel");
+        }
+        
         private void ClearFields()
         {
             txtNomeColuna.Clear();
             txtTiposDados.Text = "";
             chbHasKey.Checked = false;
-            chbPermitirNull.Checked = false;
+            chbAllowNull.Checked = false;
         }
     }
 }

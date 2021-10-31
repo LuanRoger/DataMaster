@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using DataMaster.Managers;
 using DataMaster.Managers.Configuration;
+using DataMaster.Types;
+using GlobalStrings.EventArguments;
 
 namespace DataMaster.UI
 {
@@ -10,14 +13,24 @@ namespace DataMaster.UI
         public Configurations()
         {
             InitializeComponent();
+            cmbLanguages.Items.AddRange(
+                new object[]
+                {
+                    "Portugues (Brasil)",
+                    "English"
+                });
         }
 
         private void Configurations_Load(object sender, EventArgs e)
         {
-            txtConnectionString.Text = AppConfigurationManager.configuration.database.ConnectionString;
+            txtConnectionString.Text = AppConfigurationManager.configuration.database.connectionString;
             
             txtHighlightColor.Text = AppConfigurationManager.configuration.customizationConfigModel.highlightColor.ToString();
             txtHighlightColor.BackColor = Color.FromArgb(AppConfigurationManager.configuration.customizationConfigModel.highlightColor);
+            
+            cmbLanguages.SelectedIndex = (int)AppConfigurationManager.configuration.languageConfigModel.langCodeNow;
+            
+            LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
         }
 
         private void btnClearConnectionString_Click(object sender, EventArgs e) => txtConnectionString.Text = string.Empty;
@@ -29,19 +42,23 @@ namespace DataMaster.UI
         {
             AppConfigurationManager.configuration.database = AppConfigurationManager.configuration.database with
             {
-                ConnectionString = txtConnectionString.Text
+                connectionString = txtConnectionString.Text
             };
             AppConfigurationManager.configuration.customizationConfigModel = AppConfigurationManager.configuration.customizationConfigModel with
             {
                 highlightColor = txtHighlightColor.BackColor.ToArgb()
             };
+            AppConfigurationManager.configuration.languageConfigModel = AppConfigurationManager.configuration.languageConfigModel with
+            {
+                langCodeNow = (LanguageCode)cmbLanguages.SelectedIndex
+            };
             
             AppConfigurationManager.SaveConfig();
+            LanguageManager.UpdateLanguage(AppConfigurationManager.configuration.languageConfigModel.langCodeNow);
             
             MessageBox.Show("Configurações salvas", "Sucesso",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
         private void btnChangeHighlight_Click(object sender, EventArgs e)
         {
             ColorDialog colorDialog = new(); 
@@ -51,6 +68,25 @@ namespace DataMaster.UI
             
             txtHighlightColor.Text = colorDialog.Color.ToArgb().ToString();
             txtHighlightColor.BackColor = colorDialog.Color;
+        }
+        
+        private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
+        {
+            Text = LanguageManager.ReturnGlobalizationText("Configuration", "WindowTile");
+            
+            groupBox1.Text = LanguageManager.ReturnGlobalizationText("Configuration", "GroupboxConnection");
+            label1.Text = LanguageManager.ReturnGlobalizationText("Configuration", "LabelConnString");
+            btnClearConnectionString.Text = LanguageManager.ReturnGlobalizationText("Configuration",
+                "ButtonClearConnString");
+            btnDeleteConnectionHistoric.Text = LanguageManager.ReturnGlobalizationText("Configuration",
+                "ButtonDeleteConnectionHistoric");
+            
+            groupBox2.Text = LanguageManager.ReturnGlobalizationText("Configuration", "GroupboxPersonalization");
+            label2.Text = LanguageManager.ReturnGlobalizationText("Configuration", "LabelHighlightColor");
+            
+            label3.Text = LanguageManager.ReturnGlobalizationText("Configuration", "LabelLanguage");
+            
+            btnSave.Text = LanguageManager.ReturnGlobalizationText("Configuration", "ButtonSave");
         }
     }
 }

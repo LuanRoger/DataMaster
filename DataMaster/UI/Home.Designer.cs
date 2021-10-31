@@ -35,10 +35,10 @@ namespace DataMaster.UI
             this.mnuConexao = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCreateDb = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCarregarModelo = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLaodModel = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuScript = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCriarScript = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCarregarScript = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCreateScript = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLoadScript = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -79,7 +79,7 @@ namespace DataMaster.UI
             // 
             this.mnuDatabase.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuCreateDb,
-            this.mnuCarregarModelo});
+            this.mnuLaodModel});
             this.mnuDatabase.Name = "mnuDatabase";
             this.mnuDatabase.Size = new System.Drawing.Size(103, 20);
             this.mnuDatabase.Text = "Banco de dados";
@@ -92,30 +92,30 @@ namespace DataMaster.UI
             // 
             // mnuCarregarModelo
             // 
-            this.mnuCarregarModelo.Name = "mnuCarregarModelo";
-            this.mnuCarregarModelo.Size = new System.Drawing.Size(172, 22);
-            this.mnuCarregarModelo.Text = "Carregar modelo...";
+            this.mnuLaodModel.Name = "mnuLaodModel";
+            this.mnuLaodModel.Size = new System.Drawing.Size(172, 22);
+            this.mnuLaodModel.Text = "Carregar modelo...";
             // 
             // mnuScript
             // 
             this.mnuScript.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuCriarScript,
-            this.mnuCarregarScript});
+            this.mnuCreateScript,
+            this.mnuLoadScript});
             this.mnuScript.Name = "mnuScript";
             this.mnuScript.Size = new System.Drawing.Size(49, 20);
             this.mnuScript.Text = "Script";
             // 
             // mnuCriarScript
             // 
-            this.mnuCriarScript.Name = "mnuCriarScript";
-            this.mnuCriarScript.Size = new System.Drawing.Size(161, 22);
-            this.mnuCriarScript.Text = "Criar novo script";
+            this.mnuCreateScript.Name = "mnuCreateScript";
+            this.mnuCreateScript.Size = new System.Drawing.Size(161, 22);
+            this.mnuCreateScript.Text = "Criar novo script";
             // 
             // mnuCarregarScript
             // 
-            this.mnuCarregarScript.Name = "mnuCarregarScript";
-            this.mnuCarregarScript.Size = new System.Drawing.Size(161, 22);
-            this.mnuCarregarScript.Text = "Carregar script...";
+            this.mnuLoadScript.Name = "mnuLoadScript";
+            this.mnuLoadScript.Size = new System.Drawing.Size(161, 22);
+            this.mnuLoadScript.Text = "Carregar script...";
             // 
             // mnuConfiguration
             // 
@@ -248,13 +248,13 @@ namespace DataMaster.UI
         private System.Windows.Forms.ToolStripStatusLabel lblTempo;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem mnuCreateDb;
-        private System.Windows.Forms.ToolStripMenuItem mnuCarregarModelo;
+        private System.Windows.Forms.ToolStripMenuItem mnuLaodModel;
         private System.Windows.Forms.ToolStripMenuItem mnuConexao;
         private System.Windows.Forms.Label lblConnString;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ToolStripMenuItem mnuScript;
-        private System.Windows.Forms.ToolStripMenuItem mnuCriarScript;
-        private System.Windows.Forms.ToolStripMenuItem mnuCarregarScript;
+        private System.Windows.Forms.ToolStripMenuItem mnuCreateScript;
+        private System.Windows.Forms.ToolStripMenuItem mnuLoadScript;
         private System.Windows.Forms.ToolStripMenuItem mnuConfiguration;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton ACriarScript;

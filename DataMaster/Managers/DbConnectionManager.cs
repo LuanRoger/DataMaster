@@ -8,7 +8,7 @@ namespace DataMaster.Managers
     public static class DbConnectionManager
     {
         public static SqlConnection sqlServerConnection =>
-            new(AppConfigurationManager.configuration.database.ConnectionString);
+            new(AppConfigurationManager.configuration.database.connectionString);
         
         public static AuthTypes authenticationType {get; set;}
         
@@ -37,7 +37,7 @@ namespace DataMaster.Managers
         {
             AppConfigurationManager.configuration.database = AppConfigurationManager.configuration.database with
             {
-                ConnectionString = ConnStringBuilder.connectionString,
+                connectionString = ConnStringBuilder.connectionString,
             };
             AppConfigurationManager.SaveConfig();
             ConnStringBuilder.ClearConnectionStringBuilder();

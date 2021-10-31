@@ -5,8 +5,10 @@ using DatabaseEngineInterpreter.SqlSyntaxInfo;
 using DatabaseEngineInterpreter.Serialization.DsmFile;
 using System.Threading.Tasks;
 using DataMaster.DB.SQLServer.SqlPure;
+using DataMaster.Managers;
 using DataMaster.Types.Components.TreeNode;
 using DataMaster.Util.Extensions;
+using GlobalStrings.EventArguments;
 
 namespace DataMaster.UI
 {
@@ -35,6 +37,8 @@ namespace DataMaster.UI
             ShowProgressBarForAsyncTask();
             if (modelPath != null) await LoadModel();
             HideProgressBarForAsyncTask();
+            
+            LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
         }
         private void CreateDb_Activated(object sender, EventArgs e) => UpdateInfo();
 
@@ -165,6 +169,22 @@ namespace DataMaster.UI
                 }
             });
             UpdateInfo();
+        }
+        
+        private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
+        {
+            Text = LanguageManager.ReturnGlobalizationText("CreateDb", "WindowTile");
+            
+            btnAdicionarDb.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "ButtonAddDb");
+            btnAddTable.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "ButtonAddTable");
+            btnDelete.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "ButtonDeleteElement");
+            
+            groupBox1.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "GroupboxInfo");
+            label1.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "LabelAmountDb");
+            label1.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "LabelAmuntTable");
+            
+            btnCreateDb.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "ButtonCreateDb");
+            btnSaveModel.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "ButtonSaveModel");
         }
 
         #region ProgressBar

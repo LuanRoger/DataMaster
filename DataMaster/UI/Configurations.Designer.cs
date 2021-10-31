@@ -39,7 +39,7 @@ namespace DataMaster.UI
             this.btnChangeHighlight = new System.Windows.Forms.Button();
             this.txtHighlightColor = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbLanguages = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -146,14 +146,14 @@ namespace DataMaster.UI
             this.label2.TabIndex = 0;
             this.label2.Text = "Cor de destaque do editor:";
             // 
-            // comboBox1
+            // cmbLanguages
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(212, 150);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(166, 23);
-            this.comboBox1.TabIndex = 0;
+            this.cmbLanguages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLanguages.FormattingEnabled = true;
+            this.cmbLanguages.Location = new System.Drawing.Point(212, 150);
+            this.cmbLanguages.Name = "cmbLanguages";
+            this.cmbLanguages.Size = new System.Drawing.Size(166, 23);
+            this.cmbLanguages.TabIndex = 0;
             // 
             // label3
             // 
@@ -170,7 +170,7 @@ namespace DataMaster.UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(388, 250);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbLanguages);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSave);
@@ -203,7 +203,7 @@ namespace DataMaster.UI
         private System.Windows.Forms.Button btnChangeHighlight;
         private System.Windows.Forms.TextBox txtHighlightColor;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbLanguages;
         private System.Windows.Forms.Label label3;
     }
 }

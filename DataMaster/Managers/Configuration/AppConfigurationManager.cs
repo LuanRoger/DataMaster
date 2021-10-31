@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using DataMaster.Types;
 using SerializedConfig;
 using SerializedConfig.Types.Serialization;
 
@@ -10,7 +11,7 @@ namespace DataMaster.Managers.Configuration
         {
           database = new()
           {
-              ConnectionString = string.Empty,
+              connectionString = string.Empty,
           },
           connectionsHistory = new()
           {
@@ -19,6 +20,10 @@ namespace DataMaster.Managers.Configuration
           customizationConfigModel = new()
           {
               highlightColor = Color.CornflowerBlue.ToArgb()
+          },
+          languageConfigModel = new()
+          {
+            langCodeNow = LanguageCode.PT_BR //Default language
           }
         };
         

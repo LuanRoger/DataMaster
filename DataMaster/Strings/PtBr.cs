@@ -3,7 +3,7 @@ using GlobalStrings;
 
 namespace DataMaster.Strings
 {
-    public class Pt_Br : ILanguage
+    public class PtBr : ILanguage
     {
         public LanguageInfo<LanguageCode, string, string> language { get; private set;}
         
@@ -15,7 +15,11 @@ namespace DataMaster.Strings
                 {
                     {"MenubarConnect", "Conectar"},
                     {"MenubarDatabase", "Banco de dados"},
+                    {"SmuCreateDb", "Criar novo banco"},
+                    {"SmuLoadModel", "Carregar modelo..."},
                     {"MenubarScript", "Script"},
+                    {"SmuCreateScript", "Criar novo script"},
+                    {"SmuLoadScript", "Carregar script..."},
                     {"MenubarConfig", "Configurações"},
                     {"MenubarAbout", "Sobre"},
                     {"LabelConnectionStatus", "Nenhuma string de conexão definida"}
@@ -51,16 +55,16 @@ namespace DataMaster.Strings
                     {"LabelDataType", "Tipo de dado:"},
                     {"CheckboxAllowNull", "Permitir NULL"},
                     {"CheckboxHasKey", "Chave"},
-                    {"ButtonAddTable", "Adicionar"},
-                    {"ButtonRemoveTable", "Remover"},
-                    {"ButtonCancel", "Cancelar"},
-                    {"ButtonOk", "OK"}
+                    {"ButtonAddColumn", "Adicionar"},
+                    {"ButtonRemoveColumn", "Remover"},
+                    {"ButtonOk", "OK"},
+                    {"ButtonCancel", "Cancelar"}
                 }},
                 {"ScriptEditor", new()
                 {
                     {"WindowTile", "Script editor"},
-                    {"TabLabel1", "Script"},
-                    {"TabLabel2", "Query"},
+                    {"TabLabel0", "Script"},
+                    {"TabLabel1", "Query"},
                 }},
                 {"Configuration", new()
                 {
@@ -71,7 +75,8 @@ namespace DataMaster.Strings
                     {"ButtonDeleteConnectionHistoric", "Excluir hsitórico de conexão"},
                     {"GroupboxPersonalization", "Personalização"},
                     {"LabelHighlightColor", "Cor de destaque do editor"},
-                    {"LabelLanguage", "Idioma"}
+                    {"LabelLanguage", "Idioma"},
+                    {"ButtonSave", "Salvar"}
                 }},
                 {"About", new()
                 {

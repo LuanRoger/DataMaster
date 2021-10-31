@@ -10,5 +10,6 @@ namespace DataMaster.Managers.Configuration
         public DatabaseConfigModel database { get; set; }
         public DatabaseConnectionsHistory connectionsHistory { get; set; }
         public CustomizationConfigModel customizationConfigModel { get; set; }
+        public LanguageConfigModel languageConfigModel { get; set; }
     }
 }

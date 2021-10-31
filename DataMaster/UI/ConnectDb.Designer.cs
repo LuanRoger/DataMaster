@@ -41,7 +41,7 @@ namespace DataMaster.UI
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtNameDb = new System.Windows.Forms.TextBox();
-            this.btnTestarConexao = new System.Windows.Forms.Button();
+            this.btnTestConnection = new System.Windows.Forms.Button();
             this.gpbInfoUser.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,7 +121,7 @@ namespace DataMaster.UI
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 57);
+            this.label4.Location = new System.Drawing.Point(7, 60);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 15);
             this.label4.TabIndex = 2;
@@ -161,23 +161,23 @@ namespace DataMaster.UI
             // 
             // btnTestarConexao
             // 
-            this.btnTestarConexao.Image = global::DataMaster.Properties.Resources.database_lightning;
-            this.btnTestarConexao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTestarConexao.Location = new System.Drawing.Point(12, 256);
-            this.btnTestarConexao.Name = "btnTestarConexao";
-            this.btnTestarConexao.Size = new System.Drawing.Size(109, 23);
-            this.btnTestarConexao.TabIndex = 8;
-            this.btnTestarConexao.Text = "Testar conexão";
-            this.btnTestarConexao.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTestarConexao.UseVisualStyleBackColor = true;
-            this.btnTestarConexao.Click += new System.EventHandler(this.btnTestarConexao_Click);
+            this.btnTestConnection.Image = global::DataMaster.Properties.Resources.database_lightning;
+            this.btnTestConnection.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTestConnection.Location = new System.Drawing.Point(12, 256);
+            this.btnTestConnection.Name = "btnTestConnection";
+            this.btnTestConnection.Size = new System.Drawing.Size(109, 23);
+            this.btnTestConnection.TabIndex = 8;
+            this.btnTestConnection.Text = "Testar conexão";
+            this.btnTestConnection.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTestConnection.UseVisualStyleBackColor = true;
+            this.btnTestConnection.Click += new System.EventHandler(this.btnTestarConexao_Click);
             // 
             // ConnectDb
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 291);
-            this.Controls.Add(this.btnTestarConexao);
+            this.Controls.Add(this.btnTestConnection);
             this.Controls.Add(this.txtNameDb);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.gpbInfoUser);
@@ -214,6 +214,6 @@ namespace DataMaster.UI
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtNameDb;
-        private System.Windows.Forms.Button btnTestarConexao;
+        private System.Windows.Forms.Button btnTestConnection;
     }
 }

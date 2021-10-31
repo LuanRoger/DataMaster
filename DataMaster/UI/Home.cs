@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using DataMaster.Managers;
 using DataMaster.Managers.Configuration;
+using DataMaster.Types;
+using DataMaster.Types.Components.RichTextBox;
+using GlobalStrings.EventArguments;
 
 namespace DataMaster.UI
 {
@@ -11,12 +15,6 @@ namespace DataMaster.UI
             InitializeComponent();
             SetMenuClick();
             SetClickShortcuts();
-        }
-
-        private void SetClickShortcuts()
-        {
-            ACriarScript.Click += (_, _) => mnuCriarScript.PerformClick();
-            ACreateDb.Click += (_, _) => mnuCreateDb.PerformClick();
         }
 
         private void SetMenuClick()
@@ -32,7 +30,7 @@ namespace DataMaster.UI
                 CreateDb createDb = new();
                 createDb.Show();
             };
-            mnuCarregarModelo.Click += (_, _) => 
+            mnuLaodModel.Click += (_, _) => 
             {
                 OpenFileDialog openFileDialog = new()
                 {
@@ -47,7 +45,7 @@ namespace DataMaster.UI
                 createDb.Show();
             };
             
-            mnuCriarScript.Click += (_, _) =>
+            mnuCreateScript.Click += (_, _) =>
             {
                 ScriptEditor scriptEditor = new();
                 scriptEditor.Show();
@@ -64,6 +62,11 @@ namespace DataMaster.UI
                 sobre.Show();
             };
         }
+        private void SetClickShortcuts()
+        {
+            ACriarScript.Click += (_, _) => mnuCreateScript.PerformClick();
+            ACreateDb.Click += (_, _) => mnuCreateDb.PerformClick();
+        }
 
         private void Home_Load(object sender, EventArgs e)
         {
@@ -76,6 +79,8 @@ namespace DataMaster.UI
                 ShowInTaskbar = true;
                 Opacity = 100;
                 BringToFront();
+                
+                LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
             };
         }
 
@@ -83,9 +88,25 @@ namespace DataMaster.UI
 
         private void Home_Activated(object sender, EventArgs e)
         {
-            lblConnString.Text = string.IsNullOrEmpty(AppConfigurationManager.configuration.database.ConnectionString) ? 
-                "Nenhuma string de conexão definida" :
-                AppConfigurationManager.configuration.database.ConnectionString;
+            lblConnString.Text = string.IsNullOrEmpty(AppConfigurationManager.configuration.database.connectionString) ? 
+                LanguageManager.ReturnGlobalizationText("Home", "LabelConnectionStatus") :
+                AppConfigurationManager.configuration.database.connectionString;
+        }
+        
+        private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
+        {
+            mnuConexao.Text = LanguageManager.ReturnGlobalizationText("Home", "MenubarConnect");
+            
+            mnuDatabase.Text = LanguageManager.ReturnGlobalizationText("Home", "MenubarDatabase");
+            mnuCreateDb.Text = LanguageManager.ReturnGlobalizationText("Home", "SmuCreateDb");
+            mnuLaodModel.Text = LanguageManager.ReturnGlobalizationText("Home", "SmuLoadModel");
+            
+            mnuScript.Text = LanguageManager.ReturnGlobalizationText("Home", "MenubarScript");
+            mnuCreateScript.Text = LanguageManager.ReturnGlobalizationText("Home", "SmuCreateScript");
+            mnuLoadScript.Text = LanguageManager.ReturnGlobalizationText("Home", "SmuLoadScript");
+            
+            mnuConfiguration.Text = LanguageManager.ReturnGlobalizationText("Home", "MenubarConfig");
+            mnuAbout.Text = LanguageManager.ReturnGlobalizationText("Home", "MenubarAbout");
         }
     }
 }
