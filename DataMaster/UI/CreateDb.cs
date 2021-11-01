@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using DatabaseEngineInterpreter.SqlSyntaxInfo;
 using DatabaseEngineInterpreter.Serialization.DsmFile;
 using System.Threading.Tasks;
 using DataMaster.DB.SQLServer.SqlPure;
 using DataMaster.Managers;
+using DataMaster.Types;
 using DataMaster.Types.Components.TreeNode;
 using DataMaster.Util.Extensions;
 using GlobalStrings.EventArguments;
@@ -42,14 +44,14 @@ namespace DataMaster.UI
         }
         private void CreateDb_Activated(object sender, EventArgs e) => UpdateInfo();
 
-        private void btnAdicionarDb_Click(object sender, EventArgs e)
+        private void btnAddDb_Click(object sender, EventArgs e)
         {
             tevDataVisualization.Nodes.Add(new TreeNode($"Database{tevDataVisualization.Nodes.Count}") { ImageIndex = 0 });
             UpdateInfo();
         }
             
 
-        private void btnExcluir_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
             if (tevDataVisualization.SelectedNode == null) return;
 
@@ -62,7 +64,7 @@ namespace DataMaster.UI
             UpdateInfo();
         }
 
-        private void btnAdicionarTabela_Click(object sender, EventArgs e)
+        private void btnAddTable_Click(object sender, EventArgs e)
         {
             if (tevDataVisualization.SelectedNode is not { Level: 0 })
             {
@@ -81,7 +83,7 @@ namespace DataMaster.UI
             UpdateInfo();
         }
 
-        private async void btnCriarDb_Click(object sender, EventArgs e)
+        private async void btnCreateDb_Click(object sender, EventArgs e)
         {
             if (Verifiers.VerifyConnectionString())
             {
@@ -110,7 +112,7 @@ namespace DataMaster.UI
             }
             MessageBox.Show("Criado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        private void btnSalvarModelo_Click(object sender, EventArgs e)
+        private void btnSaveModel_Click(object sender, EventArgs e)
         {
             if(Verifiers.VerifyTreeViewCount(tevDataVisualization))
             {
@@ -173,6 +175,33 @@ namespace DataMaster.UI
         
         private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
         {
+            btnAdicionarDb.Size = updatemodeeventargs.lang switch
+            {
+                LanguageCode.PT_BR => new(119, 23),
+                LanguageCode.EN_US => new(110, 23)
+            };
+            btnAddTable.Size = updatemodeeventargs.lang switch
+            {
+                LanguageCode.PT_BR => new(119, 23),
+                LanguageCode.EN_US => new(110, 23)
+            };
+            btnDelete.Size = updatemodeeventargs.lang switch
+            {
+                LanguageCode.PT_BR => new(119, 23),
+                LanguageCode.EN_US => new(110, 23)
+            };
+            
+            btnSaveModel.Size = updatemodeeventargs.lang switch
+            {
+                LanguageCode.PT_BR => new(106, 23),
+                LanguageCode.EN_US => new(95, 23),
+            };
+            btnCreateDb.Size = updatemodeeventargs.lang switch
+            {
+                LanguageCode.PT_BR => new(89, 23),
+                LanguageCode.EN_US => new(80, 23)
+            };
+            
             Text = LanguageManager.ReturnGlobalizationText("CreateDb", "WindowTile");
             
             btnAdicionarDb.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "ButtonAddDb");
@@ -181,7 +210,7 @@ namespace DataMaster.UI
             
             groupBox1.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "GroupboxInfo");
             label1.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "LabelAmountDb");
-            label1.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "LabelAmuntTable");
+            label2.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "LabelAmuntTable");
             
             btnCreateDb.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "ButtonCreateDb");
             btnSaveModel.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "ButtonSaveModel");

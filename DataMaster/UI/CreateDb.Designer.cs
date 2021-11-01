@@ -65,7 +65,7 @@ namespace DataMaster.UI
             this.btnAdicionarDb.Text = "Adicionar banco";
             this.btnAdicionarDb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdicionarDb.UseVisualStyleBackColor = true;
-            this.btnAdicionarDb.Click += new System.EventHandler(this.btnAdicionarDb_Click);
+            this.btnAdicionarDb.Click += new System.EventHandler(this.btnAddDb_Click);
             // 
             // btnAdicionarTabela
             // 
@@ -78,7 +78,7 @@ namespace DataMaster.UI
             this.btnAddTable.Text = "Adicionar tabela";
             this.btnAddTable.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAddTable.UseVisualStyleBackColor = true;
-            this.btnAddTable.Click += new System.EventHandler(this.btnAdicionarTabela_Click);
+            this.btnAddTable.Click += new System.EventHandler(this.btnAddTable_Click);
             // 
             // btnExcluir
             // 
@@ -91,7 +91,7 @@ namespace DataMaster.UI
             this.btnDelete.Text = "Excluir elemento";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnExcluir_Click);
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSalvarModelo
             // 
@@ -104,7 +104,7 @@ namespace DataMaster.UI
             this.btnSaveModel.Text = "Salvar modelo";
             this.btnSaveModel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSaveModel.UseVisualStyleBackColor = true;
-            this.btnSaveModel.Click += new System.EventHandler(this.btnSalvarModelo_Click);
+            this.btnSaveModel.Click += new System.EventHandler(this.btnSaveModel_Click);
             // 
             // btnCriarDb
             // 
@@ -117,7 +117,7 @@ namespace DataMaster.UI
             this.btnCreateDb.Text = "Criar banco";
             this.btnCreateDb.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCreateDb.UseVisualStyleBackColor = true;
-            this.btnCreateDb.Click += new System.EventHandler(this.btnCriarDb_Click);
+            this.btnCreateDb.Click += new System.EventHandler(this.btnCreateDb_Click);
             // 
             // statusStrip1
             // 

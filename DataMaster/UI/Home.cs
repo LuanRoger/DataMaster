@@ -34,7 +34,8 @@ namespace DataMaster.UI
             {
                 OpenFileDialog openFileDialog = new()
                 {
-                    Filter = Consts.FILTER_DSM
+                    Filter = Consts.FILTER_DSM,
+                    Multiselect = false
                 };
 
                 DialogResult dialogResult = openFileDialog.ShowDialog();
@@ -50,6 +51,22 @@ namespace DataMaster.UI
                 ScriptEditor scriptEditor = new();
                 scriptEditor.Show();
             };
+            mnuLoadScript.Click += (_, _) =>
+            {
+                OpenFileDialog openFileDialog = new()
+                {
+                    Filter = Consts.FILTER_SQL_FILE,
+                    Multiselect = false
+                };
+                
+                DialogResult dialogResult = openFileDialog.ShowDialog();
+                
+                if(dialogResult != DialogResult.OK) return;
+                
+                ScriptEditor scriptEditor = new(openFileDialog.FileName);
+                scriptEditor.Show();
+            };
+            
             mnuConfiguration.Click += (_, _) =>
             {
                 Configurations configurations = new();

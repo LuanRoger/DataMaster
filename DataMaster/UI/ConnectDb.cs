@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Drawing;
 using System.Security.Principal;
 using DataMaster.Types;
 using System.Windows.Forms;
@@ -83,6 +84,12 @@ namespace DataMaster.UI
         
         private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
         {
+            btnTestConnection.Size = updatemodeeventargs.lang switch
+            {
+                  LanguageCode.PT_BR => new(109, 23),
+                  LanguageCode.EN_US => new(115, 23)
+            };
+            
             Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "WindowTile");
             label1.Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "LabelServerName");
             

@@ -75,7 +75,7 @@ namespace DataMaster.Strings
                     {"ButtonDeleteConnectionHistoric", "Excluir hsitórico de conexão"},
                     {"GroupboxPersonalization", "Personalização"},
                     {"LabelHighlightColor", "Cor de destaque do editor"},
-                    {"LabelLanguage", "Idioma"},
+                    {"LabelLanguage", "Idioma:"},
                     {"ButtonSave", "Salvar"}
                 }},
                 {"About", new()
