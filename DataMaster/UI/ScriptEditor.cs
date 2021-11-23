@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Data;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataMaster.DB.SQLServer.SqlPure;
@@ -24,13 +25,13 @@ namespace DataMaster.UI
                 btnExecuteCommand.Click += async (_, _) =>
                 {
                     ShowPgb();
-                    ShowCommandResult(await SqlServerConnectionPure.ExecuteSqlCommand(txtScriptCommand.Text));
+                    await ExecuteScript();
                     HidePgb();
                 };
                 btnSaveScript.Click += async (_, _) =>
                 {
                     ShowPgb();
-                    await SaveSqlFile(txtScriptCommand.Text);
+                    await SaveSqlFile();
                     HidePgb();
                 };
             #endregion
@@ -38,7 +39,7 @@ namespace DataMaster.UI
             if(!string.IsNullOrEmpty(filePath)) LoadFileText();
             
             lblScriptLang.Text = txtScriptCommand.languageSyntax;
-            
+
             LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
         }
         
@@ -55,7 +56,7 @@ namespace DataMaster.UI
             
             if(Verifiers.VerifyDataTable(scriptResult)) tabControl1.SelectedTab = tbpQuery;
         }
-        private async Task SaveSqlFile(string sqlCommand)
+        private async Task SaveSqlFile()
         {
             SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = Consts.FILTER_SQL_FILE;
@@ -63,7 +64,17 @@ namespace DataMaster.UI
             
             if(dialogResult != DialogResult.OK) return;
             
-            await File.WriteAllTextAsync(saveFileDialog.FileName, sqlCommand);
+            await File.WriteAllTextAsync(saveFileDialog.FileName, txtScriptCommand.Text);
+        }
+        private async Task ExecuteScript()
+        {
+            if(Verifiers.VerifyConnectionString() != ConnectionState.Open)
+            {
+                MessageBox.Show("Não há uma string de conexão criada.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            ShowCommandResult(await SqlServerConnectionPure.ExecuteSqlCommand(txtScriptCommand.Text));
         }
         
         private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Data;
 using System.Windows.Forms;
 using DatabaseEngineInterpreter.SqlSyntaxInfo;
 using DatabaseEngineInterpreter.Serialization.DsmFile;
@@ -11,6 +11,7 @@ using DataMaster.Types;
 using DataMaster.Types.Components.TreeNode;
 using DataMaster.Util.Extensions;
 using GlobalStrings.EventArguments;
+using DataTable = DatabaseEngineInterpreter.SqlSyntaxInfo.DataTable;
 
 namespace DataMaster.UI
 {
@@ -85,7 +86,7 @@ namespace DataMaster.UI
 
         private async void btnCreateDb_Click(object sender, EventArgs e)
         {
-            if (Verifiers.VerifyConnectionString())
+            if (Verifiers.VerifyConnectionString() != ConnectionState.Open)
             {
                 MessageBox.Show("Não há uma string de conexão criada.", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -173,6 +174,11 @@ namespace DataMaster.UI
             UpdateInfo();
         }
         
+        #region ProgressBar
+        private void ShowProgressBarForAsyncTask() => pgbAsyncTasks.Visible = true;
+        private void HideProgressBarForAsyncTask() => pgbAsyncTasks.Visible = false;
+        #endregion
+        
         private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
         {
             btnAdicionarDb.Size = updatemodeeventargs.lang switch
@@ -215,10 +221,5 @@ namespace DataMaster.UI
             btnCreateDb.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "ButtonCreateDb");
             btnSaveModel.Text = LanguageManager.ReturnGlobalizationText("CreateDb", "ButtonSaveModel");
         }
-
-        #region ProgressBar
-        private void ShowProgressBarForAsyncTask() => pgbAsyncTasks.Visible = true;
-        private void HideProgressBarForAsyncTask() => pgbAsyncTasks.Visible = false;
-        #endregion
     }
 }

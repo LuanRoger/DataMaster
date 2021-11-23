@@ -1,14 +1,10 @@
 ﻿#nullable enable
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using DatabaseEngineInterpreter.SqlSyntaxInfo;
 using DataMaster.Managers;
-using DataMaster.Types.Components.TreeNode;
 using DataMaster.Util;
 using DataMaster.Util.Exceptions;
 using DataTable = DatabaseEngineInterpreter.SqlSyntaxInfo.DataTable;
@@ -22,43 +18,31 @@ namespace DataMaster.DB.SQLServer.SqlPure
         public static ConnectionState GetConnectionStatus() => DbConnectionManager.sqlServerConnection.State;
 
         #region OpenCloseConnections
-        public static void OpenConnection()
+        public static bool TryOpenConnection()
         {
             try { DbConnectionManager.sqlServerConnection.Open(); }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Não foi possivel conectar-se ao banco de dados: {e.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch { return false; }
+            return true;
         }
-        public static void CloseConnection()
+        public static bool TryCloseConnection()
         {
             try { DbConnectionManager.sqlServerConnection.Close(); }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Não foi possivel fechar a conexão: {e.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch { return false; }
+            return true;
         }
 
-        private static void OpenTempConnection()
+        private static bool TryOpenTempConnection()
         {
             try { tempSqlConnection.Open(); }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Não foi possivel conectar-se ao banco de dados: {e.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch { return false; }
+            return true;
         }
 
-        private static void CloseTempConnection()
+        private static bool TryCloseTempConnection()
         {
             try { tempSqlConnection.Close(); }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Não foi possivel fechar a conexão: {e.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch { return false; }
+            return true;
         }
         #endregion
         
@@ -91,9 +75,9 @@ namespace DataMaster.DB.SQLServer.SqlPure
             ConnectionState connectionState;
             try
             {
-                OpenTempConnection();
+                TryOpenTempConnection();
                 connectionState = tempSqlConnection.State;
-                CloseTempConnection();
+                TryCloseTempConnection();
             }
             catch { connectionState = tempSqlConnection.State; }
             
@@ -116,13 +100,9 @@ namespace DataMaster.DB.SQLServer.SqlPure
                 CommandText = $"CREATE DATABASE {sqlInfo.databaseName};"
             };
             
-            OpenTempConnection();
-            try { await command.ExecuteNonQueryAsync(); }
-            catch (Exception e)
-            {
-                throw new($"Has not possible create {sqlInfo.databaseName}: {e.Message}");
-            }
-            finally { CloseTempConnection(); }
+            TryOpenTempConnection();
+            await command.ExecuteNonQueryAsync();
+            TryCloseTempConnection();
 
             command.Dispose();
             await InsertTablesColunms(sqlInfo);
@@ -160,13 +140,9 @@ namespace DataMaster.DB.SQLServer.SqlPure
                 CommandText = commandBuilder.ToString()
             };
             
-            OpenTempConnection();
-            try { await command.ExecuteNonQueryAsync(); }
-            catch (Exception e)
-            {
-                throw new($"Has not possible create {sqlInfo.databaseName}: {e.Message}");
-            }
-            finally { CloseTempConnection(); }
+            TryOpenTempConnection();
+            await command.ExecuteNonQueryAsync();
+            TryCloseTempConnection();
             
             commandBuilder.Clear();
             command.Dispose();
@@ -174,102 +150,18 @@ namespace DataMaster.DB.SQLServer.SqlPure
         }
         #endregion
         
-        #region DatabaseLoader
-        public static async Task<List<TreeNodeTable>> GetAllTables()
-        {
-            tempSqlConnection = new() {ConnectionString = DbConnectionManager.sqlServerConnection.ConnectionString};
-            System.Data.DataTable databaseTables = new();
-
-            OpenTempConnection();
-            try
-            {
-                //TODO - Call async method
-                await Task.Run(() =>
-                {
-                    SqlDataAdapter sqlCommand = 
-                        new($"SELECT * FROM [{DbConnectionManager.GetConnectedDatabase()}].INFORMATION_SCHEMA.TABLES", tempSqlConnection);
-                    sqlCommand.Fill(databaseTables);
-                });
-            }
-            catch (Exception e)
-            {
-                throw new($"Ocurrs a error: {e.Message}");
-            }
-            finally { CloseTempConnection(); }
-            
-            List<TreeNodeTable> database = new();
-            foreach (DataRow databaseTable in databaseTables.Rows)
-            {
-                TreeNodeTable table = new(databaseTable[2].ToString(), await GetColumn(databaseTable[2].ToString()!));
-
-                database.Add(table);
-            }
-            
-            tempSqlConnection.Dispose();
-            
-            return database;
-        }
-        
-        private static async Task<List<TreeNodeColumn>> GetColumn(string tableName)
-        {
-            System.Data.DataTable tableColumns = new();
-            
-            OpenTempConnection();
-            try
-            {
-                await Task.Run(() =>
-                {
-                    SqlDataAdapter sqlCommand = 
-                        new("SELECT * FROM " +
-                            $"[{DbConnectionManager.GetConnectedDatabase()}].INFORMATION_SCHEMA.COLUMNS " +
-                            $"WHERE TABLE_NAME = '{tableName}'", tempSqlConnection);
-                    sqlCommand.Fill(tableColumns);
-                });
-            }
-            catch(SqlException e)
-            {
-                throw new($"Ocurrs a error: {e.Message}");
-            }
-            finally{CloseTempConnection();}
-            
-            
-            TreeNodeColumn column;
-            List<TreeNodeColumn> columns = new();
-            foreach (DataRow tableColumn in tableColumns.Rows)
-            {
-                column = new(tableColumn[3].ToString(),
-                    tableColumn[8].ToString() == "NULL" ? tableColumn[7].ToString() : 
-                        $"{tableColumn[7]}({tableColumn[8]})",
-                    tableColumn[3].ToString() == "ID",
-                    tableColumn[6].ToString() == "YES");
-                columns.Add(column);
-            }
-            
-            return columns;
-        }
-        #endregion
-        
-        //TODO - Create type to hold rows affected and DataTable
         public static async Task<System.Data.DataTable> ExecuteSqlCommand(string command)
         {
             tempSqlConnection = new() {ConnectionString = DbConnectionManager.sqlServerConnection.ConnectionString};
             System.Data.DataTable dataTable = new();
-            int rows = 0;
 
-            OpenTempConnection();
-            try
+            TryOpenTempConnection();
+            await Task.Run(() =>
             {
-                await Task.Run(() =>
-                {
-                    SqlDataAdapter dataAdapter = new(command, tempSqlConnection);
-                    dataAdapter.Fill(dataTable);
-                }) ;
-            }
-            catch(SqlException e)
-            {
-                throw new($"Ocurrs a error: {e.Message}");
-            }
-            finally { CloseTempConnection(); }
+                SqlDataAdapter dataAdapter = new(command, tempSqlConnection);
+                dataAdapter.Fill(dataTable);
+            }) ;
+            TryCloseTempConnection();
 
             return dataTable;
         }

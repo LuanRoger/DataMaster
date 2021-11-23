@@ -4,7 +4,6 @@ using System.Reflection;
 using System.Windows.Forms;
 using DataMaster.Managers;
 using GlobalStrings.EventArguments;
-using GlobalStrings.Globalization;
 
 namespace DataMaster.UI
 {

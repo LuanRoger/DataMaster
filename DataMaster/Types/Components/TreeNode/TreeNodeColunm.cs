@@ -2,10 +2,10 @@
 {
     public class TreeNodeColumn : System.Windows.Forms.TreeNode
     {
-        internal string text {get; private set;}
-        internal bool hasKey { get; private set; }
-        internal bool allowNull { get; private set; }
-        internal string dataType { get; private set; }
+        internal string text {get; }
+        internal bool hasKey { get; }
+        internal bool allowNull { get; }
+        internal string dataType { get; }
 
         internal TreeNodeColumn(string text, string dataType, bool hasKey, bool allowNull) : base(text)
         {

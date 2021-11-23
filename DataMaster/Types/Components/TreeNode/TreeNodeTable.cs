@@ -13,8 +13,10 @@ namespace DataMaster.Types.Components.TreeNode
             this.columns = columns;
             foreach(TreeNodeColumn column in columns)
             {
-                System.Windows.Forms.TreeNode propertie = new(column.text);
-                propertie.ImageIndex = column.hasKey ? 2 : 3;
+                System.Windows.Forms.TreeNode propertie = new(column.text)
+                {
+                    ImageIndex = column.hasKey ? 2 : 3
+                };
                 propertie.Nodes.Add(new System.Windows.Forms.TreeNode(column.dataType, 4, 4));
                 propertie.Nodes.Add(new System.Windows.Forms.TreeNode($"Chave: {column.hasKey}", 4, 4));
                 propertie.Nodes.Add(new System.Windows.Forms.TreeNode($"Permitir NULL: {column.allowNull}", 4, 4));

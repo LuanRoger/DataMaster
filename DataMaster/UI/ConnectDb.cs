@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Drawing;
-using System.Security.Principal;
 using DataMaster.Types;
 using System.Windows.Forms;
 using DataMaster.DB.SQLServer.SqlPure;
@@ -70,15 +68,15 @@ namespace DataMaster.UI
         }
         private void btnTestarConexao_Click(object sender, EventArgs e)
         {
-            ConnectionState connectionState;
-            if(!string.IsNullOrEmpty(cmbServerName.Text) && string.IsNullOrEmpty(txtNameDb.Text)) 
-                connectionState = SqlServerConnectionPure.TestPseudoConnection(cmbServerName.Text);
-            else connectionState = SqlServerConnectionPure.TestPseudoConnection(cmbServerName.Text, txtNameDb.Text);
-            
-            if(connectionState == ConnectionState.Open)
+            if(Verifiers.VerifyConnectionString() == ConnectionState.Open)
             {
                 MessageBox.Show("Conexão bem sucedida", "Sucesso",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Não foi possivel estabelecer uma conexão com o banco", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         

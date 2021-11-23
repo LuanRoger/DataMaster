@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.IO;
 using System.Windows.Forms;
+using DataMaster.DB.SQLServer.SqlPure;
 using DataMaster.Managers;
 
 namespace DataMaster
@@ -12,8 +13,16 @@ namespace DataMaster
         public static bool VerifyConfigurationFile(string filePath) =>
             File.Exists(filePath);
         
-        public static bool VerifyConnectionString() => 
-            string.IsNullOrEmpty(DbConnectionManager.sqlServerConnection.ConnectionString);
+        public static ConnectionState VerifyConnectionString()
+        {
+            string localTempConnString = DbConnectionManager.sqlServerConnection.ConnectionString;
+            
+            ConnectionState connectionState = 
+                !string.IsNullOrEmpty(localTempConnString) ? 
+                    SqlServerConnectionPure.TestPseudoConnection(localTempConnString) : ConnectionState.Broken;
+            
+            return connectionState;
+        }
 
         /// <returns>If dataTable is empty, return false</returns>
         public static bool VerifyDataTable(DataTable dataTable) => dataTable.Rows.Count > 0;

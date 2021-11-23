@@ -2,8 +2,6 @@
 using System.Windows.Forms;
 using DataMaster.Managers;
 using DataMaster.Managers.Configuration;
-using DataMaster.Types;
-using DataMaster.Types.Components.RichTextBox;
 using GlobalStrings.EventArguments;
 
 namespace DataMaster.UI
