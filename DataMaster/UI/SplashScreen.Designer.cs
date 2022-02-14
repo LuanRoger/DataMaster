@@ -31,7 +31,7 @@ namespace DataMaster.UI
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblCreator = new System.Windows.Forms.Label();
             this.lblStatusCarregamento = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -55,14 +55,14 @@ namespace DataMaster.UI
             this.label1.TabIndex = 1;
             this.label1.Text = "Data Master";
             // 
-            // label2
+            // lblCreator
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(558, 297);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Luan Roger© 2021";
+            this.lblCreator.AutoSize = true;
+            this.lblCreator.Location = new System.Drawing.Point(558, 297);
+            this.lblCreator.Name = "lblCreator";
+            this.lblCreator.Size = new System.Drawing.Size(105, 15);
+            this.lblCreator.TabIndex = 2;
+            this.lblCreator.Text = "Luan Roger© 2021";
             // 
             // lblStatusCarregamento
             // 
@@ -80,7 +80,7 @@ namespace DataMaster.UI
             this.ClientSize = new System.Drawing.Size(675, 321);
             this.ControlBox = false;
             this.Controls.Add(this.lblStatusCarregamento);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblCreator);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -99,7 +99,7 @@ namespace DataMaster.UI
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblCreator;
         private System.Windows.Forms.Label lblStatusCarregamento;
     }
 }

@@ -13,29 +13,21 @@ namespace DataMaster.UI
         public SplashScreen()
         {
             InitializeComponent();
-
-            AppManager.DownloadFonts();
-            AppConfigurationManager.LoadConfig();
-            LanguageManager.InitLanguages(AppConfigurationManager.configuration.languageConfigModel.langCodeNow);
-
-            try
-            {
-                PrivateFontCollection privateFont = new();
-                privateFont.AddFontFile(Consts.FONT_MONTSERRAT_EXTRABOLD);
-                privateFont.AddFontFile(Consts.FONT_MONTSERRAT_EXTRALIGHT);
-                label1.Font = new(privateFont.Families[0], 20, FontStyle.Bold);
-                label2.Font = new(privateFont.Families[1], 7, FontStyle.Regular);
-            }
-            catch
-            {
-                MessageBox.Show("Está faltando arquivos essenciais para inicialização do programa, tente reinstalá-lo novamente.", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
-            }
         }
 
         private async void SplashScreen_Load(object sender, System.EventArgs e)
         {
+            AppManager.DownloadFonts();
+            AppConfigurationManager.LoadConfig();
+            LanguageManager.InitLanguages(AppConfigurationManager.configuration.languageConfigModel.langCodeNow);
+
+            PrivateFontCollection privateFont = new();
+            privateFont.AddFontFile(Consts.FONT_MONTSERRAT_EXTRABOLD);
+            privateFont.AddFontFile(Consts.FONT_MONTSERRAT_EXTRALIGHT);
+            label1.Font = new(privateFont.Families[0], 20, FontStyle.Bold);
+            lblCreator.Font = new(privateFont.Families[1], 7, FontStyle.Regular);
+
+            lblCreator.Text = LanguageManager.ReturnGlobalizationText("About", "Creator");
             lblStatusCarregamento.Text = "Carregando...";
 
             List<Task> startTasks = new();

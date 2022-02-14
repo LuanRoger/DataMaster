@@ -1,89 +1,88 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using DataMaster.Managers.Configuration;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DataMaster.Types.Components.RichTextBox
 {
     public class RichTextBoxScriptingHighlights : System.Windows.Forms.RichTextBox
     {
-        private readonly Color HIGHLIGHT_COLOR = 
-            Color.FromArgb(AppConfigurationManager.configuration.customizationConfigModel.highlightColor);
-
-        private LanguageHighlight languageHighlight { get; set; }
-        public string languageSyntax =>
-            languageHighlight switch
-            {
-                LanguageHighlight.SQL => "SQL",
-                _ => "NaN"
-            };
-        public void SetSyntax(string fileExtension)
+        private Color highlightColor { get; }
+        
+        /// <summary>
+        /// To change the syntax, call SetSyntaxByExtension.
+        /// </summary>
+        public LanguageHighlight languageHighlight
         {
-            if(Consts.SQL_FILE_EXTENSIONS.Contains(fileExtension)) languageHighlight = LanguageHighlight.SQL;
-            else languageHighlight = LanguageHighlight.SQL; // Default
+            get => _languageHighlight;
+            private set
+            {
+                _languageHighlight = value;
+                UpdateSyntaxRegex();
+            }
         }
+        private LanguageHighlight _languageHighlight { get; set; }
+        private string currentSyntaxRegex { get; set; }
+        
+        private void UpdateSyntaxRegex()
+        {
+            StringBuilder regexBuilder = new();
+                
+            regexBuilder.Append(@"\b(");
+            switch(languageHighlight)
+            {
+                case LanguageHighlight.SQL:
+                    foreach (string keywords in Consts.SQL_SINTAX_HIGHLIGHT)
+                    {
+                        regexBuilder.Append(keywords);
+                        if(!Consts.SQL_SINTAX_HIGHLIGHT.Last().Equals(keywords))
+                            regexBuilder.Append('|');
+                    }
+                    break;
+            }
+            regexBuilder.Append(@")\b");
+            
+            currentSyntaxRegex = regexBuilder.ToString();
+        }
+        
 
-        public RichTextBoxScriptingHighlights(LanguageHighlight languageHighlight)
+        public RichTextBoxScriptingHighlights(LanguageHighlight languageHighlight, Color highlightColor)
         {
             this.languageHighlight = languageHighlight;
+            this.highlightColor = highlightColor;
 
             TextChanged += OnTextChanged;
         }
-        private List<string> GetSintaxFromConsts() =>
-            languageHighlight switch
-            {
-                LanguageHighlight.SQL => Consts.SQL_SINTAX_HIGHLIGHT,
-                _ => Consts.SQL_SINTAX_HIGHLIGHT
-            };
-        
+
         private void OnTextChanged(object? sender, EventArgs e)
         {
-            int cursorPosition = SelectionStart;
-            GetSintaxFromConsts().ForEach(keyword =>
-            {
-                List<string> keywordsFormated = new() { keyword.ToLower(), keyword };
-                foreach (string sqlKeyword in keywordsFormated)
-                {
-                    if(Text.Length < sqlKeyword.Length && !Text.Contains(sqlKeyword)) continue;
-                
-                    for(int indexInspector = 0; indexInspector <= Text.Length;)
-                    {
-                        if(indexInspector + sqlKeyword.Length <= Text.Length &&
-                           Text.Substring(indexInspector, sqlKeyword.Length) == sqlKeyword &&
-                           !HasHighlighted(indexInspector, sqlKeyword.Length, cursorPosition))
-                        {
-                            HighlightSelection(indexInspector, sqlKeyword.Length, cursorPosition);
-                            indexInspector += sqlKeyword.Length;
-                            if(indexInspector >= TextLength) break;
-                        }
-                        else indexInspector++;
-                    }
-                }
-            });
-        }
-        private void HighlightSelection(int start, int end, int cursorPosition)
-        {
-            SelectionStart = start;
-            SelectionLength = end;
-            SelectionColor = HIGHLIGHT_COLOR;
-
-            ReturnSelectionPossition(cursorPosition);
-        }
-        private bool HasHighlighted(int start, int end, int cursorPosition)
-        {
-            SelectionStart = start;
-            SelectionLength = end;
-            bool hasBeenHighlighted = SelectionColor == HIGHLIGHT_COLOR;
-
-            ReturnSelectionPossition(cursorPosition);
+            MatchCollection keywords = Regex.Matches(Text, currentSyntaxRegex);
+            int currentPossition = SelectionStart;
+            Color currentColor = ForeColor;
             
-            return hasBeenHighlighted;
-        }
-        private void ReturnSelectionPossition(int cursorPosition)
-        {
-            SelectionStart = cursorPosition;
+            Focus();
+
+            foreach (Match keyword in keywords)
+            {
+                SelectionStart = keyword.Index;
+                SelectionLength = keyword.Length;
+                SelectionColor = highlightColor;
+            }
+            
+            SelectionStart = currentPossition;
             SelectionLength = 0;
-            SelectionColor = Color.Black;
+            SelectionColor = currentColor;
+        }
+        
+        /// <summary>
+        /// Only way to set the syntax
+        /// </summary>
+        /// <param name="extension">Syntax file extension</param>
+        public void SetSyntaxByExtension(string extension)
+        {
+            if(Consts.SQL_FILE_EXTENSIONS.Contains(extension)) languageHighlight = LanguageHighlight.SQL;
+            else languageHighlight = LanguageHighlight.SQL; // Default
         }
     }
 }

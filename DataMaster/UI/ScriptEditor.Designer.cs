@@ -44,7 +44,7 @@ namespace DataMaster.UI
             this.tbpScript = new System.Windows.Forms.TabPage();
             this.tbpQuery = new System.Windows.Forms.TabPage();
             this.dgvQuery = new System.Windows.Forms.DataGridView();
-            this.txtScriptCommand = new RichTextBoxScriptingHighlights(LanguageHighlight.SQL);
+            this.txtScriptCommand = new RichTextBoxScriptingHighlights(LanguageHighlight.SQL, System.Drawing.Color.FromArgb(DataMaster.Managers.Configuration.AppConfigurationManager.configuration.customizationConfigModel.highlightColor));
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();

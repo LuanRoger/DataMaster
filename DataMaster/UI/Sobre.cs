@@ -17,7 +17,7 @@ namespace DataMaster.UI
         {
             PrivateFontCollection privateFont = new();
             privateFont.AddFontFile(Consts.FONT_MONTSERRAT_EXTRABOLD);
-            label1.Font = new(privateFont.Families[0], 20, FontStyle.Bold);
+            lblProgramName.Font = new(privateFont.Families[0], 20, FontStyle.Bold);
 
             lblProgramVersion.Text = $"v{Assembly.GetExecutingAssembly().GetName().Version}";
             
@@ -27,8 +27,9 @@ namespace DataMaster.UI
         private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
         {
             Text = LanguageManager.ReturnGlobalizationText("About", "WindowTile");
-            
-            label4.Text = LanguageManager.ReturnGlobalizationText("About", "LabelWallpaper");
+            lblWallpaperCredit.Text = LanguageManager.ReturnGlobalizationText("About", "LabelWallpaper");
+            lblCreator.Text = LanguageManager.ReturnGlobalizationText("About", "Creator");
+            lblLicense.Text = LanguageManager.ReturnGlobalizationText("About", "License");
         }
     }
 }

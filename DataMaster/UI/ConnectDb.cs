@@ -2,7 +2,6 @@
 using System.Data;
 using DataMaster.Types;
 using System.Windows.Forms;
-using DataMaster.DB.SQLServer.SqlPure;
 using DataMaster.Managers;
 using DataMaster.Managers.Configuration;
 using DataMaster.Util;

@@ -38,7 +38,7 @@ namespace DataMaster.UI
             
             if(!string.IsNullOrEmpty(filePath)) LoadFileText();
             
-            lblScriptLang.Text = txtScriptCommand.languageSyntax;
+            lblScriptLang.Text = txtScriptCommand.languageHighlight.ToString();
 
             LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
         }
@@ -47,10 +47,10 @@ namespace DataMaster.UI
         {
             txtScriptCommand.Text = File.ReadAllText(filePath!);
             fileExtension = Path.GetExtension(filePath);
-            txtScriptCommand.SetSyntax(fileExtension);
+            txtScriptCommand.SetSyntaxByExtension(fileExtension);
         }
         
-        private void ShowCommandResult(System.Data.DataTable scriptResult)
+        private void ShowCommandResult(DataTable scriptResult)
         {
             dgvQuery.DataSource = scriptResult;
             

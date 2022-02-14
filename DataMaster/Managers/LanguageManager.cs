@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using DataMaster.Strings;
 using DataMaster.Types;
-using GlobalStrings;
 using GlobalStrings.Globalization;
+using GlobalStrings.Types;
 
 namespace DataMaster.Managers
 {
@@ -13,7 +13,6 @@ namespace DataMaster.Managers
 
         public static void InitLanguages(LanguageCode initialLang = LanguageCode.PT_BR)
         {
-            //TODO - Translate in code strings
             PtBr ptBr = new();
             EnUs enUs = new();
             

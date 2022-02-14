@@ -1,5 +1,5 @@
 ﻿using DataMaster.Types;
-using GlobalStrings;
+using GlobalStrings.Types;
 
 namespace DataMaster.Strings
 {

@@ -1,5 +1,5 @@
 ﻿using DataMaster.Types;
-using GlobalStrings;
+using GlobalStrings.Types;
 
 namespace DataMaster.Strings
 {
@@ -81,7 +81,9 @@ namespace DataMaster.Strings
                 {"About", new()
                 {
                     {"WindowTile", "Sobre"},
-                    {"LabelWallpaper", "Papel de parede: pikisuperstar e Freepik"}
+                    {"LabelWallpaper", "Papel de parede: pikisuperstar e Freepik"},
+                    {"Creator", "Luan Roger© 2022"},
+                    {"License", "GNU General Public License v3.0"}
                 }}
             });
         }
