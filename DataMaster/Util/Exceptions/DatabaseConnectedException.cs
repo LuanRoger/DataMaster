@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace DataMaster.Util.Exceptions
+namespace DataMaster.Util.Exceptions;
+
+public class DatabaseConnectedException : Exception
 {
-    public class DatabaseConnectedException : Exception
-    {
-        private const string EXCEPTION_MESSAGE = "You must only be connected to the server.";
+    private const string EXCEPTION_MESSAGE = "You must only be connected to the server.";
         
-        public DatabaseConnectedException() : base(EXCEPTION_MESSAGE) { }
-    }
+    public DatabaseConnectedException() : base(EXCEPTION_MESSAGE) { }
 }

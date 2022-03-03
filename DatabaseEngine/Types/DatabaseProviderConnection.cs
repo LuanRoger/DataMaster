@@ -1,8 +1,8 @@
 ﻿using DatabaseEngine.Enums;
 
-namespace DataMaster.Managers.Configuration.Sections;
+namespace DatabaseEngine.Types;
 
-public record DatabaseConfigModel
+public class DatabaseProviderConnection
 {
     public string connectionString { get; set; }
     public DatabaseProvider databaseProvider { get; set; }

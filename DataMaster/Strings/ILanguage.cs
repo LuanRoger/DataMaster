@@ -1,12 +1,11 @@
 ﻿using DataMaster.Types;
 using GlobalStrings.Types;
 
-namespace DataMaster.Strings
-{
-    public interface ILanguage
-    {
-        LanguageInfo<LanguageCode, string, string> language { get; }
+namespace DataMaster.Strings;
 
-        void InitLanguage();
-    }
+public interface ILanguage
+{
+    LanguageInfo<LanguageCode, string, string> language { get; }
+
+    void InitLanguage();
 }

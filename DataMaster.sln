@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataMaster", "DataMaster.csproj", "{3A91A462-05DE-4A36-8851-8A3DE879E24B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataMaster", "DataMaster\DataMaster.csproj", "{3A91A462-05DE-4A36-8851-8A3DE879E24B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseEngineInterpreterTest", "..\DatabaseEngineInterpreterTest\DatabaseEngineInterpreterTest.csproj", "{FA116CBE-CA50-4BDE-98CD-8E97DF07B709}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseEngineInterpreterTest", "DatabaseEngineInterpreterTest\DatabaseEngineInterpreterTest.csproj", "{FA116CBE-CA50-4BDE-98CD-8E97DF07B709}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseEngineInterpreter", "..\DatabaseEngineInterpreter\DatabaseEngineInterpreter.csproj", "{EAA6ADB5-349C-4E95-AE59-966747FA985E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseEngineInterpreter", "DatabaseEngineInterpreter\DatabaseEngineInterpreter.csproj", "{EAA6ADB5-349C-4E95-AE59-966747FA985E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseEngine", "DatabaseEngine\DatabaseEngine.csproj", "{DA9794F1-AC52-446E-88A3-32F1A26788B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{EAA6ADB5-349C-4E95-AE59-966747FA985E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAA6ADB5-349C-4E95-AE59-966747FA985E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAA6ADB5-349C-4E95-AE59-966747FA985E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA9794F1-AC52-446E-88A3-32F1A26788B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA9794F1-AC52-446E-88A3-32F1A26788B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA9794F1-AC52-446E-88A3-32F1A26788B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA9794F1-AC52-446E-88A3-32F1A26788B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

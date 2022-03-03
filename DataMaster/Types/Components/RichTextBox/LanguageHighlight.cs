@@ -1,4 +1,3 @@
-﻿namespace DataMaster.Types.Components.RichTextBox
-{
-    public enum LanguageHighlight { SQL }
-}
+﻿namespace DataMaster.Types.Components.RichTextBox;
+
+public enum LanguageHighlight { SQL }

@@ -1,4 +1,3 @@
-﻿namespace DataMaster.Types
-{
-    public enum AuthTypes { WinAuth, SqlSAuth }
-}
+﻿namespace DataMaster.Types;
+
+public enum AuthTypes { WinAuth, SqlSAuth }

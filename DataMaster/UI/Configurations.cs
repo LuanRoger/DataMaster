@@ -6,87 +6,86 @@ using DataMaster.Managers.Configuration;
 using DataMaster.Types;
 using GlobalStrings.EventArguments;
 
-namespace DataMaster.UI
+namespace DataMaster.UI;
+
+public partial class Configurations : Form
 {
-    public partial class Configurations : Form
+    public Configurations()
     {
-        public Configurations()
-        {
-            InitializeComponent();
-            cmbLanguages.Items.AddRange(
-                new object[]
-                {
-                    "Portugues (Brasil)",
-                    "English"
-                });
-        }
-
-        private void Configurations_Load(object sender, EventArgs e)
-        {
-            txtConnectionString.Text = AppConfigurationManager.configuration.database.connectionString;
-            
-            txtHighlightColor.Text = AppConfigurationManager.configuration.customizationConfigModel.highlightColor.ToString();
-            txtHighlightColor.BackColor = Color.FromArgb(AppConfigurationManager.configuration.customizationConfigModel.highlightColor);
-            
-            cmbLanguages.SelectedIndex = (int)AppConfigurationManager.configuration.languageConfigModel.langCodeNow;
-            
-            LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
-        }
-
-        private void btnClearConnectionString_Click(object sender, EventArgs e) => txtConnectionString.Text = string.Empty;
-
-        private void btnDeleteConnectionHistoric_Click(object sender, EventArgs e) =>
-            AppConfigurationManager.configuration.connectionsHistory.historyConnections.Clear();
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            AppConfigurationManager.configuration.database = AppConfigurationManager.configuration.database with
+        InitializeComponent();
+        cmbLanguages.Items.AddRange(
+            new object[]
             {
-                connectionString = txtConnectionString.Text
-            };
-            AppConfigurationManager.configuration.customizationConfigModel = AppConfigurationManager.configuration.customizationConfigModel with
-            {
-                highlightColor = txtHighlightColor.BackColor.ToArgb()
-            };
-            AppConfigurationManager.configuration.languageConfigModel = AppConfigurationManager.configuration.languageConfigModel with
-            {
-                langCodeNow = (LanguageCode)cmbLanguages.SelectedIndex
-            };
+                "Portugues (Brasil)",
+                "English"
+            });
+    }
+
+    private void Configurations_Load(object sender, EventArgs e)
+    {
+        txtConnectionString.Text = AppConfigurationManager.configuration.database.connectionString;
             
-            AppConfigurationManager.SaveConfig();
-            LanguageManager.UpdateLanguage(AppConfigurationManager.configuration.languageConfigModel.langCodeNow);
+        txtHighlightColor.Text = AppConfigurationManager.configuration.customizationConfigModel.highlightColor.ToString();
+        txtHighlightColor.BackColor = Color.FromArgb(AppConfigurationManager.configuration.customizationConfigModel.highlightColor);
             
-            MessageBox.Show("Configurações salvas", "Sucesso",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-        private void btnChangeHighlight_Click(object sender, EventArgs e)
+        cmbLanguages.SelectedIndex = (int)AppConfigurationManager.configuration.languageConfigModel.langCodeNow;
+            
+        LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
+    }
+
+    private void btnClearConnectionString_Click(object sender, EventArgs e) => txtConnectionString.Text = string.Empty;
+
+    private void btnDeleteConnectionHistoric_Click(object sender, EventArgs e) =>
+        AppConfigurationManager.configuration.connectionsHistory.historyConnections.Clear();
+
+    private void btnSave_Click(object sender, EventArgs e)
+    {
+        AppConfigurationManager.configuration.database = AppConfigurationManager.configuration.database with
         {
-            ColorDialog colorDialog = new(); 
-            DialogResult dialogResult = colorDialog.ShowDialog();
+            connectionString = txtConnectionString.Text
+        };
+        AppConfigurationManager.configuration.customizationConfigModel = AppConfigurationManager.configuration.customizationConfigModel with
+        {
+            highlightColor = txtHighlightColor.BackColor.ToArgb()
+        };
+        AppConfigurationManager.configuration.languageConfigModel = AppConfigurationManager.configuration.languageConfigModel with
+        {
+            langCodeNow = (LanguageCode)cmbLanguages.SelectedIndex
+        };
             
-            if(dialogResult != DialogResult.OK) return;
+        AppConfigurationManager.SaveConfig();
+        LanguageManager.UpdateLanguage(AppConfigurationManager.configuration.languageConfigModel.langCodeNow);
             
-            txtHighlightColor.Text = colorDialog.Color.ToArgb().ToString();
-            txtHighlightColor.BackColor = colorDialog.Color;
-        }
+        MessageBox.Show("Configurações salvas", "Sucesso",
+            MessageBoxButtons.OK, MessageBoxIcon.Information);
+    }
+    private void btnChangeHighlight_Click(object sender, EventArgs e)
+    {
+        ColorDialog colorDialog = new(); 
+        DialogResult dialogResult = colorDialog.ShowDialog();
+            
+        if(dialogResult != DialogResult.OK) return;
+            
+        txtHighlightColor.Text = colorDialog.Color.ToArgb().ToString();
+        txtHighlightColor.BackColor = colorDialog.Color;
+    }
         
-        private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
-        {
-            Text = LanguageManager.ReturnGlobalizationText("Configuration", "WindowTile");
+    private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
+    {
+        Text = LanguageManager.ReturnGlobalizationText("Configuration", "WindowTile");
             
-            groupBox1.Text = LanguageManager.ReturnGlobalizationText("Configuration", "GroupboxConnection");
-            label1.Text = LanguageManager.ReturnGlobalizationText("Configuration", "LabelConnString");
-            btnClearConnectionString.Text = LanguageManager.ReturnGlobalizationText("Configuration",
-                "ButtonClearConnString");
-            btnDeleteConnectionHistoric.Text = LanguageManager.ReturnGlobalizationText("Configuration",
-                "ButtonDeleteConnectionHistoric");
+        groupBox1.Text = LanguageManager.ReturnGlobalizationText("Configuration", "GroupboxConnection");
+        label1.Text = LanguageManager.ReturnGlobalizationText("Configuration", "LabelConnString");
+        btnClearConnectionString.Text = LanguageManager.ReturnGlobalizationText("Configuration",
+            "ButtonClearConnString");
+        btnDeleteConnectionHistoric.Text = LanguageManager.ReturnGlobalizationText("Configuration",
+            "ButtonDeleteConnectionHistoric");
             
-            groupBox2.Text = LanguageManager.ReturnGlobalizationText("Configuration", "GroupboxPersonalization");
-            label2.Text = LanguageManager.ReturnGlobalizationText("Configuration", "LabelHighlightColor");
+        groupBox2.Text = LanguageManager.ReturnGlobalizationText("Configuration", "GroupboxPersonalization");
+        label2.Text = LanguageManager.ReturnGlobalizationText("Configuration", "LabelHighlightColor");
             
-            label3.Text = LanguageManager.ReturnGlobalizationText("Configuration", "LabelLanguage");
+        label3.Text = LanguageManager.ReturnGlobalizationText("Configuration", "LabelLanguage");
             
-            btnSave.Text = LanguageManager.ReturnGlobalizationText("Configuration", "ButtonSave");
-        }
+        btnSave.Text = LanguageManager.ReturnGlobalizationText("Configuration", "ButtonSave");
     }
 }
