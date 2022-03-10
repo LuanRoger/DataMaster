@@ -3,7 +3,7 @@ using System.Text;
 
 namespace DataMaster.Util;
 
-//TODO: Made clonable
+// Clonable string - https://github.com/dotnet/dotnet-api-docs/issues/7805
 public class ConnStringBuilder
 {
 #nullable enable

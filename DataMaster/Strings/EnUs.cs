@@ -11,6 +11,10 @@ public class EnUs : ILanguage
     {
         language = new(LanguageCode.EN_US, new()
         {
+            {"SplashScreen", new()
+            {
+                {"LoadingLabel", "Loading..."}
+            }},
             {"Home", new()
             {
                 {"MenubarConnect", "Connect"},

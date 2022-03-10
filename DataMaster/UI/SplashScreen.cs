@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DatabaseEngine;
-using DatabaseEngine.Enums;
 using DataMaster.Managers;
 using DataMaster.Managers.Configuration;
+using GlobalStrings.EventArguments;
 
 namespace DataMaster.UI;
 
@@ -24,6 +22,7 @@ public partial class SplashScreen : Form
         AppManager.DownloadFonts();
         AppConfigurationManager.LoadConfig();
         LanguageManager.InitLanguages(AppConfigurationManager.configuration.languageConfigModel.langCodeNow);
+        LanguageManager.SetGlobalizationObserver(LangTextObserverEventHandler);
 
         PrivateFontCollection privateFont = new();
         privateFont.AddFontFile(Consts.FONT_MONTSERRAT_EXTRABOLD);
@@ -32,9 +31,6 @@ public partial class SplashScreen : Form
         label1.Font = new(privateFont.Families[0], 20, FontStyle.Bold);
         lblCreator.Font = new(privateFont.Families[1], 7, FontStyle.Regular);
 
-        lblCreator.Text = LanguageManager.ReturnGlobalizationText("About", "Creator");
-        lblStatusCarregamento.Text = "Carregando..."; //TODO: Add to strings
-        
         LoadCurrentProvider();
         
         List<Task> asyncTasks = new()
@@ -46,8 +42,14 @@ public partial class SplashScreen : Form
 
         Close();
     }
-    
-    private void LoadCurrentProvider()
+
+    private void LangTextObserverEventHandler(object sender, UpdateModeEventArgs updatemodeeventargs)
+    {
+        lblStatusCarregamento.Text = LanguageManager.ReturnGlobalizationText("SplashScreen", "LoadingLabel");
+        lblCreator.Text = LanguageManager.ReturnGlobalizationText("About", "Creator");
+    }
+
+    private static void LoadCurrentProvider()
     {
         if(string.IsNullOrEmpty(AppConfigurationManager.configuration.database.connectionString))
             return;

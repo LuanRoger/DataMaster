@@ -1,11 +1,11 @@
 ﻿using DatabaseEngine.DB;
 using DatabaseEngine.DB.SQLServer;
 using DatabaseEngine.Enums;
+using DatabaseEngine.Exceptions;
 using DatabaseEngine.Types;
 
 namespace DatabaseEngine;
 
-//TODO: Made non-static
 public static class DbConnectionManager
 {
     public static DatabaseProviderConnection? databaseProviderConnection
@@ -14,17 +14,16 @@ public static class DbConnectionManager
         set
         {
             if(value == null)
-                throw new ArgumentNullException(); //TODO: Create a exception type for null mandatory non-null entryes
+                throw new MandatoryNonNullValue(nameof(value));
             
             DisposeAllDomains();
             _databaseProviderConnection = value;
 
-            switch (value.databaseProvider)
+            _sqlServerDomain = value.databaseProvider switch
             {
-                case DatabaseProvider.SqlServer:
-                    _sqlServerDomain = new(value.connectionString);
-                    break;
-            }
+                DatabaseProvider.SqlServer => new(value.connectionString),
+                _ => _sqlServerDomain
+            };
         }
     }
     private static DatabaseProviderConnection? _databaseProviderConnection { get; set; }
@@ -53,7 +52,7 @@ public static class DbConnectionManager
     public static async Task<bool> TestConnection(bool dispose = true)
     {
         if(currentProvider == null)
-            throw new ArgumentNullException();
+            throw new MandatoryNonNullValue(nameof(currentProvider));
 
         bool getConnected = await currentProvider.TryOpenConnection();
         await currentProvider.TryCloseConnection();

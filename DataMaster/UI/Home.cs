@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using DatabaseEngine;
 using DataMaster.Managers;
 using DataMaster.Managers.Configuration;
 using GlobalStrings.EventArguments;
@@ -94,12 +95,11 @@ public partial class Home : Form
             ShowInTaskbar = true;
             Opacity = 100;
             BringToFront();
-                
-            LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
         };
         
         SetMenuClick();
         SetClickShortcuts();
+        LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
     }
 
     private void timer1_Tick(object sender, EventArgs e) => lblTempo.Text = DateTime.Now.ToString();
@@ -125,5 +125,18 @@ public partial class Home : Form
             
         mnuConfiguration.Text = LanguageManager.ReturnGlobalizationText("Home", "MenubarConfig");
         mnuAbout.Text = LanguageManager.ReturnGlobalizationText("Home", "MenubarAbout");
+    }
+
+    private async void btnTestConn_Click(object sender, EventArgs e)
+    {
+        pgbAsyncTask.Visible = true;
+        
+        if(await DbConnectionManager.TestConnection())
+            MessageBox.Show("Conexão estabelecida com sucesso", "Sucesso",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        else MessageBox.Show("Não foi possivel estabelecer uma conexão com o banco de dados informado", "Error",
+            MessageBoxButtons.OK, MessageBoxIcon.Error);
+        
+        pgbAsyncTask.Visible = false;
     }
 }

@@ -3,6 +3,7 @@ using DataMaster.Types;
 using System.Windows.Forms;
 using DatabaseEngine;
 using DatabaseEngine.Enums;
+using DataMaster.Exceptions;
 using DataMaster.Managers;
 using DataMaster.Managers.Configuration;
 using DataMaster.Util;
@@ -109,7 +110,7 @@ public partial class ConnectDb : Form
         {
             if(string.IsNullOrEmpty(txtUserName.Text) && 
                string.IsNullOrEmpty(txtPassword.Text))
-                throw new("The authentication is by SQL and must be have a username and a password"); //TODO: Create a type with Exception
+                throw new AuthenticationInformationException("SQL", "username","password");
             
             connStringBuilder.userId = txtUserName.Text;
             connStringBuilder.password = txtPassword.Text;

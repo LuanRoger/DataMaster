@@ -11,6 +11,10 @@ public class PtBr : ILanguage
     {
         language = new(LanguageCode.PT_BR, new()
         {
+            {"SplashScreen", new()
+            {
+                {"LoadingLabel", "Carregando..."}
+            }},
             {"Home", new()
             {
                 {"MenubarConnect", "Conectar"},

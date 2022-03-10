@@ -42,10 +42,12 @@ namespace DataMaster.UI
             this.mnuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.pgbAsyncTask = new System.Windows.Forms.ToolStripProgressBar();
             this.lblTempo = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblConnString = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnTestConn = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ACriarScript = new System.Windows.Forms.ToolStripButton();
             this.ACreateDb = new System.Windows.Forms.ToolStripButton();
@@ -90,7 +92,7 @@ namespace DataMaster.UI
             this.mnuCreateDb.Size = new System.Drawing.Size(172, 22);
             this.mnuCreateDb.Text = "Criar novo banco";
             // 
-            // mnuCarregarModelo
+            // mnuLaodModel
             // 
             this.mnuLaodModel.Name = "mnuLaodModel";
             this.mnuLaodModel.Size = new System.Drawing.Size(172, 22);
@@ -105,13 +107,13 @@ namespace DataMaster.UI
             this.mnuScript.Size = new System.Drawing.Size(49, 20);
             this.mnuScript.Text = "Script";
             // 
-            // mnuCriarScript
+            // mnuCreateScript
             // 
             this.mnuCreateScript.Name = "mnuCreateScript";
             this.mnuCreateScript.Size = new System.Drawing.Size(161, 22);
             this.mnuCreateScript.Text = "Criar novo script";
             // 
-            // mnuCarregarScript
+            // mnuLoadScript
             // 
             this.mnuLoadScript.Name = "mnuLoadScript";
             this.mnuLoadScript.Size = new System.Drawing.Size(161, 22);
@@ -132,6 +134,7 @@ namespace DataMaster.UI
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pgbAsyncTask,
             this.lblTempo});
             this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
@@ -140,11 +143,18 @@ namespace DataMaster.UI
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // pgbAsyncTask
+            // 
+            this.pgbAsyncTask.Name = "pgbAsyncTask";
+            this.pgbAsyncTask.Size = new System.Drawing.Size(100, 16);
+            this.pgbAsyncTask.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.pgbAsyncTask.Visible = false;
+            // 
             // lblTempo
             // 
             this.lblTempo.Name = "lblTempo";
             this.lblTempo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblTempo.Size = new System.Drawing.Size(389, 17);
+            this.lblTempo.Size = new System.Drawing.Size(256, 17);
             this.lblTempo.Spring = true;
             this.lblTempo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -169,9 +179,11 @@ namespace DataMaster.UI
             // 
             this.tableLayoutPanel1.BackgroundImage = global::DataMaster.Properties.Resources.InicioBackground;
             this.tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.Controls.Add(this.lblConnString, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnTestConn, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -179,6 +191,19 @@ namespace DataMaster.UI
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(404, 404);
             this.tableLayoutPanel1.TabIndex = 5;
+            // 
+            // btnTestConn
+            // 
+            this.btnTestConn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnTestConn.FlatAppearance.BorderSize = 0;
+            this.btnTestConn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTestConn.Image = global::DataMaster.Properties.Resources.database_lightning;
+            this.btnTestConn.Location = new System.Drawing.Point(375, 378);
+            this.btnTestConn.Name = "btnTestConn";
+            this.btnTestConn.Size = new System.Drawing.Size(26, 23);
+            this.btnTestConn.TabIndex = 5;
+            this.btnTestConn.UseVisualStyleBackColor = true;
+            this.btnTestConn.Click += new System.EventHandler(this.btnTestConn_Click);
             // 
             // toolStrip1
             // 
@@ -259,6 +284,8 @@ namespace DataMaster.UI
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton ACriarScript;
         private System.Windows.Forms.ToolStripButton ACreateDb;
+        private System.Windows.Forms.Button btnTestConn;
+        private System.Windows.Forms.ToolStripProgressBar pgbAsyncTask;
     }
 }
 
