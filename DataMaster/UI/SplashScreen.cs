@@ -19,7 +19,7 @@ public partial class SplashScreen : Form
 
     private async void SplashScreen_Load(object sender, System.EventArgs e)
     {
-        AppManager.DownloadFonts();
+        await AppManager.DownloadFonts();
         AppConfigurationManager.LoadConfig();
         LanguageManager.InitLanguages(AppConfigurationManager.configuration.languageConfigModel.langCodeNow);
         LanguageManager.SetGlobalizationObserver(LangTextObserverEventHandler);

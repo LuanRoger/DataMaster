@@ -51,7 +51,8 @@ public partial class CreateTableInfo : Form
     {
         if(string.IsNullOrEmpty(txtNomeColuna.Text) || string.IsNullOrEmpty(txtTiposDados.Text))
         {
-            MessageBox.Show("A coluna deve ter um nome e um tipo de dado.", "Error", 
+            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "ColumnNameType"),
+                LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"), 
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
@@ -61,8 +62,8 @@ public partial class CreateTableInfo : Form
             ImageIndex = chbHasKey.Checked ? 1 : 2
         };
         treeNodeColumn.Nodes.Add("type", treeNodeColumn.dataType, 3);
-        treeNodeColumn.Nodes.Add("key", $"Cheve: {treeNodeColumn.hasKey}", 3);
-        treeNodeColumn.Nodes.Add("null", $"Permitir NULL: {treeNodeColumn.allowNull}", 3);
+        treeNodeColumn.Nodes.Add("key", $"Key: {treeNodeColumn.hasKey}", 3);
+        treeNodeColumn.Nodes.Add("null", $"Allow NULL: {treeNodeColumn.allowNull}", 3);
         
         tevTableDesing.Nodes[0].Nodes.Add(treeNodeColumn);
 
@@ -72,7 +73,8 @@ public partial class CreateTableInfo : Form
     {
         if(tevTableDesing.SelectedNode == null)
         {
-            MessageBox.Show("Selecione uma coluna para excluir", "Error", 
+            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "SelectTableDelete"), 
+                LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
@@ -87,7 +89,6 @@ public partial class CreateTableInfo : Form
 
     private void btnOK_Click(object sender, EventArgs e)
     {
-        TreeNodeTable tempTable;
         List<TreeNodeColumn> columns = new();
 
         foreach(TreeNodeColumn colunm in tevTableDesing.Nodes[0].Nodes)
@@ -97,7 +98,8 @@ public partial class CreateTableInfo : Form
 
             columns.Add(tempNode);
         }
-        tempTable = new(tevTableDesing.Nodes[0].Text, columns)
+        
+        TreeNodeTable tempTable = new(tevTableDesing.Nodes[0].Text, columns)
         {
             ImageIndex = 1
         };
@@ -115,7 +117,7 @@ public partial class CreateTableInfo : Form
     #region UpDown Nodes
     private void btnSubirColuna_Click(object sender, EventArgs e)
     {
-        if(tevTableDesing.SelectedNode == null) return;
+        if(tevTableDesing.SelectedNode is not { Level: 1 }) return;
 
         TreeNode nodeToUp = tevTableDesing.SelectedNode;
 
@@ -126,7 +128,7 @@ public partial class CreateTableInfo : Form
     }
     private void btnDescerColuna_Click(object sender, EventArgs e)
     {
-        if(tevTableDesing.SelectedNode == null) return;
+        if(tevTableDesing.SelectedNode is not { Level: 1 }) return;
 
         TreeNode nodeToDown = tevTableDesing.SelectedNode;
 

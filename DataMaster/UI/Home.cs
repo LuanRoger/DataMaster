@@ -92,14 +92,14 @@ public partial class Home : Form
         SplashScreen splashScreen = new();
         splashScreen.Show();
         splashScreen.FormClosed += (_, _) => {
+            LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
+            SetMenuClick();
+            SetClickShortcuts();
+            
             ShowInTaskbar = true;
             Opacity = 100;
             BringToFront();
         };
-        
-        SetMenuClick();
-        SetClickShortcuts();
-        LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
     }
 
     private void timer1_Tick(object sender, EventArgs e) => lblTempo.Text = DateTime.Now.ToString();

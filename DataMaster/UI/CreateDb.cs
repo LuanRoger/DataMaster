@@ -73,7 +73,7 @@ public partial class CreateDb : Form
     {
         if (tevDataVisualization.SelectedNode is not { Level: 0 })
         {
-            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "SeletecTableToInsert"),
+            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "SelectTableToInsert"),
                 LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxInformationTitle"),
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             return;
