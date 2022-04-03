@@ -54,7 +54,10 @@ public partial class CreateDb : Form
     {
         if (tevDataVisualization.SelectedNode == null) return;
 
-        DialogResult dialogResult = MessageBox.Show($"Deseja realmente excluir {tevDataVisualization.SelectedNode.Text}?", "Pergunta", 
+        DialogResult dialogResult = MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox",
+                                                        "DeleteConfirmation")
+                                                    + tevDataVisualization.SelectedNode.Text + "?", 
+            LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxQuestionTitle"), 
             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
         if (dialogResult != DialogResult.Yes) return;
@@ -67,7 +70,8 @@ public partial class CreateDb : Form
     {
         if (tevDataVisualization.SelectedNode is not { Level: 0 })
         {
-            MessageBox.Show("Selecione um banco de dados para inserir a tabela", "Informação",
+            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "SeletecTableToInsert"),
+                LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxInformationTitle"),
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             return;
         }
@@ -86,14 +90,16 @@ public partial class CreateDb : Form
     {
         if(!await DbConnectionManager.TestConnection(false))
         {
-            MessageBox.Show("Não há uma string de conexão criada.", "Error",
+            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "NoConnectionString"),
+                LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
         
         if(Verifiers.VerifyTreeViewCount(tevDataVisualization))
         {
-            MessageBox.Show("Não há banco de dados para salvar", "Error",
+            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "NoDatabaseToSave"), 
+                LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
@@ -105,19 +111,24 @@ public partial class CreateDb : Form
             try { await DbConnectionManager.currentProvider!.CreateDb(sqlInfo); }
             catch(Exception exception)
             {
-                MessageBox.Show($"Ocorreu um error: {exception.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "ErrorOccurs") + exception.Message,
+                    LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             finally { SwitchProgressBarVisibility(); UpdateInfo(); }
         }
-        MessageBox.Show("Criado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "Created"),
+            LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxSuccessTitle"),
+            MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
     private void btnSaveModel_Click(object sender, EventArgs e)
     {
         if(Verifiers.VerifyTreeViewCount(tevDataVisualization))
         {
-            MessageBox.Show("Não há o que salvar", "Error", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
+            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "NothingToSave"),
+                LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
@@ -125,7 +136,7 @@ public partial class CreateDb : Form
 
         foreach (SqlInfo sqlInfo in tevDataVisualization.RecognazeTreeView())
         {
-            saveFileDialog.Title = $"Salvar {sqlInfo.databaseName}";
+            saveFileDialog.Title = LanguageManager.ReturnGlobalizationText("Dialogs", "SaveFileDialogTitle") + sqlInfo.databaseName;
             DialogResult dialogResult = saveFileDialog.ShowDialog();
 
             if (dialogResult != DialogResult.OK) return;
@@ -133,7 +144,9 @@ public partial class CreateDb : Form
             sqlInfo.Serialize(saveFileDialog.FileName);
         }
 
-        MessageBox.Show("Modelo salvo com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "TemplateSaved"), 
+            LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxSuccessTitle"), 
+            MessageBoxButtons.OK, MessageBoxIcon.Information);
         saveFileDialog.Dispose();
     }
 

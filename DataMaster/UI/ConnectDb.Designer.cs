@@ -1,5 +1,4 @@
-﻿
-namespace DataMaster.UI
+﻿namespace DataMaster.UI
 {
     partial class ConnectDb
     {
@@ -89,8 +88,8 @@ namespace DataMaster.UI
             this.cmbServerType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbServerType.FormattingEnabled = true;
             this.cmbServerType.Items.AddRange(new object[] {
-            "Autenticação do Windows",
-            "Autenticação do SQL Server"});
+            DataMaster.Managers.LanguageManager.ReturnGlobalizationText("ComboBoxItems", "WindowsSqlAuth"),
+            DataMaster.Managers.LanguageManager.ReturnGlobalizationText("ComboBoxItems", "SqlAuth")});
             this.cmbServerType.Location = new System.Drawing.Point(12, 119);
             this.cmbServerType.Name = "cmbServerType";
             this.cmbServerType.Size = new System.Drawing.Size(341, 23);

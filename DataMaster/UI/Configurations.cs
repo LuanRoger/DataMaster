@@ -56,7 +56,8 @@ public partial class Configurations : Form
         AppConfigurationManager.SaveConfig();
         LanguageManager.UpdateLanguage(AppConfigurationManager.configuration.languageConfigModel.langCodeNow);
             
-        MessageBox.Show("Configurações salvas", "Sucesso",
+        MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "ConfigurationSaved"),
+            LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxSuccessTitle"),
             MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
     private void btnChangeHighlight_Click(object sender, EventArgs e)

@@ -29,7 +29,8 @@ public partial class ConnectDb : Form
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error",
+                MessageBox.Show(ex.Message, 
+                    LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
@@ -86,9 +87,11 @@ public partial class ConnectDb : Form
         };
         
         if(await DbConnectionManager.TestConnection())
-            MessageBox.Show("Conexão estabelecida com sucesso", "Sucesso",
+            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "ConncetionEstablished"),
+                LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxSuccessTitle"),
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-        else MessageBox.Show("Não foi possivel estabelecer uma conexão com o banco de dados informado", "Error",
+        else MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "UnableToConnectDatabase"), 
+            LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
             MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
     

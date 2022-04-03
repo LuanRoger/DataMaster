@@ -7,12 +7,13 @@ using GlobalStrings.EventArguments;
 
 namespace DataMaster.UI;
 
-public partial class Sobre : Form
+public partial class About : Form
 {
-    public Sobre()
+    public About()
     {
         InitializeComponent();
     }
+    
     private void Sobre_Load(object sender, System.EventArgs e)
     {
         PrivateFontCollection privateFont = new();

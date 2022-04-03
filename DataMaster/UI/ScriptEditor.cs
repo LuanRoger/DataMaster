@@ -70,13 +70,19 @@ public partial class ScriptEditor : Form
     {
         if(!await DbConnectionManager.TestConnection(false))
         {
-            MessageBox.Show("Não há uma string de conexão criada.", "Error",
+            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "NoConnectionString"),
+                LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
         ShowCommandResult(await DbConnectionManager.currentProvider.ExecuteQueryCommand(txtScriptCommand.Text));
     }
-        
+    
+    #region ProgressBar
+    private void ShowPgb() => pgbAsyncTask.Visible = true;
+    private void HidePgb() => pgbAsyncTask.Visible = false;
+    #endregion
+    
     private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
     {
         Text = LanguageManager.ReturnGlobalizationText("ScriptEditor", "WindowTile");
@@ -84,9 +90,4 @@ public partial class ScriptEditor : Form
         tabControl1.TabPages[0].Text = LanguageManager.ReturnGlobalizationText("ScriptEditor", "TabLabel0");
         tabControl1.TabPages[1].Text = LanguageManager.ReturnGlobalizationText("ScriptEditor", "TabLabel1");
     }
-        
-    #region ProgressBar
-    private void ShowPgb() => pgbAsyncTask.Visible = true;
-    private void HidePgb() => pgbAsyncTask.Visible = false;
-    #endregion
 }

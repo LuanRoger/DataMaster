@@ -1,7 +1,7 @@
 ﻿
 namespace DataMaster.UI
 {
-    partial class Sobre
+    partial class About
     {
         /// <summary>
         /// Required designer variable.
@@ -107,7 +107,7 @@ namespace DataMaster.UI
             this.Controls.Add(this.lblProgramName);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Sobre";
+            this.Name = "About";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sobre";

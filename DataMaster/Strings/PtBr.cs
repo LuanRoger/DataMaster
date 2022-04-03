@@ -88,6 +88,33 @@ public class PtBr : ILanguage
                 {"LabelWallpaper", "Papel de parede: pikisuperstar e Freepik"},
                 {"Creator", "Luan Roger© 2022"},
                 {"License", "GNU General Public License v3.0"}
+            }},
+            {"ComboBoxItems", new()
+            {
+                {"WindowsSqlAuth", "Autenticação com o Windows"},
+                {"SqlAuth", "Autenticação com SQL Server"}
+            }},
+            {"MessageBox", new()
+            {
+                {"MessageBoxSuccessTitle", "Sucesso"},
+                {"MessageBoxErrorTitle", "Erro"},
+                {"MessageBoxQuestionTitle", "Pergunta"},
+                {"MessageBoxInformationTitle", "Informação"},
+                {"ConfigurationSaved", "Configurações salvas com sucesso."},
+                {"ConncetionEstablished", "Conexão estabelecida com sucesso"},
+                {"UnableToConnectDatabase", "Não foi possível estabelecer uma conexão com o banco de dados."},
+                {"DeleteConfirmation", "Você realmente deseja excluir "},
+                {"SeletecTableToInsert", "Selecione um banco de dados para inserir a tabela."},
+                {"NoConnectionString", "Não há string de conexão criada."},
+                {"NoDatabaseToSave", "Não há banco de dados para salvar."},
+                {"ErrorOccurs", "Um erro ocorreu: "},
+                {"Created", "Criado com sucesso."},
+                {"NothingToSave", "Não há nada para salvar."},
+                {"TemplateSaved", "Modelo salvo com sucesso."}
+            }},
+            {"Dialogs", new()
+            {
+                {"SaveFileDialogTitle", "Salvar "}
             }}
         });
     }

@@ -73,8 +73,8 @@ public partial class Home : Form
 
         mnuAbout.Click += (_, _) =>
         {
-            Sobre sobre = new();
-            sobre.Show();
+            About about = new();
+            about.Show();
         };
     }
     private void SetClickShortcuts()
@@ -110,7 +110,22 @@ public partial class Home : Form
             LanguageManager.ReturnGlobalizationText("Home", "LabelConnectionStatus") :
             AppConfigurationManager.configuration.database.connectionString;
     }
+    
+    private async void btnTestConn_Click(object sender, EventArgs e)
+    {
+        pgbAsyncTask.Visible = true;
         
+        if(await DbConnectionManager.TestConnection())
+            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "ConncetionEstablished"),
+                LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxSuccessTitle"),
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        else MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "UnableToConnectDatabase"), 
+            LanguageManager.ReturnGlobalizationText("MessageBox", "UnableToConnectDatabase"),
+            MessageBoxButtons.OK, MessageBoxIcon.Error);
+        
+        pgbAsyncTask.Visible = false;
+    }
+    
     private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
     {
         mnuConexao.Text = LanguageManager.ReturnGlobalizationText("Home", "MenubarConnect");
@@ -125,18 +140,5 @@ public partial class Home : Form
             
         mnuConfiguration.Text = LanguageManager.ReturnGlobalizationText("Home", "MenubarConfig");
         mnuAbout.Text = LanguageManager.ReturnGlobalizationText("Home", "MenubarAbout");
-    }
-
-    private async void btnTestConn_Click(object sender, EventArgs e)
-    {
-        pgbAsyncTask.Visible = true;
-        
-        if(await DbConnectionManager.TestConnection())
-            MessageBox.Show("Conexão estabelecida com sucesso", "Sucesso",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-        else MessageBox.Show("Não foi possivel estabelecer uma conexão com o banco de dados informado", "Error",
-            MessageBoxButtons.OK, MessageBoxIcon.Error);
-        
-        pgbAsyncTask.Visible = false;
     }
 }

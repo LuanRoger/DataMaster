@@ -89,7 +89,34 @@ public class EnUs : ILanguage
                     { "Creator", "Luan Roger© 2022" },
                     { "License", "GNU General Public License v3.0" }
                 }
-            }
+            },
+            {"ComboBoxItems", new()
+            {
+                {"WindowsSqlAuth", "Windows Authentication"},
+                {"SqlAuth", "SQL Server Authentication"}
+            }},
+            {"MessageBox", new()
+            {
+                {"MessageBoxSuccessTitle", "Success"},
+                {"MessageBoxErrorTitle", "Error"},
+                {"MessageBoxQuestionTitle", "Question"},
+                {"MessageBoxInformationTitle", "Information"},
+                {"ConfigurationSaved", "Settings saved successfully."},
+                {"ConncetionEstablished", "Connection established successfully."},
+                {"UnableToConnectDatabase", "Unable to establish a connection to the database."},
+                {"DeleteConfirmation", "Do you really want to delete "},
+                {"SeletecTableToInsert", "Select a database to insert the table."},
+                {"NoConnectionString", "There is no connection string created."},
+                {"NoDatabaseToSave", "There is no database to save."},
+                {"ErrorOccurs", "An error occurred: "},
+                {"Created", "Successfully created."},
+                {"NothingToSave", "There is nothing to save."},
+                {"TemplateSaved", "Template saved successfully."}
+            }},
+            {"Dialogs", new()
+            {
+                {"SaveFileDialogTitle", "Save "}
+            }}
         });
     }
 }

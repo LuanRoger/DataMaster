@@ -163,7 +163,14 @@ public partial class CreateTableInfo : Form
                 tevTableDesing.SelectedNode.Text);
     }
     #endregion
-        
+    
+    private void ClearFields()
+    {
+        txtNomeColuna.Clear();
+        txtTiposDados.Text = "";
+        chbHasKey.Checked = false;
+        chbAllowNull.Checked = false;
+    }
     private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
     {
         Text = LanguageManager.ReturnGlobalizationText("CreateTable", "WindowTile");
@@ -179,13 +186,5 @@ public partial class CreateTableInfo : Form
             
         btnOK.Text = LanguageManager.ReturnGlobalizationText("CreateTable", "ButtonOk");
         btnCancelar.Text = LanguageManager.ReturnGlobalizationText("CreateTable", "ButtonCancel");
-    }
-        
-    private void ClearFields()
-    {
-        txtNomeColuna.Clear();
-        txtTiposDados.Text = "";
-        chbHasKey.Checked = false;
-        chbAllowNull.Checked = false;
     }
 }
