@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using DataMaster.Managers;
 using DataMaster.Types.Components.TreeNode;
@@ -10,15 +9,15 @@ namespace DataMaster.UI;
 
 public partial class CreateTableInfo : Form
 {
-    internal TreeNodeTable table { get; private set; }
-    private bool inspect { get; }
-    private StringBuilder sqlChanges { get; set;}
+    internal TreeNodeTable? table { get; private set; }
 
-    public CreateTableInfo(TreeNodeTable table = null, bool inspect = false)
+    public CreateTableInfo(TreeNodeTable? table = null)
     {
         InitializeComponent();
         #region TreeViewConfiguration
         tevTableDesing.ImageList = new();
+        tevTableDesing.AfterSelect += (_, _) => 
+            tevTableDesing.SelectedImageIndex = tevTableDesing.SelectedNode.ImageIndex;
         tevTableDesing.ImageList.Images.Add(Properties.Resources.table);
         tevTableDesing.ImageList.Images.Add(Properties.Resources.table_key);
         tevTableDesing.ImageList.Images.Add(Properties.Resources.table_propertie);
@@ -26,8 +25,7 @@ public partial class CreateTableInfo : Form
         #endregion
 
         this.table = table;
-        this.inspect = inspect;
-            
+
         if(table != null) LoadTable();
         else tevTableDesing.Nodes.Add("Table");
     }
@@ -38,7 +36,7 @@ public partial class CreateTableInfo : Form
 
     private void LoadTable()
     {
-        table.ImageIndex = 0;
+        table!.ImageIndex = 0;
         foreach (TreeNodeColumn tableColumn in table.columns)
         {
             tableColumn.ImageIndex = tableColumn.hasKey ? tableColumn.ImageIndex = 1 : tableColumn.ImageIndex = 2;
@@ -65,8 +63,7 @@ public partial class CreateTableInfo : Form
         treeNodeColumn.Nodes.Add("type", treeNodeColumn.dataType, 3);
         treeNodeColumn.Nodes.Add("key", $"Cheve: {treeNodeColumn.hasKey}", 3);
         treeNodeColumn.Nodes.Add("null", $"Permitir NULL: {treeNodeColumn.allowNull}", 3);
-
-        if(inspect) AppendAddChange(treeNodeColumn);
+        
         tevTableDesing.Nodes[0].Nodes.Add(treeNodeColumn);
 
         ClearFields();
@@ -79,8 +76,7 @@ public partial class CreateTableInfo : Form
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
-            
-        if(inspect) AppendDropChange(tevTableDesing.SelectedNode.Text);
+        
         tevTableDesing.SelectedNode.Remove();
     }
     private void txtTiposDados_KeyDown(object sender, KeyEventArgs e)
@@ -141,29 +137,6 @@ public partial class CreateTableInfo : Form
     }
     #endregion
 
-    #region SqlChangeloger
-    private void AppendAddChange(TreeNodeColumn column)
-    {
-        sqlChanges.AppendLine($"ALTER TABLE {0} ADD {column.text} {column.dataType}");
-    }
-    private void AppendDropChange(string columnName)
-    {
-        sqlChanges.AppendLine($"ALTER TABLE {0} DROP COLUMN {columnName}");
-    }
-    private void AppendModifyTable(string colunmName, string dataType)
-    {
-        sqlChanges.AppendLine($"ALTER TABLE {0} ALTER COLUMN {colunmName} {dataType};");
-    }
-    private void tevTableDesing_BeforeLabelEdit(object sender, NodeLabelEditEventArgs e)
-    {
-        if(!inspect) return;
-            
-        if(tevTableDesing.SelectedNode.Level == 2) 
-            AppendModifyTable(tevTableDesing.SelectedNode.Parent.Text,
-                tevTableDesing.SelectedNode.Text);
-    }
-    #endregion
-    
     private void ClearFields()
     {
         txtNomeColuna.Clear();

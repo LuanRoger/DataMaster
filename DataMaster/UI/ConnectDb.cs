@@ -27,9 +27,9 @@ public partial class ConnectDb : Form
             {
                 connStringBuilder = BuildConnectionString();
             }
-            catch(Exception ex)
+            catch(Exception exception)
             {
-                MessageBox.Show(ex.Message, 
+                MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "ErrorOccurs") + exception.Message, 
                     LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;

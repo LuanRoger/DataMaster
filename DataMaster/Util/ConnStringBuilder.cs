@@ -3,10 +3,11 @@ using System.Text;
 
 namespace DataMaster.Util;
 
+#nullable enable
+
 // Clonable string - https://github.com/dotnet/dotnet-api-docs/issues/7805
 public class ConnStringBuilder
 {
-#nullable enable
     public string connectionString
     {
         get

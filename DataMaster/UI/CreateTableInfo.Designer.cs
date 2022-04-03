@@ -51,7 +51,6 @@ namespace DataMaster.UI
             this.tevTableDesing.Name = "tevTableDesing";
             this.tevTableDesing.Size = new System.Drawing.Size(468, 164);
             this.tevTableDesing.TabIndex = 0;
-            this.tevTableDesing.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tevTableDesing_BeforeLabelEdit);
             // 
             // btnOK
             // 

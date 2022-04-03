@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 using DatabaseEngineInterpreter.SqlSyntaxInfo;
 using DatabaseEngineInterpreter.Serialization.DsmFile;
@@ -28,13 +29,15 @@ public partial class CreateDb : Form
     {
         #region TreeView Configuration
         tevDataVisualization.ImageList = new();
+        tevDataVisualization.AfterSelect += (_, _) => 
+            tevDataVisualization.SelectedImageIndex = tevDataVisualization.SelectedNode.ImageIndex;
         tevDataVisualization.ImageList.Images.Add(Properties.Resources.database);
         tevDataVisualization.ImageList.Images.Add(Properties.Resources.table);
         tevDataVisualization.ImageList.Images.Add(Properties.Resources.table_key);
         tevDataVisualization.ImageList.Images.Add(Properties.Resources.table_propertie);
         tevDataVisualization.ImageList.Images.Add(Properties.Resources.cog);
         #endregion
-            
+
         SwitchProgressBarVisibility();
         if (modelPath != null) await LoadModel();
         SwitchProgressBarVisibility();
@@ -79,7 +82,7 @@ public partial class CreateDb : Form
         CreateTableInfo createTableInfo = new();
         createTableInfo.ShowDialog();
 
-        if (createTableInfo.DialogResult != DialogResult.OK) return;
+        if (createTableInfo.DialogResult != DialogResult.OK || createTableInfo.table is null) return;
 
         tevDataVisualization.SelectedNode.Nodes.Add(createTableInfo.table);
             
@@ -88,14 +91,24 @@ public partial class CreateDb : Form
 
     private async void btnCreateDb_Click(object sender, EventArgs e)
     {
-        if(!await DbConnectionManager.TestConnection(false))
+        try
         {
-            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "NoConnectionString"),
+            if(!await DbConnectionManager.TestConnection(false))
+            {
+                MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "NoConnectionString"),
+                    LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }   
+        }
+        catch(Exception exception)
+        {
+            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "ErrorOccurs") + exception.Message,
                 LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
-        
+
         if(Verifiers.VerifyTreeViewCount(tevDataVisualization))
         {
             MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "NoDatabaseToSave"), 

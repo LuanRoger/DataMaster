@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -68,9 +69,19 @@ public partial class ScriptEditor : Form
     }
     private async Task ExecuteScript()
     {
-        if(!await DbConnectionManager.TestConnection(false))
+        try
         {
-            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "NoConnectionString"),
+            if(!await DbConnectionManager.TestConnection(false))
+            {
+                MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "NoConnectionString"),
+                    LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }   
+        }
+        catch(Exception exception)
+        {
+            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "ErrorOccurs") + exception.Message,
                 LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
