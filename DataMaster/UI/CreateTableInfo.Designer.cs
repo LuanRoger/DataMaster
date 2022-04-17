@@ -148,7 +148,7 @@ namespace DataMaster.UI
             this.txtTiposDados.TabIndex = 6;
             this.txtTiposDados.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTiposDados_KeyDown);
             // 
-            // chbPermitirNull
+            // chbAllowNull
             // 
             this.chbAllowNull.AutoSize = true;
             this.chbAllowNull.Location = new System.Drawing.Point(161, 197);
@@ -158,7 +158,7 @@ namespace DataMaster.UI
             this.chbAllowNull.Text = "Permitir NULL";
             this.chbAllowNull.UseVisualStyleBackColor = true;
             // 
-            // btnAcionarColuna
+            // btnAddColumn
             // 
             this.btnAddColumn.Image = global::DataMaster.Properties.Resources.add;
             this.btnAddColumn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -201,7 +201,7 @@ namespace DataMaster.UI
             this.btnDescerColuna.UseVisualStyleBackColor = true;
             this.btnDescerColuna.Click += new System.EventHandler(this.btnDescerColuna_Click);
             // 
-            // btnRemoverColuna
+            // btnRemoveColumn
             // 
             this.btnRemoveColumn.Image = global::DataMaster.Properties.Resources.delete;
             this.btnRemoveColumn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -239,6 +239,7 @@ namespace DataMaster.UI
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Criar Tabela";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateTableInfo_FormClosed);
             this.Load += new System.EventHandler(this.CreateTableInfo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -154,7 +154,7 @@ namespace DataMaster.UI
             // 
             this.lblTempo.Name = "lblTempo";
             this.lblTempo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblTempo.Size = new System.Drawing.Size(256, 17);
+            this.lblTempo.Size = new System.Drawing.Size(389, 17);
             this.lblTempo.Spring = true;
             this.lblTempo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -251,6 +251,7 @@ namespace DataMaster.UI
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Data Master";
             this.Activated += new System.EventHandler(this.Home_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Home_FormClosed);
             this.Load += new System.EventHandler(this.Home_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

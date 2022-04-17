@@ -24,7 +24,11 @@ public partial class About : Form
             
         LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
     }
-        
+
+    private void About_FormClosed(object sender, FormClosedEventArgs e)
+    {
+        LanguageManager.RemoveGlobalizationObserver(GlobalizationOnLangTextObserver);
+    }
     private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
     {
         Text = LanguageManager.ReturnGlobalizationText("About", "WindowTile");

@@ -67,7 +67,7 @@ namespace DataMaster.UI
             this.btnAdicionarDb.UseVisualStyleBackColor = true;
             this.btnAdicionarDb.Click += new System.EventHandler(this.btnAddDb_Click);
             // 
-            // btnAdicionarTabela
+            // btnAddTable
             // 
             this.btnAddTable.Image = global::DataMaster.Properties.Resources.table_add;
             this.btnAddTable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -80,7 +80,7 @@ namespace DataMaster.UI
             this.btnAddTable.UseVisualStyleBackColor = true;
             this.btnAddTable.Click += new System.EventHandler(this.btnAddTable_Click);
             // 
-            // btnExcluir
+            // btnDelete
             // 
             this.btnDelete.Image = global::DataMaster.Properties.Resources.delete;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -93,7 +93,7 @@ namespace DataMaster.UI
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnSalvarModelo
+            // btnSaveModel
             // 
             this.btnSaveModel.Image = global::DataMaster.Properties.Resources.database_save;
             this.btnSaveModel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -106,7 +106,7 @@ namespace DataMaster.UI
             this.btnSaveModel.UseVisualStyleBackColor = true;
             this.btnSaveModel.Click += new System.EventHandler(this.btnSaveModel_Click);
             // 
-            // btnCriarDb
+            // btnCreateDb
             // 
             this.btnCreateDb.Image = global::DataMaster.Properties.Resources.go;
             this.btnCreateDb.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -205,6 +205,7 @@ namespace DataMaster.UI
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Criar Banco de Dados";
             this.Activated += new System.EventHandler(this.CreateDb_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateDb_FormClosed);
             this.Load += new System.EventHandler(this.CreateDb_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

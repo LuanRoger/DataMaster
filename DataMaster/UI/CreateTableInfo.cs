@@ -146,6 +146,11 @@ public partial class CreateTableInfo : Form
         chbHasKey.Checked = false;
         chbAllowNull.Checked = false;
     }
+
+    private void CreateTableInfo_FormClosed(object sender, FormClosedEventArgs e)
+    {
+        LanguageManager.RemoveGlobalizationObserver(GlobalizationOnLangTextObserver);
+    }
     private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
     {
         Text = LanguageManager.ReturnGlobalizationText("CreateTable", "WindowTile");

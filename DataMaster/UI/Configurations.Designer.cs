@@ -181,6 +181,7 @@ namespace DataMaster.UI
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configurações";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Configurations_FormClosed);
             this.Load += new System.EventHandler(this.Configurations_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

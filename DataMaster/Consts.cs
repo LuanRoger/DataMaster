@@ -21,6 +21,8 @@ public static class Consts
     public const string FONT_DOWNLOAD_SERVER = "https://github.com/LuanRoger/DataMaster/raw/main/DataMaster/assets/fonts/";
 
     public static string CONFIGURATION_FILE = APPLOCAL_FOLDER + "appsettings.json";
+    
+    public static string LANG_STRINGS_FILE = APPLOCAL_FOLDER + "languages.json";
         
     public const int SPLASH_SCREEN_TIME = 2000;
 

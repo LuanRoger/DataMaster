@@ -122,7 +122,11 @@ public partial class ConnectDb : Form
         
         return connStringBuilder;
     }
-        
+
+    private void ConnectDb_FormClosed(object sender, FormClosedEventArgs e)
+    {
+        LanguageManager.RemoveGlobalizationObserver(GlobalizationOnLangTextObserver);
+    }
     private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
     {
         btnTestConnection.Size = updatemodeeventargs.lang switch

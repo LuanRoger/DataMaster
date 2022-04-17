@@ -94,7 +94,7 @@ namespace DataMaster.UI
             this.lblWallpaperCredit.TabIndex = 5;
             this.lblWallpaperCredit.Text = "wallpaperCreaditPlaceholder";
             // 
-            // Sobre
+            // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -111,6 +111,7 @@ namespace DataMaster.UI
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sobre";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.About_FormClosed);
             this.Load += new System.EventHandler(this.Sobre_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

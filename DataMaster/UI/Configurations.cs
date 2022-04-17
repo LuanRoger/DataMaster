@@ -70,7 +70,11 @@ public partial class Configurations : Form
         txtHighlightColor.Text = colorDialog.Color.ToArgb().ToString();
         txtHighlightColor.BackColor = colorDialog.Color;
     }
-        
+
+    private void Configurations_FormClosed(object sender, FormClosedEventArgs e)
+    {
+        LanguageManager.RemoveGlobalizationObserver(GlobalizationOnLangTextObserver);
+    }
     private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
     {
         Text = LanguageManager.ReturnGlobalizationText("Configuration", "WindowTile");

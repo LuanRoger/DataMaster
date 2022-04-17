@@ -87,9 +87,6 @@
             // 
             this.cmbServerType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbServerType.FormattingEnabled = true;
-            this.cmbServerType.Items.AddRange(new object[] {
-            DataMaster.Managers.LanguageManager.ReturnGlobalizationText("ComboBoxItems", "WindowsSqlAuth"),
-            DataMaster.Managers.LanguageManager.ReturnGlobalizationText("ComboBoxItems", "SqlAuth")});
             this.cmbServerType.Location = new System.Drawing.Point(12, 119);
             this.cmbServerType.Name = "cmbServerType";
             this.cmbServerType.Size = new System.Drawing.Size(341, 23);
@@ -158,7 +155,7 @@
             this.txtNameDb.Size = new System.Drawing.Size(341, 23);
             this.txtNameDb.TabIndex = 7;
             // 
-            // btnTestarConexao
+            // btnTestConnection
             // 
             this.btnTestConnection.Image = global::DataMaster.Properties.Resources.database_lightning;
             this.btnTestConnection.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -191,6 +188,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Conectar";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConnectDb_FormClosed);
             this.Load += new System.EventHandler(this.ConnectDb_Load);
             this.gpbInfoUser.ResumeLayout(false);
             this.gpbInfoUser.PerformLayout();

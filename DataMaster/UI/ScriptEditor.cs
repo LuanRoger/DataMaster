@@ -14,13 +14,13 @@ public partial class ScriptEditor : Form
     private string? filePath { get; }
     private string? fileExtension { get; set; }
 
-    public ScriptEditor(string filePath = null)
+    public ScriptEditor(string? filePath = null)
     {
         InitializeComponent();
             
         this.filePath = filePath;
     }
-    private void ScriptEditor_Load(object sender, System.EventArgs e)
+    private void ScriptEditor_Load(object sender, EventArgs e)
     {
         #region mnuClick
         btnExecuteCommand.Click += async (_, _) =>
@@ -93,7 +93,11 @@ public partial class ScriptEditor : Form
     private void ShowPgb() => pgbAsyncTask.Visible = true;
     private void HidePgb() => pgbAsyncTask.Visible = false;
     #endregion
-    
+
+    private void ScriptEditor_FormClosed(object sender, FormClosedEventArgs e)
+    {
+        LanguageManager.RemoveGlobalizationObserver(GlobalizationOnLangTextObserver);
+    }
     private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
     {
         Text = LanguageManager.ReturnGlobalizationText("ScriptEditor", "WindowTile");

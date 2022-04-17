@@ -1,42 +1,35 @@
-﻿using System.Collections.Generic;
-using DataMaster.Strings;
-using DataMaster.Types;
+﻿using DataMaster.Types;
 using GlobalStrings.Globalization;
-using GlobalStrings.Types;
 
 namespace DataMaster.Managers;
 
 public static class LanguageManager
 {
-    private static Globalization<LanguageCode, string, string> globalization { get; set; }
-    private static List<LanguageInfo<LanguageCode, string, string>> languageInfos { get; } = new();
+    private static Globalization<LanguageCode, string, string> globalization { get; set; } = null!;
 
     public static void InitLanguages(LanguageCode initialLang = LanguageCode.PT_BR)
     {
-        PtBr ptBr = new();
-        EnUs enUs = new();
-            
-        ptBr.InitLanguage();
-        enUs.InitLanguage();
-            
-        languageInfos.Add(ptBr.language);
-        languageInfos.Add(enUs.language);
-            
-        globalization = new(languageInfos, initialLang);
-        StartGlobalization();
-    }
+        if(!Verifiers.CheckFile(Consts.LANG_STRINGS_FILE))
+            throw new($"There is no language file in {Consts.LANG_STRINGS_FILE}");
         
+        globalization = new(Consts.LANG_STRINGS_FILE, initialLang);
+        globalization.StartGlobalization();
+    }
+
     public static void SetGlobalizationObserver(Globalization<LanguageCode, string, string>.LangTextObserverEventHandler
         langTextObserverEventHandler)
     {
         globalization.LangTextObserver += langTextObserverEventHandler;
-        SyncLanguage();
+        globalization.SyncStrings();
+    }
+    public static void RemoveGlobalizationObserver(Globalization<LanguageCode, string, string>.LangTextObserverEventHandler
+        langTextObserverEventHandler)
+    {
+        globalization.LangTextObserver -= langTextObserverEventHandler;
     }
         
     public static string ReturnGlobalizationText(string collectionCode, string key) => 
         globalization.SetText(collectionCode, key);
 
     public static void UpdateLanguage(LanguageCode langCode) => globalization.UpdateLang(langCode);
-    private static void SyncLanguage() => globalization.SyncStrings();
-    private static void StartGlobalization() => globalization.StartGlobalization();
 }

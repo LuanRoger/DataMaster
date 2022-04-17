@@ -79,9 +79,14 @@ public class RichTextBoxScriptingHighlights : System.Windows.Forms.RichTextBox
     /// Only way to set the syntax
     /// </summary>
     /// <param name="extension">Syntax file extension</param>
-    public void SetSyntaxByExtension(string extension)
+    public void SetSyntaxByExtension(string? extension)
     {
+        if(string.IsNullOrEmpty(extension))
+        {
+            languageHighlight = LanguageHighlight.SQL; // Default
+            return;
+        }
+
         if(Consts.SQL_FILE_EXTENSIONS.Contains(extension)) languageHighlight = LanguageHighlight.SQL;
-        else languageHighlight = LanguageHighlight.SQL; // Default
     }
 }

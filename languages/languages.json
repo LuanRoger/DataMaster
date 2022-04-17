@@ -1,0 +1,204 @@
+[
+  {
+    "langCode": 0,
+    "textBookCollection": {
+      "SplashScreen": {
+        "LoadingLabel": "Carregando..."
+      },
+      "Home": {
+        "MenubarConnect": "Conectar",
+        "MenubarDatabase": "Banco de dados",
+        "SmuCreateDb": "Criar novo banco",
+        "SmuLoadModel": "Carregar modelo...",
+        "MenubarScript": "Script",
+        "SmuCreateScript": "Criar novo script",
+        "SmuLoadScript": "Carregar script...",
+        "MenubarConfig": "Configurações",
+        "MenubarAbout": "Sobre",
+        "LabelConnectionStatus": "Nenhuma string de conexão definida"
+      },
+      "ConnectDb": {
+        "WindowTile": "Conectar",
+        "LabelServerName": "Nome do servidor",
+        "LabelDatabaseName": "Nome do banco de dados",
+        "LabelAuth": "Autenticação",
+        "GroupboxAuthInfo": "Informações de autenticação",
+        "LabelAuthUsername": "Nome de usuário",
+        "LabelAuthPassword": "Senha",
+        "ButtonConnectionTest": "Testar conexão",
+        "ButtonSave": "Salvar"
+      },
+      "CreateDb": {
+        "WindowTile": "Criar banco de dados",
+        "ButtonAddDb": "Adicionar banco",
+        "ButtonAddTable": "Adicionar tabela",
+        "ButtonDeleteElement": "Excluir elemento",
+        "GroupboxInfo": "Informações",
+        "LabelAmountDb": "Quantidade de bancos:",
+        "LabelAmuntTable": "Quantidade de tabelas:",
+        "ButtonSaveModel": "Salvar modelo",
+        "ButtonCreateDb": "Criar banco"
+      },
+      "CreateTable": {
+        "WindowTile": "Criar tabela",
+        "LabelColumnName": "Nome da coluna:",
+        "LabelDataType": "Tipo de dado:",
+        "CheckboxAllowNull": "Permitir NULL",
+        "CheckboxHasKey": "Chave",
+        "ButtonAddColumn": "Adicionar",
+        "ButtonRemoveColumn": "Remover",
+        "ButtonOk": "OK",
+        "ButtonCancel": "Cancelar"
+      },
+      "ScriptEditor": {
+        "WindowTile": "Script editor",
+        "TabLabel0": "Script",
+        "TabLabel1": "Query"
+      },
+      "Configuration": {
+        "WindowTile": "Configurações",
+        "GroupboxConnection": "Conexão",
+        "LabelConnString": "String de conexão",
+        "ButtonClearConnString": "Limpar string de conexão",
+        "ButtonDeleteConnectionHistoric": "Excluir hsitórico de conexão",
+        "GroupboxPersonalization": "Personalização",
+        "LabelHighlightColor": "Cor de destaque do editor",
+        "LabelLanguage": "Idioma:",
+        "ButtonSave": "Salvar"
+      },
+      "About": {
+        "WindowTile": "Sobre",
+        "LabelWallpaper": "Papel de parede: pikisuperstar e Freepik",
+        "Creator": "Luan Roger© 2022",
+        "License": "GNU General Public License v3.0"
+      },
+      "ComboBoxItems": {
+        "WindowsSqlAuth": "Autenticação com o Windows",
+        "SqlAuth": "Autenticação com SQL Server"
+      },
+      "MessageBox": {
+        "MessageBoxSuccessTitle": "Sucesso",
+        "MessageBoxErrorTitle": "Erro",
+        "MessageBoxQuestionTitle": "Pergunta",
+        "MessageBoxInformationTitle": "Informação",
+        "ConfigurationSaved": "Configurações salvas com sucesso.",
+        "ConncetionEstablished": "Conexão estabelecida com sucesso",
+        "UnableToConnectDatabase": "Não foi possível estabelecer uma conexão com o banco de dados.",
+        "DeleteConfirmation": "Você realmente deseja excluir ",
+        "SelectTableToInsert": "Selecione um banco de dados para inserir a tabela.",
+        "ColumnNameType": "A coluna deve ter um nome e um tipo de dados.",
+        "SelectTableDelete": "Selecione uma coluna para excluir.",
+        "NoConnectionString": "Não há string de conexão criada.",
+        "NoDatabaseToSave": "Não há banco de dados para salvar.",
+        "ErrorOccurs": "Um erro ocorreu: ",
+        "Created": "Criado com sucesso.",
+        "NothingToSave": "Não há nada para salvar.",
+        "TemplateSaved": "Modelo salvo com sucesso."
+      },
+      "Dialogs": {
+        "SaveFileDialogTitle": "Salvar "
+      }
+    }
+  },
+  {
+    "langCode": 1,
+    "textBookCollection": {
+      "SplashScreen": {
+        "LoadingLabel": "Loading..."
+      },
+      "Home": {
+        "MenubarConnect": "Connect",
+        "MenubarDatabase": "Database",
+        "SmuCreateDb": "Create database",
+        "SmuLoadModel": "Load model...",
+        "MenubarScript": "Script",
+        "SmuCreateScript": "Create new script",
+        "SmuLoadScript": "Load script...",
+        "MenubarConfig": "Configurations",
+        "MenubarAbout": "About",
+        "LabelConnectionStatus": "No connection string"
+      },
+      "ConnectDb": {
+        "WindowTile": "Connect",
+        "LabelServerName": "Server name:",
+        "LabelDatabaseName": "Database name:",
+        "LabelAuth": "Auth",
+        "GroupboxAuthInfo": "Auth info",
+        "LabelAuthUsername": "Username",
+        "LabelAuthPassword": "Password",
+        "ButtonConnectionTest": "Test connection",
+        "ButtonSave": "Save"
+      },
+      "CreateDb": {
+        "WindowTile": "Create database",
+        "ButtonAddDb": "Add database",
+        "ButtonAddTable": "Add table",
+        "ButtonDeleteElement": "Delete element",
+        "GroupboxInfo": "Informations",
+        "LabelAmountDb": "Database amount:",
+        "LabelAmuntTable": "Table amount:",
+        "ButtonSaveModel": "Save model",
+        "ButtonCreateDb": "Create DB"
+      },
+      "CreateTable": {
+        "WindowTile": "Create table",
+        "LabelColumnName": "Column name:",
+        "LabelDataType": "Data type:",
+        "CheckboxAllowNull": "Allow NULL",
+        "CheckboxHasKey": "Key",
+        "ButtonAddColumn": "Add",
+        "ButtonRemoveColumn": "Remove",
+        "ButtonOk": "OK",
+        "ButtonCancel": "Cancel"
+      },
+      "ScriptEditor": {
+        "WindowTile": "Script editor",
+        "TabLabel0": "Script",
+        "TabLabel1": "Query"
+      },
+      "Configuration": {
+        "WindowTile": "Configuration",
+        "GroupboxConnection": "Connection",
+        "LabelConnString": "Connection string",
+        "ButtonClearConnString": "Clear connection string",
+        "ButtonDeleteConnectionHistoric": "Delete connection historic",
+        "GroupboxPersonalization": "Personalization",
+        "LabelHighlightColor": "Highlight color",
+        "LabelLanguage": "Language:",
+        "ButtonSave": "Save"
+      },
+      "About": {
+        "WindowTile": "About",
+        "LabelWallpaper": "Wallpaper: pikisuperstar e Freepik",
+        "Creator": "Luan Roger© 2022",
+        "License": "GNU General Public License v3.0"
+      },
+      "ComboBoxItems": {
+        "WindowsSqlAuth": "Windows Authentication",
+        "SqlAuth": "SQL Server Authentication"
+      },
+      "MessageBox": {
+        "MessageBoxSuccessTitle": "Success",
+        "MessageBoxErrorTitle": "Error",
+        "MessageBoxQuestionTitle": "Question",
+        "MessageBoxInformationTitle": "Information",
+        "ConfigurationSaved": "Settings saved successfully.",
+        "ConncetionEstablished": "Connection established successfully.",
+        "UnableToConnectDatabase": "Unable to establish a connection to the database.",
+        "DeleteConfirmation": "Do you really want to delete ",
+        "SelectTableToInsert": "Select a database to insert the table.",
+        "ColumnNameType": "The column must have a name and data type.",
+        "SelectTableDelete": "Select a column to delete.",
+        "NoConnectionString": "There is no connection string created.",
+        "NoDatabaseToSave": "There is no database to save.",
+        "ErrorOccurs": "An error occurred: ",
+        "Created": "Successfully created.",
+        "NothingToSave": "There is nothing to save.",
+        "TemplateSaved": "Template saved successfully."
+      },
+      "Dialogs": {
+        "SaveFileDialogTitle": "Save "
+      }
+    }
+  }
+]

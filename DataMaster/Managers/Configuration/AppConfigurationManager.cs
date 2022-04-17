@@ -29,14 +29,11 @@ public static class AppConfigurationManager
         
     private static ConfigManager<ConfigurationModel> configManager { get; } = new(Consts.CONFIGURATION_FILE,
         SerializationFormat.Json, defaultConfig);
-    public static ConfigurationModel configuration
-    {
-        get => configManager.configuration;
-    }
+    public static ConfigurationModel configuration => configManager.configuration;
 
     public static void LoadConfig()
     {
-        if(!Verifiers.VerifyConfigurationFile(Consts.CONFIGURATION_FILE)) configManager.Save();
+        if(!Verifiers.CheckFile(Consts.CONFIGURATION_FILE)) configManager.Save();
             
         configManager.Load();
     }

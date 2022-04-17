@@ -91,15 +91,21 @@ public partial class Home : Form
 
         SplashScreen splashScreen = new();
         splashScreen.Show();
-        splashScreen.FormClosed += (_, _) => {
-            LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
-            SetMenuClick();
-            SetClickShortcuts();
+        splashScreen.FormClosed += SplashScreenOnFormClosed;
+    }
+    /// <summary>
+    /// Init the Home window when the SplashScreen has finish.
+    /// </summary>
+    private void SplashScreenOnFormClosed(object? sender, FormClosedEventArgs e)
+    {
+        LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
+        SetMenuClick();
+        SetClickShortcuts();
             
-            ShowInTaskbar = true;
-            Opacity = 100;
-            BringToFront();
-        };
+        ShowInTaskbar = true;
+        Opacity = 100;
+        BringToFront();
+        ((Form)sender!).FormClosed -= SplashScreenOnFormClosed;
     }
 
     private void timer1_Tick(object sender, EventArgs e) => lblTempo.Text = DateTime.Now.ToString();
@@ -125,7 +131,11 @@ public partial class Home : Form
         
         pgbAsyncTask.Visible = false;
     }
-    
+
+    private void Home_FormClosed(object sender, FormClosedEventArgs e)
+    {
+        LanguageManager.RemoveGlobalizationObserver(GlobalizationOnLangTextObserver);
+    }
     private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
     {
         mnuConexao.Text = LanguageManager.ReturnGlobalizationText("Home", "MenubarConnect");

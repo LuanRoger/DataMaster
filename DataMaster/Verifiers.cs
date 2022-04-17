@@ -8,7 +8,12 @@ public static class Verifiers
 {
     public static bool HasNotServer(string connString) => 
         string.IsNullOrEmpty(connString) || !connString.Contains("Server=");
-    public static bool VerifyConfigurationFile(string filePath) =>
+    /// <summary>
+    /// Check if the file exists.
+    /// </summary>
+    /// <param name="filePath">Path of the file to check.</param>
+    /// <returns>Return <c>true</c> if exist and <c>false</c> if not.</returns>
+    public static bool CheckFile(string filePath) =>
         File.Exists(filePath);
 
     /// <returns>If dataTable is empty, return false</returns>

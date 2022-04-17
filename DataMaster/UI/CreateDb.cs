@@ -200,7 +200,11 @@ public partial class CreateDb : Form
     }
         
     private void SwitchProgressBarVisibility() => pgbAsyncTasks.Visible = !pgbAsyncTasks.Visible;
-        
+
+    private void CreateDb_FormClosed(object sender, FormClosedEventArgs e)
+    {
+        LanguageManager.RemoveGlobalizationObserver(GlobalizationOnLangTextObserver);
+    }
     private void GlobalizationOnLangTextObserver(object sender, UpdateModeEventArgs updatemodeeventargs)
     {
         btnAdicionarDb.Size = updatemodeeventargs.lang switch
