@@ -47,12 +47,7 @@ public partial class ConnectDb : Form
             
         LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
     }
-        
-    private void cmbServerType_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        gpbInfoUser.Enabled = cmbServerType.SelectedIndex == 1;
-    }
-        
+
     private void btnConnectDb_Click(object sender, EventArgs e)
     {
         if(buildedConnString == null)
@@ -94,6 +89,16 @@ public partial class ConnectDb : Form
             LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
             MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
+
+    #region SpecificProvider
+    #region SqlServer
+    private void cmbServerType_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        gpbInfoUser.Enabled = cmbServerType.SelectedIndex == 1;
+    }
+    #endregion
+
+    #endregion
     
     private ConnStringBuilder BuildConnectionString()
     {

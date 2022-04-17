@@ -4,6 +4,6 @@ namespace DatabaseEngine.Types;
 
 public class DatabaseProviderConnection
 {
-    public string connectionString { get; set; }
-    public DatabaseProvider databaseProvider { get; set; }
+    public string connectionString { get; init; }
+    public DatabaseProvider databaseProvider { get; init; }
 }
