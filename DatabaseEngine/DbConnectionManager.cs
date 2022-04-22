@@ -44,10 +44,16 @@ public static class DbConnectionManager
     {
         if(currentProvider is null)
             throw new MandatoryNonNullValue(nameof(currentProvider));
+        bool getConnected;
+        try
+        {
+            getConnected = await currentProvider.TryOpenConnection();   
+        }
+        finally
+        {
+            await currentProvider.TryCloseConnection();   
+        }
 
-        bool getConnected = await currentProvider.TryOpenConnection();
-        await currentProvider.TryCloseConnection();
-        
         if(dispose)
             DisposeAllDomains();
         

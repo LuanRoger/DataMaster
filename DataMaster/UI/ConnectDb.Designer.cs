@@ -30,27 +30,27 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.btnConnectDb = new System.Windows.Forms.Button();
-            this.cmbServerName = new System.Windows.Forms.ComboBox();
+            this.cmbServerNameSqlServer = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cmbServerType = new System.Windows.Forms.ComboBox();
+            this.cmbAuthTypeSqlServer = new System.Windows.Forms.ComboBox();
             this.gpbInfoUser = new System.Windows.Forms.GroupBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtPasswordSqlServer = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.txtUsernameSqlServer = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtNameDb = new System.Windows.Forms.TextBox();
+            this.txtDbNameSqlServer = new System.Windows.Forms.TextBox();
             this.btnTestConnection = new System.Windows.Forms.Button();
             this.tbcProviderConnection = new System.Windows.Forms.TabControl();
             this.tabSqlServer = new System.Windows.Forms.TabPage();
             this.tabSqlite = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.chbReadOnlySqlite = new System.Windows.Forms.CheckBox();
+            this.txtPasswordSqlite = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cmbVersionSqlite = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtDataSourceSqlite = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.gpbInfoUser.SuspendLayout();
             this.tbcProviderConnection.SuspendLayout();
             this.tabSqlServer.SuspendLayout();
@@ -79,13 +79,13 @@
             this.btnConnectDb.UseVisualStyleBackColor = true;
             this.btnConnectDb.Click += new System.EventHandler(this.btnConnectDb_Click);
             // 
-            // cmbServerName
+            // cmbServerNameSqlServer
             // 
-            this.cmbServerName.FormattingEnabled = true;
-            this.cmbServerName.Location = new System.Drawing.Point(6, 21);
-            this.cmbServerName.Name = "cmbServerName";
-            this.cmbServerName.Size = new System.Drawing.Size(341, 23);
-            this.cmbServerName.TabIndex = 2;
+            this.cmbServerNameSqlServer.FormattingEnabled = true;
+            this.cmbServerNameSqlServer.Location = new System.Drawing.Point(6, 21);
+            this.cmbServerNameSqlServer.Name = "cmbServerNameSqlServer";
+            this.cmbServerNameSqlServer.Size = new System.Drawing.Size(341, 23);
+            this.cmbServerNameSqlServer.TabIndex = 2;
             // 
             // label2
             // 
@@ -96,21 +96,21 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Autenticação:";
             // 
-            // cmbServerType
+            // cmbAuthTypeSqlServer
             // 
-            this.cmbServerType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbServerType.FormattingEnabled = true;
-            this.cmbServerType.Location = new System.Drawing.Point(6, 113);
-            this.cmbServerType.Name = "cmbServerType";
-            this.cmbServerType.Size = new System.Drawing.Size(341, 23);
-            this.cmbServerType.TabIndex = 4;
-            this.cmbServerType.SelectedIndexChanged += new System.EventHandler(this.cmbServerType_SelectedIndexChanged);
+            this.cmbAuthTypeSqlServer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAuthTypeSqlServer.FormattingEnabled = true;
+            this.cmbAuthTypeSqlServer.Location = new System.Drawing.Point(6, 113);
+            this.cmbAuthTypeSqlServer.Name = "cmbAuthTypeSqlServer";
+            this.cmbAuthTypeSqlServer.Size = new System.Drawing.Size(341, 23);
+            this.cmbAuthTypeSqlServer.TabIndex = 4;
+            this.cmbAuthTypeSqlServer.SelectedIndexChanged += new System.EventHandler(this.cmbServerType_SelectedIndexChanged);
             // 
             // gpbInfoUser
             // 
-            this.gpbInfoUser.Controls.Add(this.txtPassword);
+            this.gpbInfoUser.Controls.Add(this.txtPasswordSqlServer);
             this.gpbInfoUser.Controls.Add(this.label4);
-            this.gpbInfoUser.Controls.Add(this.txtUserName);
+            this.gpbInfoUser.Controls.Add(this.txtUsernameSqlServer);
             this.gpbInfoUser.Controls.Add(this.label3);
             this.gpbInfoUser.Enabled = false;
             this.gpbInfoUser.Location = new System.Drawing.Point(6, 142);
@@ -120,12 +120,12 @@
             this.gpbInfoUser.TabStop = false;
             this.gpbInfoUser.Text = "Informações de autenticação";
             // 
-            // txtPassword
+            // txtPasswordSqlServer
             // 
-            this.txtPassword.Location = new System.Drawing.Point(116, 57);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(218, 23);
-            this.txtPassword.TabIndex = 3;
+            this.txtPasswordSqlServer.Location = new System.Drawing.Point(116, 57);
+            this.txtPasswordSqlServer.Name = "txtPasswordSqlServer";
+            this.txtPasswordSqlServer.Size = new System.Drawing.Size(218, 23);
+            this.txtPasswordSqlServer.TabIndex = 3;
             // 
             // label4
             // 
@@ -136,12 +136,12 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "Senha:";
             // 
-            // txtUserName
+            // txtUsernameSqlServer
             // 
-            this.txtUserName.Location = new System.Drawing.Point(116, 23);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(218, 23);
-            this.txtUserName.TabIndex = 1;
+            this.txtUsernameSqlServer.Location = new System.Drawing.Point(116, 23);
+            this.txtUsernameSqlServer.Name = "txtUsernameSqlServer";
+            this.txtUsernameSqlServer.Size = new System.Drawing.Size(218, 23);
+            this.txtUsernameSqlServer.TabIndex = 1;
             // 
             // label3
             // 
@@ -161,12 +161,12 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "Nome do banco de dados:";
             // 
-            // txtNameDb
+            // txtDbNameSqlServer
             // 
-            this.txtNameDb.Location = new System.Drawing.Point(6, 69);
-            this.txtNameDb.Name = "txtNameDb";
-            this.txtNameDb.Size = new System.Drawing.Size(341, 23);
-            this.txtNameDb.TabIndex = 7;
+            this.txtDbNameSqlServer.Location = new System.Drawing.Point(6, 69);
+            this.txtDbNameSqlServer.Name = "txtDbNameSqlServer";
+            this.txtDbNameSqlServer.Size = new System.Drawing.Size(341, 23);
+            this.txtDbNameSqlServer.TabIndex = 7;
             // 
             // btnTestConnection
             // 
@@ -179,7 +179,7 @@
             this.btnTestConnection.Text = "Testar conexão";
             this.btnTestConnection.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTestConnection.UseVisualStyleBackColor = true;
-            this.btnTestConnection.Click += new System.EventHandler(this.btnTestarConexao_Click);
+            this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 
             // tbcProviderConnection
             // 
@@ -195,11 +195,11 @@
             // 
             this.tabSqlServer.Controls.Add(this.gpbInfoUser);
             this.tabSqlServer.Controls.Add(this.label1);
-            this.tabSqlServer.Controls.Add(this.txtNameDb);
-            this.tabSqlServer.Controls.Add(this.cmbServerName);
+            this.tabSqlServer.Controls.Add(this.txtDbNameSqlServer);
+            this.tabSqlServer.Controls.Add(this.cmbServerNameSqlServer);
             this.tabSqlServer.Controls.Add(this.label5);
             this.tabSqlServer.Controls.Add(this.label2);
-            this.tabSqlServer.Controls.Add(this.cmbServerType);
+            this.tabSqlServer.Controls.Add(this.cmbAuthTypeSqlServer);
             this.tabSqlServer.Location = new System.Drawing.Point(4, 24);
             this.tabSqlServer.Name = "tabSqlServer";
             this.tabSqlServer.Padding = new System.Windows.Forms.Padding(3);
@@ -210,12 +210,12 @@
             // 
             // tabSqlite
             // 
-            this.tabSqlite.Controls.Add(this.checkBox1);
-            this.tabSqlite.Controls.Add(this.textBox2);
+            this.tabSqlite.Controls.Add(this.chbReadOnlySqlite);
+            this.tabSqlite.Controls.Add(this.txtPasswordSqlite);
             this.tabSqlite.Controls.Add(this.label8);
-            this.tabSqlite.Controls.Add(this.comboBox1);
+            this.tabSqlite.Controls.Add(this.cmbVersionSqlite);
             this.tabSqlite.Controls.Add(this.label7);
-            this.tabSqlite.Controls.Add(this.textBox1);
+            this.tabSqlite.Controls.Add(this.txtDataSourceSqlite);
             this.tabSqlite.Controls.Add(this.label6);
             this.tabSqlite.Location = new System.Drawing.Point(4, 24);
             this.tabSqlite.Name = "tabSqlite";
@@ -225,21 +225,41 @@
             this.tabSqlite.Text = "SQLite";
             this.tabSqlite.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // chbReadOnlySqlite
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 3);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(96, 15);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Nome do banco:";
+            this.chbReadOnlySqlite.AutoSize = true;
+            this.chbReadOnlySqlite.Location = new System.Drawing.Point(108, 111);
+            this.chbReadOnlySqlite.Name = "chbReadOnlySqlite";
+            this.chbReadOnlySqlite.Size = new System.Drawing.Size(101, 19);
+            this.chbReadOnlySqlite.TabIndex = 6;
+            this.chbReadOnlySqlite.Text = "Apenas leitura";
+            this.chbReadOnlySqlite.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtPasswordSqlite
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 21);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(341, 23);
-            this.textBox1.TabIndex = 1;
+            this.txtPasswordSqlite.Location = new System.Drawing.Point(6, 65);
+            this.txtPasswordSqlite.Name = "txtPasswordSqlite";
+            this.txtPasswordSqlite.Size = new System.Drawing.Size(341, 23);
+            this.txtPasswordSqlite.TabIndex = 5;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 47);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(99, 15);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Senha (opcional):";
+            // 
+            // cmbVersionSqlite
+            // 
+            this.cmbVersionSqlite.FormattingEnabled = true;
+            this.cmbVersionSqlite.Items.AddRange(new object[] {
+            "3"});
+            this.cmbVersionSqlite.Location = new System.Drawing.Point(6, 109);
+            this.cmbVersionSqlite.Name = "cmbVersionSqlite";
+            this.cmbVersionSqlite.Size = new System.Drawing.Size(96, 23);
+            this.cmbVersionSqlite.TabIndex = 3;
             // 
             // label7
             // 
@@ -250,41 +270,21 @@
             this.label7.TabIndex = 2;
             this.label7.Text = "Versão:";
             // 
-            // comboBox1
+            // txtDataSourceSqlite
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "3"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 109);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(96, 23);
-            this.comboBox1.TabIndex = 3;
+            this.txtDataSourceSqlite.Location = new System.Drawing.Point(6, 21);
+            this.txtDataSourceSqlite.Name = "txtDataSourceSqlite";
+            this.txtDataSourceSqlite.Size = new System.Drawing.Size(341, 23);
+            this.txtDataSourceSqlite.TabIndex = 1;
             // 
-            // label8
+            // label6
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 47);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(152, 15);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Senha (vazio se não quiser):";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(6, 65);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(341, 23);
-            this.textBox2.TabIndex = 5;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(108, 111);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(101, 19);
-            this.checkBox1.TabIndex = 6;
-            this.checkBox1.Text = "Apenas leitura";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 3);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(91, 15);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Fonte de dados:";
             // 
             // ConnectDb
             // 
@@ -317,26 +317,26 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnConnectDb;
-        private System.Windows.Forms.ComboBox cmbServerName;
+        private System.Windows.Forms.ComboBox cmbServerNameSqlServer;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbServerType;
+        private System.Windows.Forms.ComboBox cmbAuthTypeSqlServer;
         private System.Windows.Forms.GroupBox gpbInfoUser;
-        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtPasswordSqlServer;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.TextBox txtUsernameSqlServer;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtNameDb;
+        private System.Windows.Forms.TextBox txtDbNameSqlServer;
         private System.Windows.Forms.Button btnTestConnection;
         private System.Windows.Forms.TabControl tbcProviderConnection;
         private System.Windows.Forms.TabPage tabSqlServer;
         private System.Windows.Forms.TabPage tabSqlite;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbVersionSqlite;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDataSourceSqlite;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.CheckBox chbReadOnlySqlite;
+        private System.Windows.Forms.TextBox txtPasswordSqlite;
         private System.Windows.Forms.Label label8;
     }
 }
