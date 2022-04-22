@@ -1,25 +1,24 @@
 ﻿using System.Data;
-using System.Data.SqlClient;
 using System.Text;
+using DatabaseEngine.Exceptions;
 using DatabaseEngineInterpreter.SqlSyntaxInfo;
-using DataTable = System.Data.DataTable;
+using System.Data.SQLite;
 
-namespace DatabaseEngine.DB.SQLServer;
+namespace DatabaseEngine.DB.SQLite;
 
-public class SqlServerDomain : DbProvider<SqlConnection>, ISqlDriverCommands, IDisposable
+public class SqliteDomain : DbProvider<SQLiteConnection>, ISqlDriverCommands, IDisposable
 {
-    public SqlServerDomain(string connectionString) : base(connectionString)
+    public SqliteDomain(string connectionString) : base(connectionString)
     {
         connection = new(connectionString);
     }
 
     #region OpenCloseConnection
-
     public async Task<bool> TryOpenConnection()
     {
         if(connection is null)
             throw new ArgumentException($"{nameof(connection)} is null");
-        
+
         await connection.OpenAsync();
         
         return connection.State == ConnectionState.Open;
@@ -29,26 +28,30 @@ public class SqlServerDomain : DbProvider<SqlConnection>, ISqlDriverCommands, ID
         if(connection is null)
             throw new ArgumentException($"{nameof(connection)} is null");
         
-        await connection.CloseAsync();
+        await connection.OpenAsync();
         
         return connection.State == ConnectionState.Closed;
     }
     #endregion
 
-    #region CreateDatabse
+    #region CreateDatabase
     public async Task CreateDb(SqlInfo sqlInfo)
     {
-        SqlCommand sqlCommand = new()
-        {
-            Connection = connection,
-            CommandText = $"CREATE DATABASE {sqlInfo.databaseName}"
-        };
+        if(connection is null)
+            throw new ArgumentException($"{nameof(connection)} is null");
+        
+        SQLiteCommand createDbCommand = connection.CreateCommand();
+        createDbCommand.CommandText = "CREATE DATABASE $dbName";
+        
+        if(!sqlInfo.databaseName.Contains(".db"))
+            throw new InvalidDatabaseName(sqlInfo.databaseName, "Sqlite");
+        createDbCommand.Parameters.AddWithValue("$dbName", sqlInfo.databaseName);
         
         await TryOpenConnection();
-        _ = await sqlCommand.ExecuteNonQueryAsync();
+        _ = await createDbCommand.ExecuteNonQueryAsync();
         await TryCloseConnection();
         
-        await sqlCommand.DisposeAsync();
+        await createDbCommand.DisposeAsync();
         InsertTablesColunms(sqlInfo);
     }
     private void InsertTablesColunms(SqlInfo sqlInfo)
@@ -72,14 +75,14 @@ public class SqlServerDomain : DbProvider<SqlConnection>, ISqlDriverCommands, ID
 
     public async Task<int> ExecuteSqlCommand(string command)
     {
-        SqlCommand sqlCommand = new()
-        {
-            Connection = connection,
-            CommandText = command
-        };
+        if(connection is null)
+            throw new ArgumentException($"{nameof(connection)} is null");
+        
+        SQLiteCommand sqlCommand = connection.CreateCommand();
+        sqlCommand.CommandText = command;
         
         await TryOpenConnection();
-        int rowsAffected = await sqlCommand.ExecuteNonQueryAsync();
+        int rowsAffected = sqlCommand.ExecuteNonQuery();
         await TryCloseConnection();
         
         return rowsAffected;
@@ -87,10 +90,12 @@ public class SqlServerDomain : DbProvider<SqlConnection>, ISqlDriverCommands, ID
 
     public async Task<DataTable> ExecuteQueryCommand(string command)
     {
+        if(connection is null)
+            throw new ArgumentException($"{nameof(connection)} is null");
         DataTable dataTable = new();
         
         await TryOpenConnection();
-        SqlDataAdapter dataAdapter = new(command, connection);
+        SQLiteDataAdapter dataAdapter = new(command, connection);
         dataAdapter.Fill(dataTable);
         await TryCloseConnection();
         
@@ -100,6 +105,7 @@ public class SqlServerDomain : DbProvider<SqlConnection>, ISqlDriverCommands, ID
     public void Dispose()
     {
         connection?.Dispose();
+        
         GC.SuppressFinalize(this);
     }
 }

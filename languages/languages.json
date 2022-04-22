@@ -22,11 +22,17 @@
         "LabelServerName": "Nome do servidor",
         "LabelDatabaseName": "Nome do banco de dados",
         "LabelAuth": "Autenticação",
+        "CmbItemWinAuth": "Autenticação do Windows",
+        "CmbItemSqlServerAuth": "Autenticação do SQL Server",
         "GroupboxAuthInfo": "Informações de autenticação",
         "LabelAuthUsername": "Nome de usuário",
         "LabelAuthPassword": "Senha",
         "ButtonConnectionTest": "Testar conexão",
-        "ButtonSave": "Salvar"
+        "ButtonSave": "Salvar",
+        "LabelDataSource": "Fonte de dados:",
+        "LabelPasswordOptional": "Senha (opcional):",
+        "LabelVersion": "Versão",
+        "CheckBoxReadOnly": "Apenas leitura"
       },
       "CreateDb": {
         "WindowTile": "Criar banco de dados",
@@ -123,11 +129,17 @@
         "LabelServerName": "Server name:",
         "LabelDatabaseName": "Database name:",
         "LabelAuth": "Auth",
+        "CmbItemWinAuth": "Windows Authentication",
+        "CmbItemSqlServerAuth": "SQL Server Authentication",
         "GroupboxAuthInfo": "Auth info",
         "LabelAuthUsername": "Username",
         "LabelAuthPassword": "Password",
         "ButtonConnectionTest": "Test connection",
-        "ButtonSave": "Save"
+        "ButtonSave": "Save",
+        "LabelDataSource": "Data Source:",
+        "LabelPasswordOptional": "Password (optional):",
+        "LabelVersion": "Version",
+        "CheckBoxReadOnly": "Readonly"
       },
       "CreateDb": {
         "WindowTile": "Create database",

@@ -1,16 +1,18 @@
-﻿namespace DatabaseEngine.DB;
+﻿using System.Data.Common;
+
+namespace DatabaseEngine.DB;
 
 /// <summary>
 /// Represents a database provider.
 /// </summary>
 /// <typeparam name="T">Driver connection</typeparam>
-public abstract class IDbProvider<T>
+public abstract class DbProvider<T> where T : DbConnection
 {
-    protected IDbProvider(string connectionString)
+    protected string connectionString { get; }
+    protected T? connection { get; set; }
+    
+    protected DbProvider(string connectionString)
     {
         this.connectionString = connectionString;
     }
-    
-    protected internal string connectionString { get; set; }
-    protected T connection { get; set; }
 }

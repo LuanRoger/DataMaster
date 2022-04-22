@@ -1,4 +1,5 @@
 ﻿using DatabaseEngine.DB;
+using DatabaseEngine.DB.SQLite;
 using DatabaseEngine.DB.SQLServer;
 using DatabaseEngine.Enums;
 using DatabaseEngine.Exceptions;
@@ -13,36 +14,26 @@ public static class DbConnectionManager
         get => _databaseProviderConnection;
         set
         {
-            if(value == null)
+            if(value is null)
                 throw new MandatoryNonNullValue(nameof(value));
             
             DisposeAllDomains();
             _databaseProviderConnection = value;
-
-            _sqlServerDomain = value.databaseProvider switch
-            {
-                DatabaseProvider.SqlServer => new(value.connectionString),
-                _ => _sqlServerDomain
-            };
+            InitDomain();
         }
     }
     private static DatabaseProviderConnection? _databaseProviderConnection { get; set; }
-    public static ISqlDriverCommands? currentProvider
-    {
-        get
+    public static ISqlDriverCommands? currentProvider =>
+        _databaseProviderConnection is null ? null : 
+            _databaseProviderConnection.databaseProvider switch
         {
-            if (_databaseProviderConnection == null)
-                return null;
+            DatabaseProvider.SqlServer => _sqlServerDomain,
+            DatabaseProvider.Sqlite => _sqliteDomain,
+            _ => null
+        };
 
-            return _databaseProviderConnection.databaseProvider switch
-            {
-                DatabaseProvider.SqlServer => _sqlServerDomain,
-                _ => null
-            };
-        }
-    }
-    
     private static SqlServerDomain? _sqlServerDomain { get; set; }
+    private static SqliteDomain? _sqliteDomain { get; set; }
     
     /// <summary>
     /// Try connect using the actual connection string and dispose all domains.
@@ -51,20 +42,44 @@ public static class DbConnectionManager
     /// false if couldn't connect;</returns>
     public static async Task<bool> TestConnection(bool dispose = true)
     {
-        if(currentProvider == null)
+        if(currentProvider is null)
             throw new MandatoryNonNullValue(nameof(currentProvider));
+        bool getConnected;
+        try
+        {
+            getConnected = await currentProvider.TryOpenConnection();   
+        }
+        finally
+        {
+            await currentProvider.TryCloseConnection();   
+        }
 
-        bool getConnected = await currentProvider.TryOpenConnection();
-        await currentProvider.TryCloseConnection();
-        
         if(dispose)
             DisposeAllDomains();
         
         return getConnected;
     }
     
+    private static void InitDomain()
+    {
+        switch (_databaseProviderConnection.databaseProvider)
+        {
+            case DatabaseProvider.SqlServer:
+                _sqlServerDomain = new(_databaseProviderConnection.connectionString);
+                break;
+            case DatabaseProvider.Sqlite:
+                _sqliteDomain = new(_databaseProviderConnection.connectionString);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+    
     private static void DisposeAllDomains()
     {
         _sqlServerDomain?.Dispose();
+        _sqliteDomain?.Dispose();
+        
+        _databaseProviderConnection = null;
     }
 }

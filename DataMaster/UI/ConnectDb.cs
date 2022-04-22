@@ -6,26 +6,30 @@ using DatabaseEngine.Enums;
 using DataMaster.Exceptions;
 using DataMaster.Managers;
 using DataMaster.Managers.Configuration;
-using DataMaster.Util;
+using DataMaster.Util.ConnStringBuilder;
 using GlobalStrings.EventArguments;
 
 namespace DataMaster.UI;
 
+#pragma warning disable CS8509
+
 public partial class ConnectDb : Form
 {
-    public ConnectDb()
-    {
-        InitializeComponent();
-    }
+    private DatabaseProvider providerByIndex =>
+        tbcProviderConnection.SelectedIndex switch
+        {
+            0 => DatabaseProvider.SqlServer,
+            1 => DatabaseProvider.Sqlite
+        };
 
-    private ConnStringBuilder? buildedConnString
+    private IConnStringBuilder? buildedConnString
     {
         get
         {
-            ConnStringBuilder connStringBuilder;
+            IConnStringBuilder connStringBuilderSqlServer;
             try
             {
-                connStringBuilder = BuildConnectionString();
+                connStringBuilderSqlServer = BuildConnectionString();
             }
             catch(Exception exception)
             {
@@ -35,48 +39,53 @@ public partial class ConnectDb : Form
                 return null;
             }
             
-            return connStringBuilder;
+            return connStringBuilderSqlServer;
         }
+    }
+    
+    public ConnectDb()
+    {
+        InitializeComponent();
     }
 
     private void ConnectDb_Load(object sender, EventArgs e)
     {
-        cmbServerType.SelectedIndex = 0;
         foreach (string connection in AppConfigurationManager.configuration.connectionsHistory.historyConnections)
-            cmbServerName.Items.Add(connection);
+            cmbServerNameSqlServer.Items.Add(connection);
             
         LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
-    }
         
-    private void cmbServerType_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        gpbInfoUser.Enabled = cmbServerType.SelectedIndex == 1;
+        cmbAuthTypeSqlServer.Items.AddRange(new object[]
+        {
+            LanguageManager.ReturnGlobalizationText("ConnectDb", "CmbItemWinAuth"),
+            LanguageManager.ReturnGlobalizationText("ConnectDb", "CmbItemSqlServerAuth")
+        });
+        cmbAuthTypeSqlServer.SelectedIndex = 0;
     }
-        
+
     private void btnConnectDb_Click(object sender, EventArgs e)
     {
-        if(buildedConnString == null)
-            return;
+        if(buildedConnString is null) return;
         
         if(!AppConfigurationManager.configuration.connectionsHistory.historyConnections
-               .Exists(server => server == cmbServerName.Text))
-            AppConfigurationManager.configuration.connectionsHistory.historyConnections.Add(cmbServerName.Text);
+               .Exists(server => server == cmbServerNameSqlServer.Text))
+            AppConfigurationManager.configuration.connectionsHistory.historyConnections.Add(cmbServerNameSqlServer.Text);
             
         DbConnectionManager.databaseProviderConnection = new()
         {
             connectionString = buildedConnString.connectionString,
-            databaseProvider = DatabaseProvider.SqlServer
+            databaseProvider = providerByIndex
         };
         AppConfigurationManager.configuration.database = new()
         {
             connectionString = buildedConnString.connectionString,
-            databaseProvider =  DatabaseProvider.SqlServer
+            databaseProvider =  providerByIndex
         };
         AppConfigurationManager.SaveConfig();
             
         Close();
     }
-    private async void btnTestarConexao_Click(object sender, EventArgs e)
+    private async void btnTestConnection_Click(object sender, EventArgs e)
     {
         if(buildedConnString == null)
             return;
@@ -95,32 +104,55 @@ public partial class ConnectDb : Form
             MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
     
-    private ConnStringBuilder BuildConnectionString()
+    private void cmbServerType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        AuthTypes authType = cmbServerType.SelectedIndex switch
+        gpbInfoUser.Enabled = cmbAuthTypeSqlServer.SelectedIndex == 1;
+    }
+
+    private IConnStringBuilder BuildConnectionString()
+    {
+        return providerByIndex switch
+        {
+            DatabaseProvider.SqlServer => BuildSqlServerString(),
+            DatabaseProvider.Sqlite => BuildSqliteString(),
+            _ => throw new NonExistProvider((int)providerByIndex)
+        };
+    }
+    private ConnStringBuilderSqlServer BuildSqlServerString()
+    {
+        ConnStringBuilderSqlServer connStringBuilderSqlServer = new();
+        connStringBuilderSqlServer.connectionServer = cmbServerNameSqlServer.Text;
+        
+        AuthTypes authType = cmbAuthTypeSqlServer.SelectedIndex switch
         {
             0 => AuthTypes.WinAuth,
             1 => AuthTypes.SqlSAuth,
             _ => throw new ArgumentOutOfRangeException()
         };
-        
-        ConnStringBuilder connStringBuilder = new();
-        connStringBuilder.connectionServer = cmbServerName.Text;
-            
-        if(!string.IsNullOrEmpty(txtNameDb.Text)) connStringBuilder.connectionDatabase = txtNameDb.Text;
-            
         if(authType == AuthTypes.SqlSAuth)
         {
-            if(string.IsNullOrEmpty(txtUserName.Text) && 
-               string.IsNullOrEmpty(txtPassword.Text))
+            if(string.IsNullOrEmpty(txtUsernameSqlServer.Text) && 
+               string.IsNullOrEmpty(txtPasswordSqlServer.Text))
                 throw new AuthenticationInformationException("SQL", "username","password");
             
-            connStringBuilder.userId = txtUserName.Text;
-            connStringBuilder.password = txtPassword.Text;
+            connStringBuilderSqlServer.userId = txtUsernameSqlServer.Text;
+            connStringBuilderSqlServer.password = txtPasswordSqlServer.Text;
         }
-        else connStringBuilder.trustedConnection = true;
+        else connStringBuilderSqlServer.trustedConnection = true;
         
-        return connStringBuilder;
+        connStringBuilderSqlServer.connectionDatabase = txtDbNameSqlServer.Text;
+
+        return connStringBuilderSqlServer;
+    }
+    private ConnStringBuilderSqlite BuildSqliteString()
+    {
+        return new()
+        {
+            dataSource = txtDataSourceSqlite.Text,
+            password = txtPasswordSqlite.Text,
+            version = cmbVersionSqlite.Text,
+            isReadOnly = chbReadOnlySqlite.Checked
+        };
     }
 
     private void ConnectDb_FormClosed(object sender, FormClosedEventArgs e)
@@ -148,5 +180,10 @@ public partial class ConnectDb : Form
             
         btnConnectDb.Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "ButtonSave");
         btnTestConnection.Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "ButtonConnectionTest");
+        
+        label6.Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "LabelDataSource");
+        label8.Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "LabelPasswordOptional");
+        label7.Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "LabelVersion");
+        chbReadOnlySqlite.Text = LanguageManager.ReturnGlobalizationText("ConnectDb", "CheckBoxReadOnly");
     }
 }

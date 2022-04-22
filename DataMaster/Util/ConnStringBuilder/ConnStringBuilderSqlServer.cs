@@ -1,19 +1,17 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
-namespace DataMaster.Util;
+namespace DataMaster.Util.ConnStringBuilder;
 
 #nullable enable
 
-// Clonable string - https://github.com/dotnet/dotnet-api-docs/issues/7805
-public class ConnStringBuilder
+public class ConnStringBuilderSqlServer : IConnStringBuilder
 {
     public string connectionString
     {
         get
         {
             StringBuilder connStringBuilder = new();
-                
+            
             connStringBuilder.Append(_connectedServer);
             connStringBuilder.Append(_connectedDatabase);
             connStringBuilder.Append(_userId);
@@ -28,64 +26,48 @@ public class ConnStringBuilder
     public string? connectionServer
     {
         get => RemoverIndicators(_connectedServer);
-        set => _connectedServer = "Server=" + value + ";";
+        set => _connectedServer = !string.IsNullOrEmpty(value) ? "Server=" + value + ";" : null;
     }
         
     private string? _connectedDatabase { get; set; }
     public string? connectionDatabase
     {
         get => RemoverIndicators(_connectedDatabase);
-        set
-        {
-            if(value != null) _connectedDatabase = "Database=" + value + ";";
-        }
+        set => _connectedDatabase = !string.IsNullOrEmpty(value)? "Database=" + value + ";" : null;
     }
         
     private string? _userId { get; set; }
     public string? userId
     {
         get => RemoverIndicators(_userId);
-        set
-        {
-            if(value != null) _userId = "User Id=" + value + ";";
-        } 
+        set => _userId = !string.IsNullOrEmpty(value) ? "User Id=" + value + ";" : null;
     }
         
     private string? _password { get; set; }
     public string? password
     {
         get => RemoverIndicators(_password);
-        set
-        {
-            if(value != null) _password = "Password=" + value + ";";
-        } 
+        set => _password = !string.IsNullOrEmpty(value) ? "Password=" + value + ";" : null;
     }
         
-    private string _trustedConnection { get; set; }
+    private string? _trustedConnection { get; set; }
     public bool trustedConnection
     {
         get
         {
-            string triagedTrusted = RemoverIndicators(_trustedConnection);
+            string? triagedTrusted = RemoverIndicators(_trustedConnection);
                 
             return triagedTrusted switch
             {
                 "True" => true,
                 "False" => false,
-                _ => throw new ArgumentException("Trusded paramater not is valid")
+                _ => false
             };
         }
-        set
-        {
-            _trustedConnection = value switch
-            {
-                true => "Trusted_Connection=True;",
-                false => "Trusted_Connection=False;"
-            };
-        }
+        set => _trustedConnection = value ? "Trusted_Connection=True;" : "Trusted_Connection=False;";
     }
         
-    public void ClearConnectionStringBuilder()
+    public void Clear()
     {
         _connectedServer = null;
         _connectedDatabase = null;
@@ -93,6 +75,6 @@ public class ConnStringBuilder
         _password = null;
     }
 
-    private string? RemoverIndicators(string? databaseIndicator) =>
-        databaseIndicator?.Remove(databaseIndicator.IndexOf('='), databaseIndicator.IndexOf(';'));
+    private static string? RemoverIndicators(string? stringIndicator) =>
+        stringIndicator?.Substring(stringIndicator.IndexOf('='), stringIndicator.IndexOf(';'));
 }
