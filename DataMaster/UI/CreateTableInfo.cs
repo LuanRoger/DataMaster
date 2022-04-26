@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using DataMaster.Managers;
-using DataMaster.Types.Components.TreeNode;
+using DataMasterComponents.TreeNode;
 using GlobalStrings.EventArguments;
 
 namespace DataMaster.UI;

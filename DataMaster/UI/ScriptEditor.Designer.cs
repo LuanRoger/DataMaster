@@ -1,7 +1,4 @@
-﻿
-using DataMaster.Types.Components.RichTextBox;
-
-namespace DataMaster.UI
+﻿namespace DataMaster.UI
 {
     partial class ScriptEditor
     {
@@ -44,7 +41,7 @@ namespace DataMaster.UI
             this.tbpScript = new System.Windows.Forms.TabPage();
             this.tbpQuery = new System.Windows.Forms.TabPage();
             this.dgvQuery = new System.Windows.Forms.DataGridView();
-            this.txtScriptCommand = new RichTextBoxScriptingHighlights(LanguageHighlight.SQL, System.Drawing.Color.FromArgb(DataMaster.Managers.Configuration.AppConfigurationManager.configuration.customizationConfigModel.highlightColor));
+            this.txtScriptCommand = new DataMasterComponents.RichTextBox.RichTextBoxScriptingHighlights(DataMasterComponents.RichTextBox.LanguageHighlight.SQL, System.Drawing.Color.FromArgb(DataMaster.Managers.Configuration.AppConfigurationManager.configuration.customizationConfigModel.highlightColor));
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -237,7 +234,7 @@ namespace DataMaster.UI
         private System.Windows.Forms.TabPage tbpQuery;
         private System.Windows.Forms.ToolStripStatusLabel lblScriptLang;
         private System.Windows.Forms.ToolStripButton btnExecuteCommand;
-        private RichTextBoxScriptingHighlights txtScriptCommand;
+        private DataMasterComponents.RichTextBox.RichTextBoxScriptingHighlights txtScriptCommand;
         private System.Windows.Forms.ToolStripStatusLabel lblRowsAffectedLabel;
         private System.Windows.Forms.ToolStripStatusLabel lblRowsAffected;
         private System.Windows.Forms.ToolStripProgressBar pgbAsyncTask;

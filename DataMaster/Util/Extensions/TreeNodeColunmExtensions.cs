@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 using DatabaseEngineInterpreter.SqlSyntaxInfo;
-using DataMaster.Types.Components.TreeNode;
+using DataMasterComponents.TreeNode;
 
 namespace DataMaster.Util.Extensions;
 

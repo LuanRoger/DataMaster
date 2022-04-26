@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DataMaster.Types.Components.TreeNode;
+﻿namespace DataMasterComponents.TreeNode;
 
 public class TreeNodeTable : System.Windows.Forms.TreeNode
 {

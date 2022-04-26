@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DatabaseEngineInterpreter\DatabaseEngineInterpreter.csproj" />
     <ProjectReference Include="..\DatabaseEngine\DatabaseEngine.csproj" />
+    <ProjectReference Include="..\DataMasterComponents\DataMasterComponents.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,10 +35,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Types\Components" />
   </ItemGroup>
 
 </Project>

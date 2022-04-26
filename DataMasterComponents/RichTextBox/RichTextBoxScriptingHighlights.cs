@@ -1,10 +1,7 @@
-﻿using System;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 
-namespace DataMaster.Types.Components.RichTextBox;
+namespace DataMasterComponents.RichTextBox;
 
 public class RichTextBoxScriptingHighlights : System.Windows.Forms.RichTextBox
 {
