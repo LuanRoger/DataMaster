@@ -20,13 +20,14 @@ public partial class SplashScreen : Form
     private async void SplashScreen_Load(object sender, System.EventArgs e)
     {
         AppConfigurationManager.LoadConfig();
-        LanguageManager.InitLanguages(AppConfigurationManager.configuration.languageConfigModel.langCodeNow);
         List<Task> initialTasks = new()
         {
             AppManager.DownloadFonts(),
+            AppManager.DownloadLanguage()
         };
         await Task.WhenAll(initialTasks);
-
+        
+        LanguageManager.InitLanguages(AppConfigurationManager.configuration.languageConfigModel.langCodeNow);
         LanguageManager.SetGlobalizationObserver(GlobalizationOnLangTextObserver);
         
         PrivateFontCollection privateFont = new();

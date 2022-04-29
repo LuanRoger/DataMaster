@@ -119,18 +119,30 @@ public partial class Home : Form
     
     private async void btnTestConn_Click(object sender, EventArgs e)
     {
-        pgbAsyncTask.Visible = true;
-        
-        if(await DbConnectionManager.TestConnection())
-            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "ConncetionEstablished"),
-                LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxSuccessTitle"),
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-        else MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "UnableToConnectDatabase"), 
-            LanguageManager.ReturnGlobalizationText("MessageBox", "UnableToConnectDatabase"),
-            MessageBoxButtons.OK, MessageBoxIcon.Error);
-        
-        pgbAsyncTask.Visible = false;
+        ShowPgb();
+        try
+        {
+            if(await DbConnectionManager.TestConnection())
+                MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "ConncetionEstablished"),
+                    LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxSuccessTitle"),
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "UnableToConnectDatabase"), 
+                LanguageManager.ReturnGlobalizationText("MessageBox", "UnableToConnectDatabase"),
+                MessageBoxButtons.OK, MessageBoxIcon.Error);   
+        }
+        catch(Exception exception)
+        {
+            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "ErrorOccurs") + exception.Message,
+                LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        HidePgb();
     }
+
+    #region ProgressBar
+    private void ShowPgb() => pgbAsyncTask.Visible = true;
+    private void HidePgb() => pgbAsyncTask.Visible = false;
+    #endregion
 
     private void Home_FormClosed(object sender, FormClosedEventArgs e)
     {

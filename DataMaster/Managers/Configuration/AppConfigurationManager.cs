@@ -27,13 +27,13 @@ public static class AppConfigurationManager
         }
     };
         
-    private static ConfigManager<ConfigurationModel> configManager { get; } = new(Consts.CONFIGURATION_FILE,
+    private static ConfigManager<ConfigurationModel> configManager { get; } = new(Consts.CONFIGURATION_FILE_PATH,
         SerializationFormat.Json, defaultConfig);
     public static ConfigurationModel configuration => configManager.configuration;
 
     public static void LoadConfig()
     {
-        if(!Verifiers.CheckFile(Consts.CONFIGURATION_FILE)) configManager.Save();
+        if(!Verifiers.CheckFile(Consts.CONFIGURATION_FILE_PATH)) configManager.Save();
             
         configManager.Load();
     }

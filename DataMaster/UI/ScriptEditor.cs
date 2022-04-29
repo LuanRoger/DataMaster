@@ -50,13 +50,7 @@ public partial class ScriptEditor : Form
         fileExtension = Path.GetExtension(filePath);
         txtScriptCommand.SetSyntaxByExtension(fileExtension);
     }
-        
-    private void ShowCommandResult(DataTable scriptResult)
-    {
-        dgvQuery.DataSource = scriptResult;
-            
-        if(Verifiers.VerifyDataTable(scriptResult)) tabControl1.SelectedTab = tbpQuery;
-    }
+    
     private async Task SaveSqlFile()
     {
         SaveFileDialog saveFileDialog = new();
@@ -86,12 +80,26 @@ public partial class ScriptEditor : Form
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
-        ShowCommandResult(await DbConnectionManager.currentProvider.ExecuteQueryCommand(txtScriptCommand.Text));
+        ShowCommandResult(await DbConnectionManager.currentProvider!.ExecuteQueryCommand(txtScriptCommand.Text));
+    }
+    private void ShowCommandResult(DataTable scriptResult)
+    {
+        dgvQuery.DataSource = scriptResult;
+            
+        if(Verifiers.VerifyDataTable(scriptResult)) tabControl1.SelectedTab = tbpQuery;
     }
     
     #region ProgressBar
-    private void ShowPgb() => pgbAsyncTask.Visible = true;
-    private void HidePgb() => pgbAsyncTask.Visible = false;
+    private void ShowPgb()
+    {
+        pgbAsyncTask.Visible = true;
+        txtScriptCommand.Enabled = false;
+    }
+    private void HidePgb()
+    {
+        pgbAsyncTask.Visible = false;
+        txtScriptCommand.Enabled = true;
+    }
     #endregion
 
     private void ScriptEditor_FormClosed(object sender, FormClosedEventArgs e)

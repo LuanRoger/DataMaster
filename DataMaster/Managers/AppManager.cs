@@ -35,4 +35,14 @@ public static class AppManager
             await fileStream.WriteAsync(await httpClient.GetByteArrayAsync(requestUri));
         }
     }
+    public static async Task DownloadLanguage()
+    {
+        if(File.Exists(Consts.LANG_STRINGS_FILE)) return;
+        
+        Uri requestUri = new(Consts.LANG_FILE_DOWNLOAD_SERVER);
+        string output = Consts.LANG_STRINGS_FILE;
+
+        await using FileStream fileStream = File.Create(output);
+        await fileStream.WriteAsync(await httpClient.GetByteArrayAsync(requestUri));
+    }
 }
