@@ -1,6 +1,6 @@
 ﻿namespace DataMaster.Managers.Configuration.Sections;
 
-public record CustomizationConfigModel
+public class CustomizationConfigModel
 {
     public int highlightColor { get; set; }
 }

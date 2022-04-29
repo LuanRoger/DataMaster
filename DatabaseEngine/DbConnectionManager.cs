@@ -62,7 +62,7 @@ public static class DbConnectionManager
     
     private static void InitDomain()
     {
-        switch (_databaseProviderConnection.databaseProvider)
+        switch (_databaseProviderConnection!.databaseProvider)
         {
             case DatabaseProvider.SqlServer:
                 _sqlServerDomain = new(_databaseProviderConnection.connectionString);

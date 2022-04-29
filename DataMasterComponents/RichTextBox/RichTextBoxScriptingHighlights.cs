@@ -42,12 +42,12 @@ public class RichTextBoxScriptingHighlights : System.Windows.Forms.RichTextBox
             
         currentSyntaxRegex = regexBuilder.ToString();
     }
-        
-
+    
     public RichTextBoxScriptingHighlights(LanguageHighlight languageHighlight, Color highlightColor)
     {
         this.languageHighlight = languageHighlight;
         this.highlightColor = highlightColor;
+        currentSyntaxRegex = string.Empty;
 
         TextChanged += OnTextChanged;
     }

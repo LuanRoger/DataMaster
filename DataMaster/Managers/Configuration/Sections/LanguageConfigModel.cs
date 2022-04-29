@@ -4,7 +4,7 @@ using SerializedConfig.SectionsAtribute;
 namespace DataMaster.Managers.Configuration.Sections;
 
 [SectionClass]
-public record LanguageConfigModel
+public class LanguageConfigModel
 {
     public LanguageCode langCodeNow { get; set; }
 }

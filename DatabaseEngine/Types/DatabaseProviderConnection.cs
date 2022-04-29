@@ -1,5 +1,7 @@
 ﻿using DatabaseEngine.Enums;
 
+#pragma warning disable CS8618
+
 namespace DatabaseEngine.Types;
 
 public class DatabaseProviderConnection

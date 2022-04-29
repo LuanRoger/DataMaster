@@ -80,12 +80,12 @@ public partial class CreateDb : Form
             return;
         }
 
-        CreateTableInfo createTableInfo = new();
-        createTableInfo.ShowDialog();
+        CreateTable createTable = new();
+        createTable.ShowDialog();
 
-        if (createTableInfo.DialogResult != DialogResult.OK || createTableInfo.table is null) return;
+        if (createTable.DialogResult != DialogResult.OK || createTable.table is null) return;
 
-        tevDataVisualization.SelectedNode.Nodes.Add(createTableInfo.table);
+        tevDataVisualization.SelectedNode.Nodes.Add(createTable.table);
             
         UpdateInfo();
     }

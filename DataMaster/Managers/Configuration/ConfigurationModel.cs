@@ -2,6 +2,8 @@
 using SerializedConfig.SectionsAtribute;
 using SerializedConfig.Types;
 
+#pragma warning disable CS8618
+
 namespace DataMaster.Managers.Configuration;
 
 [SectionClass]

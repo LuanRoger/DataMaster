@@ -7,11 +7,11 @@ using GlobalStrings.EventArguments;
 
 namespace DataMaster.UI;
 
-public partial class CreateTableInfo : Form
+public partial class CreateTable : Form
 {
     internal TreeNodeTable? table { get; private set; }
 
-    public CreateTableInfo(TreeNodeTable? table = null)
+    public CreateTable(TreeNodeTable? table = null)
     {
         InitializeComponent();
         #region TreeViewConfiguration
@@ -71,7 +71,7 @@ public partial class CreateTableInfo : Form
     }
     private void btnRemoverColuna_Click(object sender, EventArgs e)
     {
-        if(tevTableDesing.SelectedNode == null)
+        if(tevTableDesing.SelectedNode == null || tevTableDesing.Nodes.Count <= 1)
         {
             MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "SelectTableDelete"), 
                 LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),

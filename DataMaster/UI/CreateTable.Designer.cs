@@ -1,7 +1,7 @@
 ﻿
 namespace DataMaster.UI
 {
-    partial class CreateTableInfo
+    partial class CreateTable
     {
         /// <summary>
         /// Required designer variable.
@@ -104,6 +104,8 @@ namespace DataMaster.UI
             // 
             // txtTiposDados
             // 
+            this.txtTiposDados.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtTiposDados.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txtTiposDados.FormattingEnabled = true;
             this.txtTiposDados.Items.AddRange(new object[] {
             "bigint",
@@ -214,7 +216,7 @@ namespace DataMaster.UI
             this.btnRemoveColumn.UseVisualStyleBackColor = true;
             this.btnRemoveColumn.Click += new System.EventHandler(this.btnRemoverColuna_Click);
             // 
-            // CreateTableInfo
+            // CreateTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -235,7 +237,7 @@ namespace DataMaster.UI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CreateTableInfo";
+            this.Name = "CreateTable";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Criar Tabela";

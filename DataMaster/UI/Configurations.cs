@@ -40,18 +40,9 @@ public partial class Configurations : Form
 
     private void btnSave_Click(object sender, EventArgs e)
     {
-        AppConfigurationManager.configuration.database = AppConfigurationManager.configuration.database with
-        {
-            connectionString = txtConnectionString.Text
-        };
-        AppConfigurationManager.configuration.customizationConfigModel = AppConfigurationManager.configuration.customizationConfigModel with
-        {
-            highlightColor = txtHighlightColor.BackColor.ToArgb()
-        };
-        AppConfigurationManager.configuration.languageConfigModel = AppConfigurationManager.configuration.languageConfigModel with
-        {
-            langCodeNow = (LanguageCode)cmbLanguages.SelectedIndex
-        };
+        AppConfigurationManager.configuration.database.connectionString = txtConnectionString.Text;
+        AppConfigurationManager.configuration.customizationConfigModel.highlightColor = txtHighlightColor.BackColor.ToArgb();
+        AppConfigurationManager.configuration.languageConfigModel.langCodeNow = (LanguageCode)cmbLanguages.SelectedIndex;
             
         AppConfigurationManager.SaveConfig();
         LanguageManager.UpdateLanguage(AppConfigurationManager.configuration.languageConfigModel.langCodeNow);

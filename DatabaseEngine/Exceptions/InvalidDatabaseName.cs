@@ -1,6 +1,4 @@
-﻿using System.Net.NetworkInformation;
-
-namespace DatabaseEngine.Exceptions;
+﻿namespace DatabaseEngine.Exceptions;
 
 public class InvalidDatabaseName : Exception
 {
