@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Threading.Tasks;
 using DataMaster.Types;
 using SerializedConfig;
 using SerializedConfig.Types.Serialization;
@@ -31,11 +32,11 @@ public static class AppConfigurationManager
         SerializationFormat.Json, defaultConfig);
     public static ConfigurationModel configuration => configManager.configuration;
 
-    public static void LoadConfig()
+    public static async Task LoadConfig()
     {
-        if(!Verifiers.CheckFile(Consts.CONFIGURATION_FILE_PATH)) configManager.Save();
+        if(!Verifiers.CheckFile(Consts.CONFIGURATION_FILE_PATH)) await configManager.SaveAsync();
             
-        configManager.Load();
+        await configManager.LoadAsync();
     }
 
     public static void SaveConfig() =>

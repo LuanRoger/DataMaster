@@ -6,6 +6,7 @@ using DataMaster.Managers.Configuration;
 using DataMaster.Types;
 using GlobalStrings.EventArguments;
 
+
 namespace DataMaster.UI;
 
 public partial class Configurations : Form

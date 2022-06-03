@@ -30,6 +30,9 @@ public static class LanguageManager
         
     public static string ReturnGlobalizationText(string collectionCode, string key) => 
         globalization.SetText(collectionCode, key);
+    public static string ReturnGlobalizationText(string collectionCode, string key, params string[] formatArgs) =>
+        globalization.SetText(collectionCode, key, formatArgs);
+
 
     public static void UpdateLanguage(LanguageCode langCode) => globalization.UpdateLang(langCode);
 }

@@ -75,7 +75,7 @@ public partial class ScriptEditor : Form
         }
         catch(Exception exception)
         {
-            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "ErrorOccurs") + exception.Message,
+            MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox", "ErrorOccurs", exception.Message),
                 LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxErrorTitle"),
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;

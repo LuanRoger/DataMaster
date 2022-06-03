@@ -1,12 +1,12 @@
 ﻿using DataMaster.Managers.Configuration.Sections;
-using SerializedConfig.SectionsAtribute;
-using SerializedConfig.Types;
+using SerializedConfig.SectionsAttribute;
+using SerializedConfig.Types.Model;
 
 #pragma warning disable CS8618
 
 namespace DataMaster.Managers.Configuration;
 
-[SectionClass]
+[ConfigSection]
 public class ConfigurationModel : IConfigurationModel
 {
     public DatabaseConfigModel database { get; set; }

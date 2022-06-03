@@ -52,16 +52,14 @@ public partial class CreateDb : Form
         tevDataVisualization.Nodes.Add(new TreeNode($"Database{tevDataVisualization.Nodes.Count}") { ImageIndex = 0 });
         UpdateInfo();
     }
-            
-
+    
     private void btnDelete_Click(object sender, EventArgs e)
     {
         if (tevDataVisualization.SelectedNode == null) return;
 
         DialogResult dialogResult = MessageBox.Show(LanguageManager.ReturnGlobalizationText("MessageBox",
-                                                        "DeleteConfirmation")
-                                                    + tevDataVisualization.SelectedNode.Text + "?", 
-            LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxQuestionTitle"), 
+                                                        "DeleteConfirmation", tevDataVisualization.SelectedNode.Text),
+        LanguageManager.ReturnGlobalizationText("MessageBox", "MessageBoxQuestionTitle"), 
             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
         if (dialogResult != DialogResult.Yes) return;

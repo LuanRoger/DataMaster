@@ -1,9 +1,9 @@
 ﻿using DataMaster.Types;
-using SerializedConfig.SectionsAtribute;
+using SerializedConfig.SectionsAttribute;
 
 namespace DataMaster.Managers.Configuration.Sections;
 
-[SectionClass]
+[ConfigSection]
 public class LanguageConfigModel
 {
     public LanguageCode langCodeNow { get; set; }

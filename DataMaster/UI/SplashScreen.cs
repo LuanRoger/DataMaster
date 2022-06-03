@@ -19,11 +19,11 @@ public partial class SplashScreen : Form
 
     private async void SplashScreen_Load(object sender, System.EventArgs e)
     {
-        AppConfigurationManager.LoadConfig();
         List<Task> initialTasks = new()
         {
+            AppConfigurationManager.LoadConfig(),
             AppManager.DownloadFonts(),
-            AppManager.DownloadLanguage()
+            AppManager.DownloadLanguage(),
         };
         await Task.WhenAll(initialTasks);
         
